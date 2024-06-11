@@ -1,4 +1,5 @@
 "use server";
+import itemPerPage from "@/helper/itemPerPage";
 import { connectToDB } from "@/models/connection";
 import { ProductModel } from "@/models/products";
 import { ProductType } from "@/types";
@@ -9,7 +10,6 @@ export const getAllProducts = async (
 ) => {
   try {
     connectToDB();
-    const itemPerPage: number = parseInt(process.env.ITEM_PER_PAGE!);
     const regex = new RegExp(search, "i");
     const productsCount: number = await ProductModel.find({
       title: { $regex: regex },

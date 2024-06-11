@@ -10,6 +10,7 @@ const Search = () => {
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
     params.set("page", "1");
+    replace(`${pathname}?${params}`);
   }, []);
   const hundleChange = (search: string) => {
     const params = new URLSearchParams(searchParams);

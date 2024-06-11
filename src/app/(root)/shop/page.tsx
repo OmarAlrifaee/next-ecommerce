@@ -1,6 +1,7 @@
 import { getAllCategories } from "@/actions/categories";
 import { getAllProducts } from "@/actions/products";
 import Catergories from "@/components/Catergories";
+import Pagenation from "@/components/Pagenation";
 import Search from "@/components/Search";
 
 type Props = {
@@ -12,16 +13,21 @@ type Props = {
 };
 const Shop = async ({ searchParams }: Props) => {
   const { products, productsCount } = await getAllProducts(
-    searchParams.page,
-    searchParams.category,
-    searchParams.search
+    searchParams?.page,
+    searchParams?.category,
+    searchParams?.search
   );
   const categories = await getAllCategories();
+
   return (
-    <div className="flex items-center justify-center gap-5">
-      <Catergories categories={categories} />
-      <Search />
-    </div>
+    <section>
+      <div className="flex items-center justify-center gap-5">
+        <Catergories categories={categories} />
+        <Search />
+      </div>
+      {/* products here */}
+      <Pagenation count={productsCount} />
+    </section>
   );
 };
 export default Shop;
