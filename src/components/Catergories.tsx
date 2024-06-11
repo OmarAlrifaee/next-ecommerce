@@ -18,7 +18,10 @@ const Catergories = ({ categories }: Props) => {
     replace(`${pathname}?${params}`);
   };
   return (
-    <select onChange={(e) => hundleChange(e.target.value)}>
+    <select
+      onChange={(e) => hundleChange(e.target.value)}
+      defaultValue={searchParams.get("category")!}
+    >
       <option value={"all"}>All</option>
       {categories.map((category) => (
         <option

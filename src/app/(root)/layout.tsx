@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 type Props = {
@@ -8,6 +9,7 @@ const RootLayout = ({ children }: Props) => {
     <main>
       <Navbar />
       {children}
+      <Footer />
     </main>
   );
 };
