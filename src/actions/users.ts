@@ -79,7 +79,7 @@ export const signUp = async (data: FormData) => {
   }
   redirect("/login");
 };
-export const getCurrentuser = async () => {
+export const getCurrentUser = async () => {
   try {
     const token = cookies().get("token")?.value;
     const decoded: any = jwt.verify(token!, process.env.TOKEN_SECRET!);
