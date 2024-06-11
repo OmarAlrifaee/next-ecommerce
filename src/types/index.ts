@@ -18,3 +18,8 @@ export type ProductType = {
   createdAt: Date;
   id: string;
 };
+export type CategoryType = {
+  title: string;
+  img?: string;
+  id: string;
+};

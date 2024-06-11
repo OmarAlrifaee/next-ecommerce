@@ -1,5 +1,6 @@
 import { login } from "@/actions/users";
 import Submit from "@/components/Submit";
+import Link from "next/link";
 
 const Login = () => {
   return (
@@ -33,6 +34,12 @@ const Login = () => {
           text="Login"
           style="bg-blue-500 text-white hover:bg-blue-300 disabled:bg-blue-300"
         />
+        <Link
+          href={"/signup"}
+          className="underline text-blue-500 font-semibold"
+        >
+          Sign Up
+        </Link>
       </form>
     </div>
   );

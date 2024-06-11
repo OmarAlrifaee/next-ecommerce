@@ -79,3 +79,13 @@ export const signUp = async (data: FormData) => {
   }
   redirect("/login");
 };
+export const getCurrentuser = async () => {
+  try {
+    const token = cookies().get("token")?.value;
+    const decoded: any = jwt.verify(token!, process.env.TOKEN_SECRET!);
+    const currentUser = await UserModel.findById(decoded?.id);
+    return currentUser;
+  } catch (error) {
+    throw new Error("could'nt get current user");
+  }
+};
