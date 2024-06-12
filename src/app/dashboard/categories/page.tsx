@@ -1,4 +1,5 @@
 import { getAllCategories } from "@/actions/categories";
+import AddNewLink from "@/components/AddNewLink";
 import CategoryRow from "@/components/CategoryRow";
 import Search from "@/components/Search";
 import { Metadata } from "next";
@@ -15,17 +16,11 @@ const Categories = async ({ searchParams }: Props) => {
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex items-center justify-between">
         <Search />
-        <Link
-          href={"/dashboard/categories/add"}
-          className="bg-blue-500 font-semibold rounded-md px-5 py-2"
-        >
-          Add New
-        </Link>
+        <AddNewLink text="Add Category" href="/dashboard/categories/add" />
       </div>
       <table className="w-full mt-5">
         <thead>
           <tr>
-            <td className="p-3">Image</td>
             <td className="p-3">Title</td>
             <td>Created At</td>
             <td>Actions</td>

@@ -7,6 +7,12 @@ type Props = {
     id: string;
   };
 };
+export const generateMetadata = async ({ params }: Props) => {
+  const user = (await getOneUser(params.id)) as UserType;
+  return {
+    title: user.username,
+  };
+};
 const UserDetails = async ({ params }: Props) => {
   const user = (await getOneUser(params.id)) as UserType;
   return (
@@ -38,27 +44,16 @@ const UserDetails = async ({ params }: Props) => {
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
           />
           <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
-          />
-          <input
             type="avatar"
             placeholder="Avatar"
             name="avatar"
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
           />
           <div className="flex items-center gap-3 mt-5">
-            <input
-              type="checkbox"
-              name="isAdmin"
-              id="isAdmin"
-              checked={user?.isAdmin}
-            />
+            <input type="checkbox" name="isAdmin" id="isAdmin" />
             <label htmlFor="isAdmin">select to make the user an admin</label>
           </div>
-          <Submit text="Update User" style="bg-main-bg text-white w-full" />
+          <Submit text="Update User" style="bg-primary text-white w-full" />
         </form>
       </div>
     </section>

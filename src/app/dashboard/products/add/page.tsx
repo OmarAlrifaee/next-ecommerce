@@ -1,6 +1,7 @@
 import { getAllCategories } from "@/actions/categories";
 import { addProduct } from "@/actions/products";
 import Submit from "@/components/Submit";
+import { Metadata } from "next";
 
 const AddProduct = async () => {
   const categories = await getAllCategories();
@@ -62,10 +63,13 @@ const AddProduct = async () => {
             placeholder="Description"
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold min-h-[200px]"
           ></textarea>
-          <Submit text="Add Product" style="bg-main-bg text-white w-full" />
+          <Submit text="Add Product" style="bg-primary text-white w-full" />
         </div>
       </form>
     </div>
   );
 };
 export default AddProduct;
+export const metadata: Metadata = {
+  title: "add product",
+};

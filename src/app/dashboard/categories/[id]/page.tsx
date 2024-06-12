@@ -7,6 +7,12 @@ type Props = {
     id: string;
   };
 };
+export const generateMetadata = async ({ params }: Props) => {
+  const category = (await getOneCategory(params.id)) as CategoryType;
+  return {
+    title: `${category.title} category`,
+  };
+};
 const CategoryDetails = async ({ params }: Props) => {
   const category = (await getOneCategory(params.id)) as CategoryType;
   return (
@@ -39,7 +45,7 @@ const CategoryDetails = async ({ params }: Props) => {
           />
           <Submit
             text="Update Category"
-            style="bg-main-bg text-white w-full mt-5"
+            style="bg-primary text-white w-full mt-5"
           />
         </form>
       </div>

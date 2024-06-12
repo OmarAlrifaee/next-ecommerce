@@ -24,6 +24,7 @@ const Navbar = async () => {
   if (cookies().get("token")?.value) {
     currentUser = await getCurrentUser();
   }
+  console.log(currentUser);
   return (
     <nav className="h-10 py-10 px-10 flex items-center justify-between">
       <div>Logo</div>
@@ -36,7 +37,21 @@ const Navbar = async () => {
             key={link.path}
           />
         ))}
-        {!currentUser ? <NavLink path="/login" title="Login" style="" /> : ""}
+        {!currentUser ? (
+          <NavLink path="/login" title="Login" style="" activeStyle="" />
+        ) : (
+          ""
+        )}
+        {currentUser?.isAdmin ? (
+          <NavLink
+            path="/dashboard/users"
+            title="Dashboard"
+            style=""
+            activeStyle=""
+          />
+        ) : (
+          ""
+        )}
       </ul>
       {currentUser ? (
         <div className="flex items-center gap-3">

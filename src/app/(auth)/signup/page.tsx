@@ -1,5 +1,6 @@
 import { signUp } from "@/actions/users";
 import Submit from "@/components/Submit";
+import { Metadata } from "next";
 import Link from "next/link";
 
 const SignUp = () => {
@@ -7,11 +8,15 @@ const SignUp = () => {
     <div className="min-h-screen flex items-center justify-center">
       <form
         action={signUp}
-        className="flex flex-col gap-5 shadow-md rounded-md p-5"
+        className="flex flex-col gap-5 shadow-md rounded-md p-5 bg-main-soft-bg"
       >
-        <h3 className="capitalize font-bold text-3xl text-center">Sign Up</h3>
+        <h3 className="capitalize font-bold text-3xl text-center text-white">
+          Sign Up
+        </h3>
         <div className="flex flex-col gap-3">
-          <label htmlFor="email">User Name:</label>
+          <label htmlFor="email" className="text-white">
+            User Name:
+          </label>
           <input
             type="text"
             id="username"
@@ -21,7 +26,9 @@ const SignUp = () => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email" className="text-white">
+            Email:
+          </label>
           <input
             type="email"
             id="email"
@@ -31,7 +38,9 @@ const SignUp = () => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="email">Password:</label>
+          <label htmlFor="email" className="text-white">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -42,9 +51,9 @@ const SignUp = () => {
         </div>
         <Submit
           text="Sign Up"
-          style="bg-blue-500 text-white hover:bg-blue-300 disabled:bg-blue-300"
+          style="bg-blue-500 text-white hover:bg-primary disabled:bg-blue-300"
         />{" "}
-        <Link href={"/login"} className="underline text-blue-500 font-semibold">
+        <Link href={"/login"} className="underline text-primary font-semibold">
           Login
         </Link>
       </form>
@@ -52,3 +61,6 @@ const SignUp = () => {
   );
 };
 export default SignUp;
+export const metadata: Metadata = {
+  title: "sign up",
+};

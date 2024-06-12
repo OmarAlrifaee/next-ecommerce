@@ -22,6 +22,13 @@ const Search = () => {
     params.delete("category");
     replace(`${pathname}?${params}`);
   };
-  return <input type="text" onChange={(e) => hundleChange(e.target.value)} />;
+  return (
+    <input
+      type="text"
+      onChange={(e) => hundleChange(e.target.value)}
+      placeholder="Search..."
+      className="border-none outline-none focus:outline-none rounded-md px-5 py-2 text-black font-bold"
+    />
+  );
 };
 export default Search;

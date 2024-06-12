@@ -1,10 +1,10 @@
 import { getAllProducts } from "@/actions/products";
+import AddNewLink from "@/components/AddNewLink";
 import Catergories from "@/components/Catergories";
 import Pagenation from "@/components/Pagenation";
 import ProductRow from "@/components/ProductRow";
 import Search from "@/components/Search";
 import { Metadata } from "next";
-import Link from "next/link";
 type Props = {
   searchParams: {
     search: string;
@@ -22,15 +22,10 @@ const Products = async ({ searchParams }: Props) => {
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex items-center justify-between">
         <div className="flex items-center gap-5">
-          <Catergories />
           <Search />
+          <Catergories />
         </div>
-        <Link
-          href={"/dashboard/products/add"}
-          className="bg-blue-500 font-semibold rounded-md px-5 py-2"
-        >
-          Add New
-        </Link>
+        <AddNewLink text="Add Product" href="/dashboard/products/add" />
       </div>
       <table className="w-full mt-5">
         <thead>

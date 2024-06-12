@@ -124,7 +124,7 @@ export const addUser = async (data: FormData) => {
     const userData = Object.fromEntries(data);
     const oldUser = await UserModel.findOne({ email: userData.email });
     if (oldUser) throw new Error("product already exist");
-    var salt = bcryptjs.genSaltSync(10);
+    const salt = bcryptjs.genSaltSync(10);
     const hashedPassword = await bcryptjs.hash(
       userData?.password as string,
       salt
@@ -161,7 +161,10 @@ export const updateUser = async (data: FormData, id: string) => {
         (userData[key] === "" || userData[key] === undefined) &&
         delete userData[key]
     );
-    await UserModel.findByIdAndUpdate(id, userData);
+    await UserModel.findByIdAndUpdate(id, {
+      ...userData,
+      isAdmin: userData.isAdmin === "on" ? true : false,
+    });
   } catch (error) {
     throw new Error("could'nt update a user");
   }

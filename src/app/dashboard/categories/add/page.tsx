@@ -1,5 +1,6 @@
 import { addCategory } from "@/actions/categories";
 import Submit from "@/components/Submit";
+import { Metadata } from "next";
 
 const AddProduct = async () => {
   return (
@@ -20,9 +21,12 @@ const AddProduct = async () => {
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />
         </div>
-        <Submit text="Add Category" style="bg-main-bg text-white w-full mt-5" />
+        <Submit text="Add Category" style="bg-primary text-white w-full mt-5" />
       </form>
     </div>
   );
 };
 export default AddProduct;
+export const metadata: Metadata = {
+  title: "add catergoy",
+};

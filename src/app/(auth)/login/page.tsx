@@ -1,5 +1,6 @@
 import { login } from "@/actions/users";
 import Submit from "@/components/Submit";
+import { Metadata } from "next";
 import Link from "next/link";
 
 const Login = () => {
@@ -7,11 +8,15 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center">
       <form
         action={login}
-        className="flex flex-col gap-5 shadow-md rounded-md p-5"
+        className="flex flex-col gap-5 shadow-md rounded-md p-5 bg-main-soft-bg"
       >
-        <h3 className="capitalize font-bold text-3xl text-center">Login</h3>
+        <h3 className="capitalize font-bold text-3xl text-center text-white">
+          Login
+        </h3>
         <div className="flex flex-col gap-3">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email" className="text-white">
+            Email:
+          </label>
           <input
             type="email"
             id="email"
@@ -21,7 +26,9 @@ const Login = () => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="email">Password:</label>
+          <label htmlFor="email" className="text-white">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -32,12 +39,9 @@ const Login = () => {
         </div>
         <Submit
           text="Login"
-          style="bg-blue-500 text-white hover:bg-blue-300 disabled:bg-blue-300"
+          style="bg-blue-500 text-white hover:bg-primary disabled:bg-blue-300"
         />
-        <Link
-          href={"/signup"}
-          className="underline text-blue-500 font-semibold"
-        >
+        <Link href={"/signup"} className="underline text-primary font-semibold">
           Sign Up
         </Link>
       </form>
@@ -45,3 +49,6 @@ const Login = () => {
   );
 };
 export default Login;
+export const metadata: Metadata = {
+  title: "login",
+};

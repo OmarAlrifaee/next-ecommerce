@@ -8,6 +8,12 @@ type Props = {
     id: string;
   };
 };
+export const generateMetadata = async ({ params }: Props) => {
+  const product = (await getOneProduct(params.id)) as ProductType;
+  return {
+    title: `${product.title} product`,
+  };
+};
 const ProductDetails = async ({ params }: Props) => {
   const product = (await getOneProduct(params.id)) as ProductType;
   const categories = await getAllCategories();
@@ -80,7 +86,7 @@ const ProductDetails = async ({ params }: Props) => {
               </option>
             ))}
           </select>
-          <Submit text="Update Product" style="bg-main-bg text-white w-full" />
+          <Submit text="Update Product" style="bg-primary text-white w-full" />
         </form>
       </div>
     </section>

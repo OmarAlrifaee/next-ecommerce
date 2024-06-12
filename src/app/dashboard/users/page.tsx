@@ -1,9 +1,9 @@
 import { getAllUsers } from "@/actions/users";
+import AddNewLink from "@/components/AddNewLink";
 import Pagenation from "@/components/Pagenation";
 import Search from "@/components/Search";
 import UserRow from "@/components/UserRow";
 import { Metadata } from "next";
-import Link from "next/link";
 type Props = {
   searchParams: {
     search: string;
@@ -18,13 +18,7 @@ const Users = async ({ searchParams }: Props) => {
   return (
     <section className="bg-main-soft-bg">
       <div className="p-5 mt-3 flex items-center justify-between">
-        <Search />{" "}
-        <Link
-          href={"/dashboard/users/add"}
-          className="bg-blue-500 font-semibold rounded-md px-5 py-2"
-        >
-          Add New
-        </Link>
+        <Search /> <AddNewLink href="/dashboard/users/add" text="Add User" />
       </div>
       <table className="w-full mt-5">
         <thead>

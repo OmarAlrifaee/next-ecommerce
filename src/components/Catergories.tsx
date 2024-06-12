@@ -27,6 +27,7 @@ const Catergories = () => {
     <select
       onChange={(e) => hundleChange(e.target.value)}
       defaultValue={searchParams.get("category")!}
+      className="text-black outline-none focus:outline-none p-2 rounded-md"
     >
       <option value={"all"}>All</option>
       {categories.map((category) => (

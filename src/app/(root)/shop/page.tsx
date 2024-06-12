@@ -1,8 +1,8 @@
-import { getAllCategories } from "@/actions/categories";
 import { getAllProducts } from "@/actions/products";
 import Catergories from "@/components/Catergories";
 import Pagenation from "@/components/Pagenation";
 import Search from "@/components/Search";
+import { Metadata } from "next";
 
 type Props = {
   searchParams: {
@@ -30,3 +30,6 @@ const Shop = async ({ searchParams }: Props) => {
   );
 };
 export default Shop;
+export const metadata: Metadata = {
+  title: "shop",
+};

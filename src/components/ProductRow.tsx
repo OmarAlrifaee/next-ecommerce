@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProductType } from "@/types";
 import { deleteProduct } from "@/actions/products";
+import Submit from "./Submit";
 type Props = {
   product: ProductType;
 };
@@ -36,9 +37,10 @@ const ProductRow = ({ product }: Props) => {
               await deleteProduct(product.id);
             }}
           >
-            <button className="bg-[crimson] py-[5px] px-[10px] rounded-sm border-none cursor-pointer">
-              Delete
-            </button>
+            <Submit
+              style="bg-[crimson] py-[5px] px-[10px] rounded-sm border-none cursor-pointer"
+              text="Delete"
+            />
           </form>
         </div>
       </td>

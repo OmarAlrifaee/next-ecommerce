@@ -1,5 +1,6 @@
 import { addUser } from "@/actions/users";
 import Submit from "@/components/Submit";
+import { Metadata } from "next";
 
 const AddUser = () => {
   return (
@@ -38,9 +39,12 @@ const AddUser = () => {
           <input type="checkbox" name="isAdmin" id="isAdmin" />
           <label htmlFor="isAdmin">select to make the user an admin</label>
         </div>
-        <Submit text="Add User" style="bg-blue-400 text-white w-full mt-5" />
+        <Submit text="Add User" style="bg-primary text-white w-full mt-5" />
       </form>
     </div>
   );
 };
 export default AddUser;
+export const metadata: Metadata = {
+  title: "add user",
+};

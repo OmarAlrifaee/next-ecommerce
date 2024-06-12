@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { UserType } from "@/types";
 import { deleteUser } from "@/actions/users";
+import Submit from "./Submit";
 
 type Props = {
   user: UserType;
@@ -37,9 +38,10 @@ const UserRow = ({ user }: Props) => {
               await deleteUser(user.id);
             }}
           >
-            <button className="bg-[crimson] py-[5px] px-[10px] rounded-sm border-none cursor-pointer">
-              Delete
-            </button>
+            <Submit
+              style="bg-[crimson] py-[5px] px-[10px] rounded-sm border-none cursor-pointer"
+              text="Delete"
+            />
           </form>
         </div>
       </td>

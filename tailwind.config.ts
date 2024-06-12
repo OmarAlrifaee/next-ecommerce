@@ -12,6 +12,7 @@ const config: Config = {
         "main-bg": "#151c2c",
         "main-soft-bg": "#182237",
         "soft-text": "#b7bac1",
+        primary: "rgb(59 130 246)",
       },
     },
   },
