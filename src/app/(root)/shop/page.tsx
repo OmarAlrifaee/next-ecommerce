@@ -17,12 +17,11 @@ const Shop = async ({ searchParams }: Props) => {
     searchParams?.category,
     searchParams?.search
   );
-  const categories = await getAllCategories();
 
   return (
     <section>
       <div className="flex items-center justify-center gap-5">
-        <Catergories categories={categories} />
+        <Catergories />
         <Search />
       </div>
       {/* products here */}

@@ -1,15 +1,21 @@
 "use client";
 
+import { getAllCategories } from "@/actions/categories";
 import { CategoryType } from "@/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-type Props = {
-  categories: CategoryType[];
-};
-const Catergories = ({ categories }: Props) => {
+const Catergories = () => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  useEffect(() => {
+    (async () => {
+      const data = await getAllCategories();
+      setCategories(data);
+    })();
+  }, []);
   const hundleChange = (categoryValue: string) => {
     const params = new URLSearchParams(searchParams);
     if (categoryValue !== "all") {

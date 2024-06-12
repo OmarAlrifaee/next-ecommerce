@@ -5,6 +5,9 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { UserType } from "@/types";
+import itemsPerPage from "@/helper/itemPerPage";
+import { revalidatePath } from "next/cache";
 
 export const login = async (data: FormData) => {
   try {
@@ -88,4 +91,80 @@ export const getCurrentUser = async () => {
   } catch (error) {
     throw new Error("could'nt get current user");
   }
+};
+export const getAllUsers = async (search: string, page: string) => {
+  try {
+    connectToDB();
+    const regex = new RegExp(search, "i");
+    const count = await UserModel.find({
+      username: { $regex: regex },
+    }).countDocuments();
+    const users = await UserModel.find<UserType>({
+      username: { $regex: regex },
+    })
+      .limit(itemsPerPage) // make a limit for the users
+      .skip(itemsPerPage * (parseInt(page) - 1)); // for example 2 * 0 so i wont skip any users but if its page 2 ill skip the first tow and show the second tow
+    return { users, count };
+  } catch (error) {
+    throw new Error("faild to fetch all users");
+  }
+};
+export const deleteUser = async (id: string) => {
+  try {
+    connectToDB();
+    await UserModel.findByIdAndDelete(id);
+  } catch (error) {
+    throw new Error("could'nt delete a user");
+  }
+  revalidatePath("/dashboard/users");
+};
+export const addUser = async (data: FormData) => {
+  try {
+    connectToDB();
+    const userData = Object.fromEntries(data);
+    const oldUser = await UserModel.findOne({ email: userData.email });
+    if (oldUser) throw new Error("product already exist");
+    var salt = bcryptjs.genSaltSync(10);
+    const hashedPassword = await bcryptjs.hash(
+      userData?.password as string,
+      salt
+    );
+    const newUser = new UserModel({
+      ...userData,
+      password: hashedPassword,
+      isAdmin: userData.isAdmin === "on" ? true : false,
+    });
+    await newUser.save();
+  } catch (error) {
+    throw new Error("could'nt add a new user");
+  }
+  revalidatePath("/dashboard/users");
+  redirect("/dashboard/users");
+};
+export const getOneUser = async (id: string) => {
+  try {
+    connectToDB();
+    const user = await UserModel.findById<UserType>(id);
+    return user;
+  } catch (error) {
+    throw new Error("could'nt find a user");
+  }
+};
+export const updateUser = async (data: FormData, id: string) => {
+  try {
+    connectToDB();
+    const userData = Object.fromEntries(data);
+    // remove any key with an empty value or undifined
+    // to prevent assign it to the database as an undifined faild
+    Object.keys(userData).map(
+      (key) =>
+        (userData[key] === "" || userData[key] === undefined) &&
+        delete userData[key]
+    );
+    await UserModel.findByIdAndUpdate(id, userData);
+  } catch (error) {
+    throw new Error("could'nt update a user");
+  }
+  revalidatePath("/dashboard/users");
+  redirect("/dashboard/users");
 };

@@ -19,6 +19,7 @@ const Search = () => {
     } else {
       params.delete("search");
     }
+    params.delete("category");
     replace(`${pathname}?${params}`);
   };
   return <input type="text" onChange={(e) => hundleChange(e.target.value)} />;
