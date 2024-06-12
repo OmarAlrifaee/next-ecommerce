@@ -1,13 +1,18 @@
 import mongoose from "mongoose";
 
-const categorySchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: [true, "please provide a category title"],
+const categorySchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "please provide a category title"],
+    },
+    img: {
+      type: String,
+    },
   },
-  img: {
-    type: String,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 export const CategoryModel =
   mongoose.models?.categories || mongoose.model("categories", categorySchema);

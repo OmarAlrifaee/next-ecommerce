@@ -22,4 +22,5 @@ export type CategoryType = {
   title: string;
   img?: string;
   id: string;
+  createdAt: Date;
 };

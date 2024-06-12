@@ -24,6 +24,11 @@ const Sidebar = async () => {
         path: "/dashboard/products",
         icon: <MdShoppingBag />,
       },
+      {
+        title: "Categories",
+        path: "/dashboard/categories",
+        icon: <MdShoppingBag />,
+      },
     ],
   };
   return (
