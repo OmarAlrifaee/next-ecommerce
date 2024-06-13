@@ -1,6 +1,7 @@
 import { getAllProducts } from "@/actions/products";
 import Catergories from "@/components/Catergories";
 import Pagenation from "@/components/Pagenation";
+import ProductCard from "@/components/ProductCard";
 import Search from "@/components/Search";
 import { Metadata } from "next";
 

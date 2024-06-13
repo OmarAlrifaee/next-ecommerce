@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import { UserType } from "@/types";
 import itemsPerPage from "@/helper/itemPerPage";
 import { revalidatePath } from "next/cache";
+import { CartModel } from "@/models/cart";
 
 export const login = async (data: FormData) => {
   try {
@@ -76,7 +77,11 @@ export const signUp = async (data: FormData) => {
       password: hashedPassword,
     });
     const savedUser = await newUser.save();
+    // make a cart for every new user
+    const userCart = new CartModel({ userId: savedUser?.id });
+    await userCart.save();
     console.log(savedUser);
+    console.log(userCart);
   } catch (error: any) {
     throw new Error("could'nt sign in a user");
   }
@@ -134,7 +139,10 @@ export const addUser = async (data: FormData) => {
       password: hashedPassword,
       isAdmin: userData.isAdmin === "on" ? true : false,
     });
-    await newUser.save();
+    const savedUser = await newUser.save();
+    // make a cart for every new user
+    const userCart = new CartModel({ userId: savedUser?.id });
+    await userCart.save();
   } catch (error) {
     throw new Error("could'nt add a new user");
   }

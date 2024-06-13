@@ -35,6 +35,7 @@ const Catergories = () => {
           value={category.title}
           key={category.title}
           className="capitalize"
+          selected={searchParams.get("category")! === category.title}
         >
           {category.title}
         </option>
