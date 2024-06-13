@@ -24,3 +24,9 @@ export type CategoryType = {
   id: string;
   createdAt: Date;
 };
+export type CartType = {
+  id: string;
+  createdAt: Date;
+  productsIds: string[];
+  userId: string;
+};

@@ -2,6 +2,7 @@ import { ProductType } from "@/types";
 import Image from "next/image";
 import AddNewLink from "./AddNewLink";
 import Submit from "./Submit";
+import { addToCart } from "@/actions/cart";
 type Props = {
   product: ProductType;
 };
@@ -47,7 +48,12 @@ const ProductCard = ({ product }: Props) => {
           <AddNewLink text="Show" href={`/shop/${product.id}`} />
           {
             // here i should make a add or delete buttons
-            <form action="">
+            <form
+              action={async () => {
+                "use server";
+                await addToCart(product.id);
+              }}
+            >
               <Submit text="Add" style="bg-primary text-white" />
             </form>
           }
