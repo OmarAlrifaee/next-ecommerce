@@ -2,6 +2,7 @@
 
 import { CategoryModel } from "@/models/categories";
 import { connectToDB } from "@/models/connection";
+import { ProductModel } from "@/models/products";
 import { CategoryType } from "@/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -27,10 +28,12 @@ export const getOneCategory = async (id: string) => {
     throw new Error("could'nt get one category");
   }
 };
-export const deleteCategory = async (id: string) => {
+export const deleteCategory = async (id: string, title: string) => {
   try {
     connectToDB();
     await CategoryModel.findByIdAndDelete(id);
+    // here i should delete all of the products related to that category
+    await ProductModel.deleteMany({ category: title });
   } catch (error) {
     throw new Error("could'nt delete a Category");
   }
@@ -49,7 +52,6 @@ export const addCategory = async (data: FormData) => {
   } catch (error) {
     throw new Error("could'nt add a new category");
   }
-  revalidatePath("/dashboard/categories");
   redirect("/dashboard/categories");
 };
 export const updateCategory = async (data: FormData, id: string) => {
@@ -67,6 +69,5 @@ export const updateCategory = async (data: FormData, id: string) => {
   } catch (error) {
     throw new Error("could'nt update a category");
   }
-  revalidatePath("/dashboard/categories");
   redirect("/dashboard/categories");
 };

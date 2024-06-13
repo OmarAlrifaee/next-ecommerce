@@ -38,7 +38,6 @@ export const login = async (data: FormData) => {
       expiresIn: "1d",
     });
     cookies().set("token", token, { httpOnly: true });
-    console.log("login successfully");
   } catch (error: any) {
     throw new Error("could'nt login a user");
   }
@@ -51,7 +50,6 @@ export const logout = async () => {
       httpOnly: true,
       expires: new Date(0),
     });
-    console.log("logged out successfully");
   } catch (error: any) {
     throw new Error("could'nt logout a user");
   }
@@ -80,8 +78,6 @@ export const signUp = async (data: FormData) => {
     // make a cart for every new user
     const userCart = new CartModel({ userId: savedUser?.id });
     await userCart.save();
-    console.log(savedUser);
-    console.log(userCart);
   } catch (error: any) {
     throw new Error("could'nt sign in a user");
   }
@@ -117,7 +113,7 @@ export const getAllUsers = async (search: string = "", page: string = "1") => {
 export const deleteUser = async (id: string) => {
   try {
     connectToDB();
-    // delete the user cart
+    // delete the user cart too
     await CartModel.deleteOne({ userId: id });
     await UserModel.findByIdAndDelete(id);
   } catch (error) {

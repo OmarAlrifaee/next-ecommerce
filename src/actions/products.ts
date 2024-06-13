@@ -1,5 +1,6 @@
 "use server";
 import itemPerPage from "@/helper/itemPerPage";
+import { CartModel } from "@/models/cart";
 import { connectToDB } from "@/models/connection";
 import { ProductModel } from "@/models/products";
 import { ProductType } from "@/types";
@@ -25,7 +26,6 @@ export const getAllProducts = async (
     })
       .limit(itemPerPage)
       .skip(itemPerPage * (parseInt(page) - 1));
-    console.log(products);
     return { products, productsCount };
   } catch (error) {
     throw new Error("could'nt get all products");
@@ -44,6 +44,13 @@ export const deleteProduct = async (id: string) => {
   try {
     connectToDB();
     await ProductModel.findByIdAndDelete(id);
+    // here i should delete the product from all carts too
+    await CartModel.updateMany(
+      { productsIds: id },
+      {
+        $pull: { productsIds: id },
+      }
+    );
   } catch (error) {
     throw new Error("could'nt delete a product");
   }
@@ -60,7 +67,6 @@ export const addProduct = async (data: FormData) => {
   } catch (error) {
     throw new Error("could'nt add a new product");
   }
-  revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 };
 export const updateProduct = async (data: FormData, id: string) => {
@@ -78,6 +84,5 @@ export const updateProduct = async (data: FormData, id: string) => {
   } catch (error) {
     throw new Error("could'nt update a product");
   }
-  revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 };

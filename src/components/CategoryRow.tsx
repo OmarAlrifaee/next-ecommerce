@@ -32,7 +32,7 @@ const CategoryRow = ({ category }: Props) => {
           <form
             action={async () => {
               "use server";
-              await deleteCategory(category.id);
+              await deleteCategory(category.id, category.title);
             }}
           >
             <Submit
