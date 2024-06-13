@@ -24,9 +24,8 @@ const Navbar = async () => {
   if (cookies().get("token")?.value) {
     currentUser = await getCurrentUser();
   }
-  console.log(currentUser);
   return (
-    <nav className="h-10 py-10 px-10 flex items-center justify-between">
+    <nav className="h-10 py-10 px-10 flex items-center justify-between text-white">
       <div>Logo</div>
       <ul className="flex items-center gap-3">
         {links.map((link) => (

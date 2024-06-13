@@ -97,7 +97,7 @@ export const getCurrentUser = async () => {
     throw new Error("could'nt get current user");
   }
 };
-export const getAllUsers = async (search: string, page: string) => {
+export const getAllUsers = async (search: string = "", page: string = "1") => {
   try {
     connectToDB();
     const regex = new RegExp(search, "i");
@@ -117,6 +117,8 @@ export const getAllUsers = async (search: string, page: string) => {
 export const deleteUser = async (id: string) => {
   try {
     connectToDB();
+    // delete the user cart
+    await CartModel.deleteOne({ userId: id });
     await UserModel.findByIdAndDelete(id);
   } catch (error) {
     throw new Error("could'nt delete a user");
