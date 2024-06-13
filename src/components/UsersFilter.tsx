@@ -18,7 +18,7 @@ const UsersFilter = () => {
   }, [searchParams]);
   const hundleChange = (userName: string) => {
     const params = new URLSearchParams(searchParams);
-    if (userName !== "all") {
+    if (userName !== "none") {
       params.set("user", userName);
     } else params.delete("user");
     replace(`${pathname}?${params}`);
@@ -29,7 +29,7 @@ const UsersFilter = () => {
       defaultValue={"all"}
       className="text-black outline-none focus:outline-none p-2 rounded-md"
     >
-      <option value="all">all</option>
+      <option value="none">none</option>
       {users?.map((user) => (
         <option
           value={user.username}

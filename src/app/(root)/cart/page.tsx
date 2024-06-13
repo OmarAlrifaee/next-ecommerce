@@ -1,22 +1,30 @@
 import { clearCart, getCartProducts } from "@/actions/cart";
 import ProductCard from "@/components/ProductCard";
 import Submit from "@/components/Submit";
+import { ProductType } from "@/types";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 const Cart = async () => {
-  const { cartProducts, count } = await getCartProducts();
+  let cartProducts: ProductType[] | null = null;
+  if (cookies().get("token")?.value) {
+    cartProducts = (await getCartProducts()).cartProducts;
+  }
   return (
     <div>
-      {cartProducts.map((product) => (
+      {cartProducts?.map((product) => (
         <ProductCard
           product={product}
           key={product.id}
-          inCart={cartProducts.some((cartProduct) => {
-            return cartProduct.id === product.id;
-          })}
+          inCart={
+            !!cartProducts?.some((cartProduct) => {
+              return cartProduct.id === product.id;
+            })
+          }
+          notLoggedIn={!!cookies().get("token")?.value}
         />
       ))}
-      {cartProducts.length ? (
+      {cartProducts?.length ? (
         <form action={clearCart}>
           <Submit text="Clear Cart" style="bg-red-500" />
         </form>

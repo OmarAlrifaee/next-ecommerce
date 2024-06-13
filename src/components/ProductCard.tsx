@@ -6,8 +6,9 @@ import { addToCart, removeFromCart } from "@/actions/cart";
 type Props = {
   product: ProductType;
   inCart: boolean;
+  notLoggedIn: boolean;
 };
-const ProductCard = async ({ product, inCart }: Props) => {
+const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
   return (
     <div className="rounded-md shadow-md overflow-hidden capitalize w-[250px] flex flex-col gap-3 pb-5 bg-main-soft-bg">
       <div className="relative w-full h-[200px]">
@@ -47,25 +48,28 @@ const ProductCard = async ({ product, inCart }: Props) => {
         </div>
         <div className="flex items-center justify-between">
           <AddNewLink text="Show" href={`/shop/${product.id}`} />
-
-          {inCart ? (
-            <form
-              action={async () => {
-                "use server";
-                await removeFromCart(product.id);
-              }}
-            >
-              <Submit text="Remove" style="bg-red-500 text-white" />
-            </form>
+          {notLoggedIn ? (
+            inCart ? (
+              <form
+                action={async () => {
+                  "use server";
+                  await removeFromCart(product.id);
+                }}
+              >
+                <Submit text="Remove" style="bg-red-500 text-white" />
+              </form>
+            ) : (
+              <form
+                action={async () => {
+                  "use server";
+                  await addToCart(product.id);
+                }}
+              >
+                <Submit text="Add" style="bg-primary text-white" />
+              </form>
+            )
           ) : (
-            <form
-              action={async () => {
-                "use server";
-                await addToCart(product.id);
-              }}
-            >
-              <Submit text="Add" style="bg-primary text-white" />
-            </form>
+            <AddNewLink text="Login" href="/login" />
           )}
         </div>
       </article>
