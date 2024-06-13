@@ -1,3 +1,4 @@
+import { getCartProducts } from "@/actions/cart";
 import { getAllProducts } from "@/actions/products";
 import Catergories from "@/components/Catergories";
 import Pagenation from "@/components/Pagenation";
@@ -18,7 +19,7 @@ const Shop = async ({ searchParams }: Props) => {
     searchParams?.category,
     searchParams?.search
   );
-
+  const { cartProducts } = await getCartProducts();
   return (
     <section>
       <div className="flex items-center justify-center gap-5">
@@ -26,6 +27,15 @@ const Shop = async ({ searchParams }: Props) => {
         <Search />
       </div>
       {/* products here */}
+      {products.map((product) => (
+        <ProductCard
+          product={product}
+          key={product.id}
+          inCart={cartProducts.some((cartProduct) => {
+            return cartProduct.id === product.id;
+          })}
+        />
+      ))}
       <Pagenation count={productsCount} />
     </section>
   );

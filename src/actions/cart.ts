@@ -7,6 +7,7 @@ import { CartModel } from "@/models/cart";
 import { ProductModel } from "@/models/products";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export const getCartProducts = async () => {
   // check if there is a user loggedin
@@ -37,6 +38,12 @@ export const addToCart = async (productId: string) => {
     connectToDB();
     // get the current user
     const currentUser: UserType = await getCurrentUser();
+    // check if its in cart first
+    const product = await CartModel.findOne({
+      userId: currentUser.id,
+      productsIds: productId,
+    });
+    if (product) throw new Error("product already exist in cart");
     // update the user cart
     await CartModel.findOneAndUpdate(
       {
@@ -49,6 +56,8 @@ export const addToCart = async (productId: string) => {
   } catch (error) {
     throw new Error("could'nt add new product to cart");
   }
+  revalidatePath("/");
+  revalidatePath("/shop");
 };
 export const removeFromCart = async (productId: string) => {
   try {
@@ -67,6 +76,9 @@ export const removeFromCart = async (productId: string) => {
   } catch (error) {
     throw new Error("could'nt remove product from cart");
   }
+  revalidatePath("/");
+  revalidatePath("/shop");
+  revalidatePath("/cart");
 };
 export const clearCart = async () => {
   try {
@@ -85,4 +97,5 @@ export const clearCart = async () => {
   } catch (error) {
     throw new Error("could'nt remove all product from cart");
   }
+  revalidatePath("/cart");
 };
