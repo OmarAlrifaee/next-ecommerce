@@ -47,10 +47,11 @@ const ProductDetails = async ({ params }: Props) => {
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />
           <input
-            type="text"
+            type="color"
             placeholder={product?.color}
             name="color"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            style={{ backgroundColor: product?.color }}
+            className={`p-[15px] focus:outline-none rounded-md text-white font-semibold`}
           />
           <input
             type="text"

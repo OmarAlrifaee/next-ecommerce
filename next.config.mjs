@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "images.pexels.com",
         protocol: "https",
+        hostname: "**",
       },
     ],
   },

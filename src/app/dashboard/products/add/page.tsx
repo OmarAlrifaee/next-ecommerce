@@ -19,7 +19,7 @@ const AddProduct = async () => {
           <select
             name="category"
             id="category"
-            className=" p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className=" p-[15px] focus:outline-none rounded-md text-white font-semibold"
           >
             {categories.map((cat) => (
               <option
@@ -38,7 +38,7 @@ const AddProduct = async () => {
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />
           <input
-            type="text"
+            type="color"
             placeholder="Color"
             name="color"
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
