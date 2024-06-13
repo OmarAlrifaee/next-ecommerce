@@ -1,9 +1,10 @@
 "use server";
 
+import { CartModel } from "@/models/cart";
 import { CategoryModel } from "@/models/categories";
 import { connectToDB } from "@/models/connection";
 import { ProductModel } from "@/models/products";
-import { CategoryType } from "@/types";
+import { CategoryType, ProductType } from "@/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -32,6 +33,19 @@ export const deleteCategory = async (id: string, title: string) => {
   try {
     connectToDB();
     await CategoryModel.findByIdAndDelete(id);
+    // i should delete the products from all carts too
+    const deletedCategoryProducts = await ProductModel.find<ProductType>({
+      category: title,
+    });
+    // delete products from all carts
+    deletedCategoryProducts.forEach(async (product) => {
+      await CartModel.updateMany(
+        { productsIds: product.id },
+        {
+          $pull: { productsIds: product.id },
+        }
+      );
+    });
     // here i should delete all of the products related to that category
     await ProductModel.deleteMany({ category: title });
   } catch (error) {
