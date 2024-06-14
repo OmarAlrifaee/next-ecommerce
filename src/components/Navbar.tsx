@@ -25,7 +25,7 @@ const Navbar = async () => {
     currentUser = await getCurrentUser();
   }
   return (
-    <nav className="h-10 py-10 px-10 flex items-center justify-between text-white">
+    <nav className="h-10 py-10 px-10 md:flex hidden items-center justify-between text-white ">
       <div>Logo</div>
       <ul className="flex items-center gap-3">
         {links.map((link) => (

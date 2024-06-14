@@ -10,7 +10,7 @@ type Props = {
 };
 const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
   return (
-    <div className="rounded-md shadow-md overflow-hidden capitalize w-[250px] flex flex-col gap-3 pb-5 bg-main-soft-bg">
+    <div className="relative rounded-md shadow-md overflow-hidden capitalize min-h-[500px] w-[250px] flex flex-col gap-3 bg-main-soft-bg">
       <div className="relative w-full h-[200px]">
         <Image
           src={product.img || "/noproduct.jpg"}
@@ -46,7 +46,7 @@ const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
             {product.category}
           </p>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between absolute bottom-0 left-0 w-full px-5 pb-5">
           <AddNewLink text="Show" href={`/shop/${product.id}`} />
           {notLoggedIn ? (
             inCart ? (

@@ -26,24 +26,26 @@ const Shop = async ({ searchParams }: Props) => {
     cartProducts = (await getCartProducts()).cartProducts;
   }
   return (
-    <section>
-      <div className="flex items-center justify-center gap-5">
-        <Catergories />
-        <Search />
+    <section className="md:p-10 p-5">
+      <div className="flex sm:flex-row flex-col sm:items-center sm:justify-center gap-5 ">
+        <Catergories style="sm:w-fit w-full " />
+        <Search style="sm:w-fit w-full " />
       </div>
-      {/* products here */}
-      {products.map((product) => (
-        <ProductCard
-          product={product}
-          key={product.id}
-          inCart={
-            !!cartProducts?.some((cartProduct) => {
-              return cartProduct.id === product.id;
-            })
-          }
-          notLoggedIn={!!cookies().get("token")?.value}
-        />
-      ))}
+      <ul className="grid xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 place-items-center w-full gap-x-2 gap-y-6 mt-10">
+        {products.map((product) => (
+          <li key={product.id}>
+            <ProductCard
+              product={product}
+              inCart={
+                !!cartProducts?.some((cartProduct) => {
+                  return cartProduct.id === product.id;
+                })
+              }
+              notLoggedIn={!!cookies().get("token")?.value}
+            />
+          </li>
+        ))}
+      </ul>
       <Pagenation count={productsCount} />
     </section>
   );

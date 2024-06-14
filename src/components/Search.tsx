@@ -18,6 +18,7 @@ const Search = ({ style }: Props) => {
     const params = new URLSearchParams(searchParams);
     if (search) {
       params.set("search", search);
+      params.set("page", "1");
     } else {
       params.delete("search");
     }
