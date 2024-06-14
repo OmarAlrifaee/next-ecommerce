@@ -12,13 +12,13 @@ const UserRow = ({ user }: Props) => {
     <tr>
       <td className="p-3">
         <div className="flex items-center gap-[10px]">
-          <Image
-            src={user.avatar || "/noavatar.jpg"}
-            alt={`${user.username} image`}
-            width={40}
-            height={40}
-            className="rounded-full flex-shrink-0"
-          />
+          <div className="flex-shrink-0 relative rounded-full overflow-hidden w-[40px] h-[40px]">
+            <Image
+              src={user.avatar || "/noavatar.jpg"}
+              alt={user.username}
+              fill
+            />
+          </div>
           <span>{user.username}</span>
         </div>
       </td>

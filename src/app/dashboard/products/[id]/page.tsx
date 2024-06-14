@@ -46,23 +46,11 @@ const ProductDetails = async ({ params }: Props) => {
             name="price"
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />
-          <input
-            type="color"
-            placeholder={product?.color}
-            name="color"
-            style={{ backgroundColor: product?.color }}
-            className={`p-[15px] focus:outline-none rounded-md text-white font-semibold`}
-          />
+
           <input
             type="text"
             placeholder={product?.size}
             name="size"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
-          />
-          <input
-            type="text"
-            placeholder={product.desc}
-            name="desc"
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />
           <input
@@ -87,7 +75,25 @@ const ProductDetails = async ({ params }: Props) => {
               </option>
             ))}
           </select>
-          <Submit text="Update Product" style="bg-primary text-white w-full" />
+          <input
+            type="color"
+            placeholder={product?.color}
+            name="color"
+            style={{ backgroundColor: product?.color }}
+            className={`p-[15px] focus:outline-none rounded-md text-white font-semibold`}
+          />
+          <div className="mt-10 flex flex-col gap-5">
+            <textarea
+              name="desc"
+              id="desc"
+              placeholder={product.desc}
+              className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold min-h-[200px]"
+            ></textarea>
+            <Submit
+              text="Update Product"
+              style="bg-primary text-white w-full"
+            />
+          </div>
         </form>
       </div>
     </section>

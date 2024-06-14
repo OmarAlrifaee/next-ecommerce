@@ -10,14 +10,14 @@ const CategoryRow = ({ category }: Props) => {
   return (
     <tr>
       <td className="p-3">
-        <div className="flex items-center gap-3">
-          <Image
-            src={category?.img || "/noproduct.jpg"}
-            alt={category.title}
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+        <div className="flex items-center gap-[10px]">
+          <div className="flex-shrink-0 relative rounded-full overflow-hidden w-[40px] h-[40px]">
+            <Image
+              src={category.img || "/noproduct.jpg"}
+              alt={category.title}
+              fill
+            />
+          </div>
           <span>{category.title}</span>
         </div>
       </td>
