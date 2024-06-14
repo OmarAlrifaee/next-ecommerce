@@ -11,7 +11,7 @@ const NavLink = ({
   path,
   title,
   style,
-  activeStyle = "border-b-2 border-b-red-500",
+  activeStyle = "text-green-500",
 }: Props) => {
   const pathname = usePathname();
   return (

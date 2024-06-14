@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/actions/users";
-import BottomBar from "@/components/BottomBar";
+import TopBar from "@/components/TopBar";
 import Sidebar from "@/components/Sidebar";
 import { redirect } from "next/navigation";
 type Props = {
@@ -10,7 +10,7 @@ const DashboardLayout = async ({ children }: Props) => {
   if (!currentUser?.isAdmin) redirect("/"); // redirect the user if he is not an admin
   return (
     <section className="xl:flex min-h-screen text-white">
-      <BottomBar />
+      <TopBar />
       <Sidebar currentUser={currentUser} />
       <div className="xl:flex-[4] p-5">{children}</div>
     </section>

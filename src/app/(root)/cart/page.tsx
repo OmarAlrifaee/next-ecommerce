@@ -29,12 +29,11 @@ const Cart = async () => {
       </ul>
       {cartProducts?.length ? (
         <div className="flex flex-col gap-3 mt-10">
-          {" "}
+          <form>
+            <Submit text="Check Out" style="bg-green-500 text-white w-full" />
+          </form>
           <form action={clearCart}>
             <Submit text="Clear Cart" style="bg-red-500 text-white w-full" />
-          </form>{" "}
-          <form>
-            <Submit text="Check Out" style="bg-primary text-white w-full" />
           </form>
         </div>
       ) : (

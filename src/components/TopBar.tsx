@@ -1,8 +1,8 @@
 import { MdSupervisedUserCircle, MdShoppingBag } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
-import BottomBarLink from "./BottomBarLink";
+import TopBarLink from "./TopBarLink";
 import { MdOutlineCategory } from "react-icons/md";
-const BottomBar = () => {
+const TopBar = () => {
   const menuItems = {
     title: "Pages",
     list: [
@@ -32,10 +32,10 @@ const BottomBar = () => {
     <ul className="py-5 flex items-center justify-center gap-5 xl:hidden w-full bg-main-soft-bg">
       {menuItems.list.map((menuLink) => (
         <li key={menuLink.path}>
-          <BottomBarLink menuLink={menuLink} />
+          <TopBarLink menuLink={menuLink} />
         </li>
       ))}
     </ul>
   );
 };
-export default BottomBar;
+export default TopBar;

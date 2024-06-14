@@ -5,18 +5,24 @@ import { getCurrentUser, logout } from "@/actions/users";
 import Image from "next/image";
 import Submit from "./Submit";
 import { IoLogOut } from "react-icons/io5";
+import TopNavBarLink from "./TopNavBarLink";
+import { MdHome } from "react-icons/md";
+import { MdShop } from "react-icons/md";
+import { MdShoppingCart } from "react-icons/md";
+import { HiLogin } from "react-icons/hi";
+import { MdDashboardCustomize } from "react-icons/md";
 const links = [
   {
     path: "/",
-    title: "Home",
+    icon: <MdHome className="text-3xl" />,
   },
   {
     path: "/shop",
-    title: "Shop",
+    icon: <MdShop className="text-3xl" />,
   },
   {
     path: "/cart",
-    title: "Cart",
+    icon: <MdShoppingCart className="text-3xl" />,
   },
 ];
 const Navbar = async () => {
@@ -25,36 +31,34 @@ const Navbar = async () => {
     currentUser = await getCurrentUser();
   }
   return (
-    <nav className="h-10 py-10 px-10 md:flex hidden items-center justify-between text-white ">
-      <div>Logo</div>
+    <nav className="p-10 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-white bg-main-soft-bg">
       <ul className="flex items-center gap-3">
         {links.map((link) => (
-          <NavLink
-            path={link.path}
-            title={link.title}
-            style=""
-            key={link.path}
-          />
+          <TopNavBarLink key={link.path} link={link} />
         ))}
         {!currentUser ? (
-          <NavLink path="/login" title="Login" style="" activeStyle="" />
+          <TopNavBarLink
+            link={{
+              path: "/login",
+              icon: <HiLogin className="text-3xl" />,
+            }}
+          />
         ) : (
           ""
         )}
         {currentUser?.isAdmin ? (
-          <NavLink
-            path="/dashboard/users"
-            title="Dashboard"
-            style=""
-            activeStyle=""
+          <TopNavBarLink
+            link={{
+              path: "/dashboard/users",
+              icon: <MdDashboardCustomize className="text-3xl" />,
+            }}
           />
         ) : (
           ""
         )}
       </ul>
       {currentUser ? (
-        <div className="flex items-center gap-3">
-          <p>{currentUser?.username}</p>
+        <div className="flex items-center gap-2">
           <div className="w-[40px] h-[40px] overflow-hidden rounded-full relative">
             <Image src={currentUser?.avatar || "/noavatar.jpg"} alt="" fill />
           </div>
