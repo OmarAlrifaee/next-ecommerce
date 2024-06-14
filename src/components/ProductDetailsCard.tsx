@@ -8,7 +8,7 @@ type Props = {
   inCart: boolean;
   notLoggedIn: boolean;
 };
-const ProductDetailsInterceptedCard = async ({
+const ProductDetailsCard = async ({
   product,
   inCart,
   notLoggedIn,
@@ -83,4 +83,4 @@ const ProductDetailsInterceptedCard = async ({
     </div>
   );
 };
-export default ProductDetailsInterceptedCard;
+export default ProductDetailsCard;
