@@ -6,7 +6,7 @@ type Props = {
 };
 const CategoryCard = ({ category }: Props) => {
   return (
-    <div className="rounded-md shadow-md overflow-hidden capitalize w-[250px] flex flex-col gap-3 pb-5 bg-main-soft-bg">
+    <div className="rounded-md shadow-md overflow-hidden capitalize w-[300px] flex flex-col gap-3 pb-5 bg-main-soft-bg">
       <div className="relative w-full h-[200px]">
         <Image
           src={category.img || "/noproduct.jpg"}
@@ -14,7 +14,7 @@ const CategoryCard = ({ category }: Props) => {
           fill
         />
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between px-5 mt-5">
         <h3 className="font-bold text-white text-xl px-5">{category.title}</h3>
         <AddNewLink
           href={`/shop?category=${category.title}`}
