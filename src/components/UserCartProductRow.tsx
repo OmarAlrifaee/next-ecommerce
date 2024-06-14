@@ -11,17 +11,19 @@ const UserCartProductRow = ({ product, username }: Props) => {
     <tr>
       <td className="p-3">
         <div className="flex items-center gap-[10px]">
-          <Image
-            src={product?.img || "/noproduct.jpg"}
-            alt={product.title}
-            width={40}
-            height={40}
-            className="object-cover rounded-full"
-          />
+          <div className="flex-shrink-0 relative rounded-full overflow-hidden w-[40px] h-[40px]">
+            <Image
+              src={product.img || "/noproduct.jpg"}
+              alt={product.title}
+              fill
+            />
+          </div>
           <span>{product.title}</span>
         </div>
       </td>
-      <td className="p-3">{product.desc}</td>
+      <td className="p-3">{`${product.desc.slice(0, 50)} ${
+        product.desc.length > 50 ? "..." : ""
+      }`}</td>
       <td className="p-3">${product.price}</td>
       <td className="p-3">{product.createdAt?.toLocaleDateString()}</td>
       <td className="p-3">

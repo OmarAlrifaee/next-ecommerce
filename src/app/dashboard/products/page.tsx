@@ -20,29 +20,35 @@ const Products = async ({ searchParams }: Props) => {
   );
   return (
     <section className="bg-main-soft-bg mt-5">
-      <div className="p-5 mt-3 flex items-center justify-between">
-        <div className="flex items-center gap-5">
-          <Search />
-          <Catergories />
+      <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row gap-3 flex-col">
+        <div className="flex items-center gap-5 sm:flex-row flex-col">
+          <Search style="sm:w-fit w-full" />
+          <Catergories style="sm:w-fit w-full" />
         </div>
-        <AddNewLink text="Add Product" href="/dashboard/products/add" />
+        <AddNewLink
+          text="Add Product"
+          href="/dashboard/products/add"
+          style="sm:w-fit w-full sm:text-start text-center"
+        />
       </div>
-      <table className="w-full mt-5">
-        <thead>
-          <tr>
-            <td className="p-3">Title</td>
-            <td className="p-3">Description</td>
-            <td className="p-3">Price</td>
-            <td className="p-3">Created At</td>
-            <td className="p-3">Action</td>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <ProductRow product={product} key={product.id} />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full mt-5">
+          <thead>
+            <tr>
+              <td className="p-3">Title</td>
+              <td className="p-3">Description</td>
+              <td className="p-3">Price</td>
+              <td className="p-3">Created At</td>
+              <td className="p-3">Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <ProductRow product={product} key={product.id} />
+            ))}
+          </tbody>
+        </table>
+      </div>
       <Pagenation count={productsCount} />
     </section>
   );

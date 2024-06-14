@@ -2,8 +2,10 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
-
-const Search = () => {
+type Props = {
+  style?: string;
+};
+const Search = ({ style }: Props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -27,7 +29,7 @@ const Search = () => {
       type="text"
       onChange={(e) => hundleChange(e.target.value)}
       placeholder="Search..."
-      className="border-none outline-none focus:outline-none rounded-md px-5 py-2 text-black font-bold"
+      className={`border-none outline-none focus:outline-none rounded-md px-5 py-2 text-black font-bold ${style}`}
     />
   );
 };

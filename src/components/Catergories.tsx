@@ -4,8 +4,10 @@ import { getAllCategories } from "@/actions/categories";
 import { CategoryType } from "@/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const Catergories = () => {
+type Props = {
+  style?: string;
+};
+const Catergories = ({ style }: Props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -27,7 +29,7 @@ const Catergories = () => {
     <select
       onChange={(e) => hundleChange(e.target.value)}
       defaultValue={searchParams.get("category")!}
-      className="text-black outline-none focus:outline-none p-2 rounded-md"
+      className={`text-black outline-none focus:outline-none p-2 rounded-md ${style}`}
     >
       <option value={"all"}>All</option>
       {categories.map((category) => (

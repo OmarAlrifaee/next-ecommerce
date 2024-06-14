@@ -17,25 +17,32 @@ const Users = async ({ searchParams }: Props) => {
   );
   return (
     <section className="bg-main-soft-bg">
-      <div className="p-5 mt-3 flex items-center justify-between">
-        <Search /> <AddNewLink href="/dashboard/users/add" text="Add User" />
+      <div className="p-5 mt-3 flex sm:flex-row gap-3 flex-col items-center justify-between">
+        <Search style="sm:w-fit w-full" />{" "}
+        <AddNewLink
+          href="/dashboard/users/add"
+          text="Add User"
+          style="sm:w-fit w-full sm:text-start text-center"
+        />
       </div>
-      <table className="w-full mt-5">
-        <thead>
-          <tr>
-            <td className="p-3">Name</td>
-            <td className="p-3">Email</td>
-            <td className="p-3">Created At</td>
-            <td className="p-3">Role</td>
-            <td className="p-3">Action</td>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <UserRow user={user} key={user.id} />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full mt-5">
+          <thead>
+            <tr>
+              <td className="p-3">Name</td>
+              <td className="p-3">Email</td>
+              <td className="p-3">Created At</td>
+              <td className="p-3">Role</td>
+              <td className="p-3">Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <UserRow user={user} key={user.id} />
+            ))}
+          </tbody>
+        </table>
+      </div>
       <Pagenation count={count} />
     </section>
   );

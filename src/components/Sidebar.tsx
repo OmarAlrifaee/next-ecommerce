@@ -1,6 +1,8 @@
 import Image from "next/image";
 import SidebarLink from "./SideBarLink";
 import { MdSupervisedUserCircle, MdShoppingBag } from "react-icons/md";
+import { FaCartShopping } from "react-icons/fa6";
+import { MdOutlineCategory } from "react-icons/md";
 import { UserType } from "@/types";
 type Props = {
   currentUser: UserType;
@@ -22,25 +24,25 @@ const Sidebar = async ({ currentUser }: Props) => {
       {
         title: "Categories",
         path: "/dashboard/categories",
-        icon: <MdShoppingBag />,
+        icon: <MdOutlineCategory />,
       },
       {
         title: "carts",
         path: "/dashboard/carts",
-        icon: <MdShoppingBag />,
+        icon: <FaCartShopping />,
       },
     ],
   };
   return (
     <section className="flex-1 bg-main-soft-bg p-5 xl:block hidden">
       <div className="flex items-center gap-[20px] mt-[20px]">
-        <Image
-          src={currentUser.avatar || "/noavatar.jpg"}
-          alt={currentUser.username + "image"}
-          width={"50"}
-          height={"50"}
-          className="object-cover rounded-full"
-        />
+        <div className="overflow-hidden w-[40px] h-[40px] rounded-full relative">
+          <Image
+            src={currentUser.avatar || "/noavatar.jpg"}
+            alt={currentUser.username + "image"}
+            fill
+          />
+        </div>
         <div className="flex flex-col">
           <span className="font-[500]">{currentUser.username}</span>
           <span className="text-[12px] text-soft-text">Admin</span>

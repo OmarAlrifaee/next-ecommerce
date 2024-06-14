@@ -14,24 +14,30 @@ const Categories = async ({ searchParams }: Props) => {
   const categories = await getAllCategories(searchParams.search);
   return (
     <section className="bg-main-soft-bg mt-5">
-      <div className="p-5 mt-3 flex items-center justify-between">
+      <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row flex-col gap-3">
         <Search />
-        <AddNewLink text="Add Category" href="/dashboard/categories/add" />
+        <AddNewLink
+          text="Add Category"
+          href="/dashboard/categories/add"
+          style="sm:text-start text-center"
+        />
       </div>
-      <table className="w-full mt-5">
-        <thead>
-          <tr>
-            <td className="p-3">Title</td>
-            <td>Created At</td>
-            <td>Actions</td>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((category) => (
-            <CategoryRow category={category} key={category.id} />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full mt-5">
+          <thead>
+            <tr>
+              <td className="p-3">Title</td>
+              <td>Created At</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+          <tbody>
+            {categories.map((category) => (
+              <CategoryRow category={category} key={category.id} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 };

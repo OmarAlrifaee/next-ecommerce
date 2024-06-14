@@ -16,9 +16,9 @@ export const generateMetadata = async ({ params }: Props) => {
 const CategoryDetails = async ({ params }: Props) => {
   const category = (await getOneCategory(params.id)) as CategoryType;
   return (
-    <section className="flex gap-10">
-      <div className="bg-main-soft-bg p-[10px] rounded-md mt-[20px] h-fit">
-        <div className="size-[300px] relative rounded-md overflow-hidden">
+    <section className="flex md:gap-10 gap-5 md:flex-nowrap flex-wrap">
+      <div className="bg-main-soft-bg p-[10px] rounded-md mt-[20px] h-fit md:w-fit w-full">
+        <div className="md:w-[300px] h-[300px] w-full relative rounded-md overflow-hidden">
           <Image src={category?.img || "/noproduct.jpg"} alt="" fill />
         </div>
         <p className="mt-3 font-semibold">{category.title}</p>

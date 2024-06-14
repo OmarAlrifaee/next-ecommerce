@@ -55,14 +55,8 @@ const Navbar = async () => {
       {currentUser ? (
         <div className="flex items-center gap-3">
           <p>{currentUser?.username}</p>
-          <div>
-            <Image
-              src={currentUser?.avatar || "/noavatar.jpg"}
-              alt=""
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
+          <div className="w-[40px] h-[40px] overflow-hidden rounded-full relative">
+            <Image src={currentUser?.avatar || "/noavatar.jpg"} alt="" fill />
           </div>
           <form action={logout}>
             <Submit>

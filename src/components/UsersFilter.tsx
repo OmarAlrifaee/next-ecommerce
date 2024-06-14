@@ -4,8 +4,10 @@ import { getAllUsers } from "@/actions/users";
 import { UserType } from "@/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const UsersFilter = () => {
+type Props = {
+  style?: string;
+};
+const UsersFilter = ({ style }: Props) => {
   const [users, setUsers] = useState<UserType[]>([]);
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -27,7 +29,7 @@ const UsersFilter = () => {
     <select
       onChange={(e) => hundleChange(e.target.value)}
       defaultValue={"all"}
-      className="text-black outline-none focus:outline-none p-2 rounded-md"
+      className={`text-black outline-none focus:outline-none p-2 rounded-md ${style}`}
     >
       <option value="none">none</option>
       {users?.map((user) => (
