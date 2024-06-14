@@ -1,6 +1,6 @@
 import { getCartProducts } from "@/actions/cart";
 import { getOneProduct } from "@/actions/products";
-import ProductCard from "@/components/ProductCard";
+import ProductDetailsCard from "@/components/ProductDetailsCard";
 import { ProductType } from "@/types";
 import { cookies } from "next/headers";
 
@@ -13,18 +13,22 @@ const ProductDetails = async ({ params }: Props) => {
   if (cookies().get("token")?.value) {
     cartProducts = (await getCartProducts()).cartProducts;
   }
-  return product ? (
-    <ProductCard
-      product={product}
-      inCart={
-        !!cartProducts?.some((cartProduct) => {
-          return cartProduct.id === product.id;
-        })
-      }
-      notLoggedIn={!!cookies().get("token")?.value}
-    />
-  ) : (
-    ""
+  return (
+    <section className="md:p-10 p-5">
+      {product ? (
+        <ProductDetailsCard
+          product={product}
+          inCart={
+            !!cartProducts?.some((cartProduct) => {
+              return cartProduct.id === product.id;
+            })
+          }
+          notLoggedIn={!!cookies().get("token")?.value}
+        />
+      ) : (
+        ""
+      )}
+    </section>
   );
 };
 export default ProductDetails;
