@@ -94,6 +94,7 @@ export const clearCart = async () => {
         productsIds: [],
       }
     );
+    revalidatePath("/cart");
   } catch (error) {
     throw new Error("could'nt remove all product from cart");
   }

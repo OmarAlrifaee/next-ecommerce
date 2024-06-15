@@ -21,7 +21,7 @@ const page = async () => {
     `Payment For User ${currentUser?.username}`
   );
   return paymentIntent.client_secret && currentUser ? (
-    <section className="p-10 min-h-screen bg-main-bg flex gap-10">
+    <section className="p-10 min-h-screen bg-main-bg flex xl:flex-row flex-col-reverse xl:gap-10 gap-5">
       <div className="flex-1">
         {cartProducts?.length ? (
           <h2 className="font-bold capitalize text-4xl text-white">
@@ -30,7 +30,7 @@ const page = async () => {
         ) : (
           ""
         )}
-        <ul className="grid grid-cols-2 gap-5 mt-10">
+        <ul className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
           {cartProducts?.map((product) => (
             <CartProductCard product={product} key={product.id} />
           ))}

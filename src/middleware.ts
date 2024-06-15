@@ -33,6 +33,6 @@ export const config = {
     "/",
     "/shop/:path*",
     "/cart",
-    "/checkout",
+    "/checkout/success",
   ],
 };

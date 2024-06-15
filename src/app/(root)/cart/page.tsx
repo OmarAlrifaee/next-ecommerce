@@ -1,7 +1,5 @@
 import { clearCart, getCartProducts } from "@/actions/cart";
-import AddNewLink from "@/components/AddNewLink";
 import CartProductCard from "@/components/CartProductCard";
-import ProductCard from "@/components/ProductCard";
 import Submit from "@/components/Submit";
 import { ProductType } from "@/types";
 import { Metadata } from "next";
