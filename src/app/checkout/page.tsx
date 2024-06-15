@@ -1,0 +1,45 @@
+import { getCartProducts } from "@/actions/cart";
+import { createPaymentIntent } from "@/actions/payment";
+import { getCurrentUser } from "@/actions/users";
+import CartProductCard from "@/components/CartProductCard";
+import StripePayment from "@/components/StripePayment";
+import { ProductType, UserType } from "@/types";
+import { cookies } from "next/headers";
+
+const page = async () => {
+  let cartProducts: ProductType[] | null = null;
+  let currentUser: UserType | null = null;
+  if (cookies().get("token")?.value) {
+    cartProducts = (await getCartProducts()).cartProducts;
+    currentUser = await getCurrentUser();
+  }
+  const pricesArray = cartProducts?.map((product) => product.price);
+  const totalPrice: number = pricesArray?.reduce((a, b) => a + b, 0)!;
+
+  const paymentIntent = await createPaymentIntent(
+    totalPrice * 100,
+    `Payment For User ${currentUser?.username}`
+  );
+  return paymentIntent.client_secret && currentUser ? (
+    <section className="p-10 min-h-screen bg-main-bg flex gap-10">
+      <div className="flex-1">
+        {cartProducts?.length ? (
+          <h2 className="font-bold capitalize text-4xl text-white">
+            Total: <span className="text-green-500">${totalPrice}</span>
+          </h2>
+        ) : (
+          ""
+        )}
+        <ul className="grid grid-cols-2 gap-5 mt-10">
+          {cartProducts?.map((product) => (
+            <CartProductCard product={product} key={product.id} />
+          ))}
+        </ul>
+      </div>
+      <StripePayment clientSecret={paymentIntent.client_secret} />
+    </section>
+  ) : (
+    ""
+  );
+};
+export default page;

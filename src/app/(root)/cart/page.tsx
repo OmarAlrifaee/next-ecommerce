@@ -1,10 +1,12 @@
 import { clearCart, getCartProducts } from "@/actions/cart";
+import AddNewLink from "@/components/AddNewLink";
 import CartProductCard from "@/components/CartProductCard";
 import ProductCard from "@/components/ProductCard";
 import Submit from "@/components/Submit";
 import { ProductType } from "@/types";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 const Cart = async () => {
   let cartProducts: ProductType[] | null = null;
@@ -29,11 +31,17 @@ const Cart = async () => {
       </ul>
       {cartProducts?.length ? (
         <div className="flex flex-col gap-3 mt-10">
-          <form>
-            <Submit text="Check Out" style="bg-green-500 text-white w-full transition hover:bg-green-200" />
-          </form>
+          <Link
+            className="bg-green-500 text-center text-white w-full transition hover:bg-green-200 border-none rounded-md  px-4 py-2 font-semibold"
+            href="/checkout"
+          >
+            Check Out
+          </Link>
           <form action={clearCart}>
-            <Submit text="Clear Cart" style="bg-red-500 text-white w-full transition hover:bg-red-200" />
+            <Submit
+              text="Clear Cart"
+              style="bg-red-500 text-white w-full transition hover:bg-red-200"
+            />
           </form>
         </div>
       ) : (
