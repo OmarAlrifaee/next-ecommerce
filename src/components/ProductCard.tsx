@@ -56,7 +56,7 @@ const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
                   await removeFromCart(product.id);
                 }}
               >
-                <Submit text="Remove" style="bg-red-500 text-white" />
+                <Submit text="Remove" style="bg-red-500 text-white transition hover:bg-red-200" />
               </form>
             ) : (
               <form
@@ -65,7 +65,7 @@ const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
                   await addToCart(product.id);
                 }}
               >
-                <Submit text="Add" style="bg-primary text-white" />
+                <Submit text="Add" style="bg-primary text-white transition hover:bg-blue-200" />
               </form>
             )
           ) : (

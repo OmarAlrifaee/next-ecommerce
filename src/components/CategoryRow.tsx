@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CategoryType } from "@/types";
 import { deleteCategory } from "@/actions/categories";
 import Submit from "./Submit";
+import AddNewLink from "./AddNewLink";
 type Props = {
   category: CategoryType;
 };
@@ -24,11 +25,11 @@ const CategoryRow = ({ category }: Props) => {
       <td className="p-3">{category.createdAt?.toLocaleDateString()}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
-          <Link href={`/dashboard/categories/${category.id}`}>
-            <button className="bg-[teal] py-[5px] px-[10px] rounded-sm border-none cursor-pointer">
-              View
-            </button>
-          </Link>
+          <AddNewLink
+            text="View"
+            style="bg-primary transition hover:bg-blue-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+            href={`/dashboard/categories/${category.id}`}
+          />
           <form
             action={async () => {
               "use server";
@@ -36,7 +37,7 @@ const CategoryRow = ({ category }: Props) => {
             }}
           >
             <Submit
-              style="bg-[crimson] py-[5px] px-[10px] rounded-sm border-none cursor-pointer"
+              style="bg-red-500 transition hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
               text="Delete"
             />
           </form>

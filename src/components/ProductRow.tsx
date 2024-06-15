@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ProductType } from "@/types";
 import { deleteProduct } from "@/actions/products";
 import Submit from "./Submit";
+import AddNewLink from "./AddNewLink";
 type Props = {
   product: ProductType;
 };
@@ -12,7 +13,11 @@ const ProductRow = ({ product }: Props) => {
       <td className="p-3">
         <div className="flex items-center gap-[10px]">
           <div className="flex-shrink-0 relative rounded-full overflow-hidden w-[40px] h-[40px]">
-            <Image src={product?.img || "/noproduct.jpg"} alt={product.title} fill/>
+            <Image
+              src={product?.img || "/noproduct.jpg"}
+              alt={product.title}
+              fill
+            />
           </div>
           <span>{product.title}</span>
         </div>
@@ -24,11 +29,11 @@ const ProductRow = ({ product }: Props) => {
       <td className="p-3">{product.createdAt?.toLocaleDateString()}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
-          <Link href={`/dashboard/products/${product.id}`}>
-            <button className="bg-[teal] py-[5px] px-[10px] rounded-sm border-none cursor-pointer">
-              View
-            </button>
-          </Link>
+          <AddNewLink
+            text="View"
+            style="bg-primary transition hover:bg-blue-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+            href={`/dashboard/products/${product.id}`}
+          />
           <form
             action={async () => {
               "use server";
@@ -36,7 +41,7 @@ const ProductRow = ({ product }: Props) => {
             }}
           >
             <Submit
-              style="bg-[crimson] py-[5px] px-[10px] rounded-sm border-none cursor-pointer"
+              style="bg-red-500 transition hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
               text="Delete"
             />
           </form>

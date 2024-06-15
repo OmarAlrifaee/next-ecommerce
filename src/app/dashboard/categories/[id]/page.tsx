@@ -45,7 +45,7 @@ const CategoryDetails = async ({ params }: Props) => {
           />
           <Submit
             text="Update Category"
-            style="bg-primary text-white w-full mt-5"
+            style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200"
           />
         </form>
       </div>

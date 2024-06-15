@@ -17,7 +17,9 @@ const NavLink = ({
   return (
     <Link
       href={path}
-      className={`${pathname === path ? activeStyle : ""} ${style} transition`}
+      className={`${
+        pathname === path ? activeStyle : ""
+      } ${style} transition hover:text-green-500`}
     >
       {title}
     </Link>

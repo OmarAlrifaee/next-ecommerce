@@ -57,7 +57,7 @@ const ProductDetailsCard = async ({
                   }}
                   className="w-full"
                 >
-                  <Submit text="Remove" style="bg-red-500 text-white w-full" />
+                  <Submit text="Remove" style="bg-red-500 text-white w-full transition hover:bg-red-200" />
                 </form>
               ) : (
                 <form
@@ -67,14 +67,14 @@ const ProductDetailsCard = async ({
                   }}
                   className="w-full"
                 >
-                  <Submit text="Add" style="bg-primary text-white w-full" />
+                  <Submit text="Add" style="bg-primary text-white w-full transition hover:bg-blue-200" />
                 </form>
               )
             ) : (
               <AddNewLink
                 text="Login"
                 href="/login"
-                style="w-full text-center"
+                style="w-full text-center transition hover:bg-blue-200"
               />
             )}
           </div>

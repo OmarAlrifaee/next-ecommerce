@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SidebarLink from "./SideBarLink";
-import { MdSupervisedUserCircle, MdShoppingBag } from "react-icons/md";
+import { MdSupervisedUserCircle, MdShoppingBag, MdHome } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
 import { MdOutlineCategory } from "react-icons/md";
 import { UserType } from "@/types";
@@ -11,6 +11,11 @@ const Sidebar = async ({ currentUser }: Props) => {
   const menuItems = {
     title: "Pages",
     list: [
+      {
+        title: "Go Home",
+        path: "/",
+        icon: <MdHome />,
+      },
       {
         title: "Users",
         path: "/dashboard/users",

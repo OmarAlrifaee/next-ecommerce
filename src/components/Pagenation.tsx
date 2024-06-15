@@ -29,14 +29,14 @@ const Pagenation = ({ count }: Props) => {
   return (
     <div className="flex items-center justify-between p-[10px] mt-5">
       <button
-        className="cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 px-[10px] py-[5px] rounded-md bg-primary  text-white font-semibold"
+        className="cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 px-[10px] py-[5px] rounded-md bg-primary transition hover:bg-blue-200  text-white font-semibold"
         onClick={goPrev}
         disabled={!showPrev}
       >
         Prev
       </button>
       <button
-        className="cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 px-[10px] py-[5px] rounded-md bg-primary  text-white font-semibold"
+        className="cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 px-[10px] py-[5px] rounded-md bg-primary transition hover:bg-blue-200  text-white font-semibold"
         onClick={goNext}
         disabled={!showNext}
       >

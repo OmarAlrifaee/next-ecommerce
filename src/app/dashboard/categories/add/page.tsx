@@ -21,7 +21,7 @@ const AddProduct = async () => {
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />
         </div>
-        <Submit text="Add Category" style="bg-primary text-white w-full mt-5" />
+        <Submit text="Add Category" style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200" />
       </form>
     </div>
   );

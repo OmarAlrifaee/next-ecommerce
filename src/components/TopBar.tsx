@@ -1,4 +1,4 @@
-import { MdSupervisedUserCircle, MdShoppingBag } from "react-icons/md";
+import { MdSupervisedUserCircle, MdShoppingBag, MdHome } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
 import TopBarLink from "./TopBarLink";
 import { MdOutlineCategory } from "react-icons/md";
@@ -7,22 +7,22 @@ const TopBar = () => {
     title: "Pages",
     list: [
       {
-        title: "Users",
+        path: "/",
+        icon: <MdHome className="xl:text-lg text-3xl" />,
+      },
+      {
         path: "/dashboard/users",
         icon: <MdSupervisedUserCircle className="xl:text-lg text-3xl" />,
       },
       {
-        title: "Products",
         path: "/dashboard/products",
         icon: <MdShoppingBag className="xl:text-lg text-3xl" />,
       },
       {
-        title: "Categories",
         path: "/dashboard/categories",
         icon: <MdOutlineCategory className="xl:text-lg text-3xl" />,
       },
       {
-        title: "carts",
         path: "/dashboard/carts",
         icon: <FaCartShopping className="xl:text-lg text-3xl" />,
       },

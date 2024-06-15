@@ -59,7 +59,7 @@ const Navbar = async () => {
             <Image src={currentUser?.avatar || "/noavatar.jpg"} alt="" fill />
           </div>
           <form action={logout}>
-            <Submit>
+            <Submit style="transition hover:text-red-500">
               <IoLogOut
                 width={40}
                 height={40}

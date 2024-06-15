@@ -30,10 +30,10 @@ const Cart = async () => {
       {cartProducts?.length ? (
         <div className="flex flex-col gap-3 mt-10">
           <form>
-            <Submit text="Check Out" style="bg-green-500 text-white w-full" />
+            <Submit text="Check Out" style="bg-green-500 text-white w-full transition hover:bg-green-200" />
           </form>
           <form action={clearCart}>
-            <Submit text="Clear Cart" style="bg-red-500 text-white w-full" />
+            <Submit text="Clear Cart" style="bg-red-500 text-white w-full transition hover:bg-red-200" />
           </form>
         </div>
       ) : (

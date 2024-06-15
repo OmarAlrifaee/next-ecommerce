@@ -47,7 +47,10 @@ const CartProductCard = async ({ product }: Props) => {
             }}
             className="w-full"
           >
-            <Submit text="Remove" style="bg-red-500 text-white w-full" />
+            <Submit
+              text="Remove"
+              style="bg-red-500 text-white w-full transition hover:bg-red-200"
+            />
           </form>
         </div>
       </article>

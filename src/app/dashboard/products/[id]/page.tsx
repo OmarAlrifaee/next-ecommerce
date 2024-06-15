@@ -91,7 +91,7 @@ const ProductDetails = async ({ params }: Props) => {
             ></textarea>
             <Submit
               text="Update Product"
-              style="bg-primary text-white w-full"
+              style="bg-primary text-white w-full transition hover:bg-blue-200"
             />
           </div>
         </form>

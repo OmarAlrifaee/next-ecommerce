@@ -53,7 +53,7 @@ const UserDetails = async ({ params }: Props) => {
             <input type="checkbox" name="isAdmin" id="isAdmin" />
             <label htmlFor="isAdmin">select to make the user an admin</label>
           </div>
-          <Submit text="Update User" style="bg-primary text-white w-full" />
+          <Submit text="Update User" style="bg-primary text-white w-full transition hover:bg-blue-200" />
         </form>
       </div>
     </section>

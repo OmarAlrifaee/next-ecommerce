@@ -3,6 +3,7 @@ import Image from "next/image";
 import { UserType } from "@/types";
 import { deleteUser } from "@/actions/users";
 import Submit from "./Submit";
+import AddNewLink from "./AddNewLink";
 
 type Props = {
   user: UserType;
@@ -27,11 +28,11 @@ const UserRow = ({ user }: Props) => {
       <td className="p-3">{user.isAdmin ? "Admin" : "Not Admin"}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
-          <Link href={`/dashboard/users/${user.id}`}>
-            <button className="bg-[teal] py-[5px] px-[10px] rounded-sm border-none cursor-pointer">
-              View
-            </button>
-          </Link>
+          <AddNewLink
+            text="View"
+            style="bg-primary transition hover:bg-blue-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+            href={`/dashboard/users/${user.id}`}
+          />
           <form
             action={async () => {
               "use server";
@@ -39,7 +40,7 @@ const UserRow = ({ user }: Props) => {
             }}
           >
             <Submit
-              style="bg-[crimson] py-[5px] px-[10px] rounded-sm border-none cursor-pointer"
+              style="bg-red-500 tranistion hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
               text="Delete"
             />
           </form>

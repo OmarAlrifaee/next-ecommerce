@@ -39,7 +39,7 @@ const AddUser = () => {
           <input type="checkbox" name="isAdmin" id="isAdmin" />
           <label htmlFor="isAdmin">select to make the user an admin</label>
         </div>
-        <Submit text="Add User" style="bg-primary text-white w-full mt-5" />
+        <Submit text="Add User" style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200" />
       </form>
     </div>
   );
