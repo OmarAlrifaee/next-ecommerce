@@ -1,5 +1,6 @@
 import { getCartProducts } from "@/actions/cart";
 import { getAllCategories } from "@/actions/categories";
+import { getAllOrders } from "@/actions/order";
 import { getAllProducts } from "@/actions/products";
 import CategoryCard from "@/components/CategoryCard";
 import ProductCard from "@/components/ProductCard";
@@ -15,6 +16,8 @@ const Home = async () => {
   if (cookies().get("token")?.value) {
     cartProducts = (await getCartProducts()).cartProducts;
   }
+  const orders = await getAllOrders();
+  console.log(orders);
   return (
     <section className="md:p-10 p-5">
       <div className="mt-10">

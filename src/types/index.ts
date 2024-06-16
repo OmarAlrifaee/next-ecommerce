@@ -30,3 +30,10 @@ export type CartType = {
   productsIds: string[];
   userId: string;
 };
+export type OrderType = {
+  userId: string;
+  username: string;
+  paymentId: string;
+  total: number;
+  createdAt: Date;
+};

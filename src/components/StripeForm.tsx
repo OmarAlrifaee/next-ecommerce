@@ -8,6 +8,7 @@ import AddNewLink from "./AddNewLink";
 import Submit from "./Submit";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import axios from "axios";
 
 const StripeForm = () => {
   const { replace } = useRouter();
@@ -26,8 +27,15 @@ const StripeForm = () => {
       if (result.error) {
         console.log(result.error.message);
       }
-      // clear the cart data
-      await fetch("/api/clear-cart", { method: "DELETE" });
+      if (result.paymentIntent) {
+        // clear the cart data
+        await axios.delete("/api/clear-cart");
+        // save the order to the db
+        await axios.post("/api/save-order", {
+          total: result.paymentIntent.amount / 100,
+          paymentId: result.paymentIntent.id,
+        });
+      }
       replace("/checkout/success");
     } catch (error) {
       console.log(error);
