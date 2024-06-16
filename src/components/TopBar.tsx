@@ -2,6 +2,7 @@ import { MdSupervisedUserCircle, MdShoppingBag, MdHome } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
 import TopBarLink from "./TopBarLink";
 import { MdOutlineCategory } from "react-icons/md";
+import { FaHandHoldingUsd } from "react-icons/fa";
 const TopBar = () => {
   const menuItems = {
     title: "Pages",
@@ -25,6 +26,10 @@ const TopBar = () => {
       {
         path: "/dashboard/carts",
         icon: <FaCartShopping className="xl:text-lg text-3xl" />,
+      },
+      {
+        path: "/dashboard/orders",
+        icon: <FaHandHoldingUsd className="xl:text-lg text-3xl" />,
       },
     ],
   };

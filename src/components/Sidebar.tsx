@@ -3,6 +3,7 @@ import SidebarLink from "./SideBarLink";
 import { MdSupervisedUserCircle, MdShoppingBag, MdHome } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
 import { MdOutlineCategory } from "react-icons/md";
+import { FaHandHoldingUsd } from "react-icons/fa";
 import { UserType } from "@/types";
 type Props = {
   currentUser: UserType;
@@ -35,6 +36,11 @@ const Sidebar = async ({ currentUser }: Props) => {
         title: "carts",
         path: "/dashboard/carts",
         icon: <FaCartShopping />,
+      },
+      {
+        title: "orders",
+        path: "/dashboard/orders",
+        icon: <FaHandHoldingUsd />,
       },
     ],
   };

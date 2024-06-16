@@ -36,4 +36,5 @@ export type OrderType = {
   paymentId: string;
   total: number;
   createdAt: Date;
+  id: string;
 };

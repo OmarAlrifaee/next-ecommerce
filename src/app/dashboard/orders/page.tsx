@@ -1,6 +1,5 @@
-import { getAllCategories } from "@/actions/categories";
-import AddNewLink from "@/components/AddNewLink";
-import CategoryRow from "@/components/CategoryRow";
+import { getAllOrders } from "@/actions/order";
+import OrderRow from "@/components/OrderRow";
 import Search from "@/components/Search";
 import { Metadata } from "next";
 
@@ -9,30 +8,26 @@ type Props = {
     search: string;
   };
 };
-const Categories = async ({ searchParams }: Props) => {
-  const categories = await getAllCategories(searchParams.search);
+const Orders = async ({ searchParams }: Props) => {
+  const orders = await getAllOrders(searchParams.search);
   return (
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row flex-col gap-3">
         <Search />
-        <AddNewLink
-          text="Add Category"
-          href="/dashboard/categories/add"
-          style="sm:text-start text-center"
-        />
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
           <thead>
             <tr>
-              <td className="p-3">Title</td>
+              <td className="p-3">UserName</td>
+              <td>Total</td>
               <td>Created At</td>
               <td>Actions</td>
             </tr>
           </thead>
           <tbody>
-            {categories.map((category) => (
-              <CategoryRow category={category} key={category.id} />
+            {orders.map((order) => (
+              <OrderRow order={order} key={order.id} />
             ))}
           </tbody>
         </table>
@@ -40,7 +35,7 @@ const Categories = async ({ searchParams }: Props) => {
     </section>
   );
 };
-export default Categories;
+export default Orders;
 export const metadata: Metadata = {
-  title: "categories",
+  title: "Orders",
 };
