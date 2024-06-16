@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/actions/users";
 import CartProductCard from "@/components/CartProductCard";
 import StripePayment from "@/components/StripePayment";
 import { ProductType, UserType } from "@/types";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 const page = async () => {
@@ -43,3 +44,6 @@ const page = async () => {
   );
 };
 export default page;
+export const metadata: Metadata = {
+  title: "Checkout",
+};

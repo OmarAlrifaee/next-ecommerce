@@ -1,4 +1,5 @@
 import AddNewLink from "@/components/AddNewLink";
+import { Metadata } from "next";
 
 const page = () => {
   return (
@@ -23,3 +24,6 @@ const page = () => {
   );
 };
 export default page;
+export const metadata: Metadata = {
+  title: "Paid Successfully",
+};

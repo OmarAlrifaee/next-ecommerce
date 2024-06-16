@@ -7,6 +7,12 @@ import { cookies } from "next/headers";
 type Props = {
   params: { id: string };
 };
+export const generateMetadata = async ({ params }: Props) => {
+  const product = (await getOneProduct(params.id)) as ProductType;
+  return {
+    title: `${product.title} product`,
+  };
+};
 const ProductDetails = async ({ params }: Props) => {
   const product = await getOneProduct(params.id);
   let cartProducts: ProductType[] | null = null;
