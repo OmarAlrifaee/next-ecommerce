@@ -3,19 +3,15 @@ import { createPaymentIntent } from "@/actions/payment";
 import { getCurrentUser } from "@/actions/users";
 import CartProductCard from "@/components/CartProductCard";
 import StripePayment from "@/components/StripePayment";
-import { ProductType, UserType } from "@/types";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 
 const page = async () => {
-  let cartProducts: ProductType[] | null = null;
-  let currentUser: UserType | null = null;
-  if (cookies().get("token")?.value) {
-    cartProducts = (await getCartProducts()).cartProducts;
-    currentUser = await getCurrentUser();
-  }
-  const pricesArray = cartProducts?.map((product) => product.price);
-  const totalPrice: number = pricesArray?.reduce((a, b) => a + b, 0)!;
+  const isLoggedIn = isUserLoggedIn();
+  const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
+  const currentUser = isLoggedIn ? await getCurrentUser() : null;
+  const pricesArray = cartProducts.map((product) => product.price);
+  const totalPrice: number = pricesArray.reduce((a, b) => a + b, 0)!;
 
   const paymentIntent = await createPaymentIntent(
     totalPrice * 100,

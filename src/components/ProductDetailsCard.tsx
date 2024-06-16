@@ -6,13 +6,9 @@ import { addToCart, removeFromCart } from "@/actions/cart";
 type Props = {
   product: ProductType;
   inCart: boolean;
-  notLoggedIn: boolean;
+  loggedIn: boolean;
 };
-const ProductDetailsCard = async ({
-  product,
-  inCart,
-  notLoggedIn,
-}: Props) => {
+const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-80)] bg-transparent">
       <div className="relative capitalize md:w-1/2 w-full flex flex-col gap-3 bg-main-soft-bg pb-5 rounded-md overflow-hidden">
@@ -48,7 +44,7 @@ const ProductDetailsCard = async ({
             </p>
           </div>
           <div className="flex items-center justify-between">
-            {notLoggedIn ? (
+            {loggedIn ? (
               inCart ? (
                 <form
                   action={async () => {
@@ -57,7 +53,10 @@ const ProductDetailsCard = async ({
                   }}
                   className="w-full"
                 >
-                  <Submit text="Remove" style="bg-red-500 text-white w-full transition hover:bg-red-200" />
+                  <Submit
+                    text="Remove"
+                    style="bg-red-500 text-white w-full transition hover:bg-red-200"
+                  />
                 </form>
               ) : (
                 <form
@@ -67,7 +66,10 @@ const ProductDetailsCard = async ({
                   }}
                   className="w-full"
                 >
-                  <Submit text="Add" style="bg-primary text-white w-full transition hover:bg-blue-200" />
+                  <Submit
+                    text="Add"
+                    style="bg-primary text-white w-full transition hover:bg-blue-200"
+                  />
                 </form>
               )
             ) : (

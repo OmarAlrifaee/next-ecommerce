@@ -4,9 +4,8 @@ import Catergories from "@/components/Catergories";
 import Pagenation from "@/components/Pagenation";
 import ProductCard from "@/components/ProductCard";
 import Search from "@/components/Search";
-import { ProductType } from "@/types";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 
 type Props = {
   searchParams: {
@@ -21,10 +20,8 @@ const Shop = async ({ searchParams }: Props) => {
     searchParams?.category,
     searchParams?.search
   );
-  let cartProducts: ProductType[] | null = null;
-  if (cookies().get("token")?.value) {
-    cartProducts = (await getCartProducts()).cartProducts;
-  }
+  const isLoggedIn = isUserLoggedIn();
+  const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
   return (
     <section className="md:p-10 p-5">
       <div className="flex sm:flex-row flex-col sm:items-center sm:justify-center gap-5 ">
@@ -41,7 +38,7 @@ const Shop = async ({ searchParams }: Props) => {
                   return cartProduct.id === product.id;
                 })
               }
-              notLoggedIn={!!cookies().get("token")?.value}
+              loggedIn={isLoggedIn}
             />
           </li>
         ))}

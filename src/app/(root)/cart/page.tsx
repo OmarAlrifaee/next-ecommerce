@@ -1,18 +1,15 @@
 import { clearCart, getCartProducts } from "@/actions/cart";
 import CartProductCard from "@/components/CartProductCard";
 import Submit from "@/components/Submit";
-import { ProductType } from "@/types";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 import Link from "next/link";
 
 const Cart = async () => {
-  let cartProducts: ProductType[] | null = null;
-  if (cookies().get("token")?.value) {
-    cartProducts = (await getCartProducts()).cartProducts;
-  }
-  const pricesArray = cartProducts?.map((product) => product.price);
-  const totalPrice = pricesArray?.reduce((a, b) => a + b, 0);
+  const isLoggedIn = isUserLoggedIn();
+  const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
+  const pricesArray = cartProducts.map((product) => product.price);
+  const totalPrice = pricesArray.reduce((a, b) => a + b, 0);
   return (
     <section className="md:p-10 p-5">
       {cartProducts?.length ? (

@@ -8,11 +8,9 @@ type Props = {
   };
 };
 const CartPage = async ({ searchParams }: Props) => {
-  let userProducts: ProductType[] | null = null;
-  if (searchParams.user) {
-    userProducts = await getUserProductsFromCart(searchParams.user);
-  }
-  console.log(userProducts);
+  const userProducts = searchParams.user
+    ? await getUserProductsFromCart(searchParams.user)
+    : [];
   return (
     <section className="bg-main-soft-bg">
       <div className="p-5 mt-3 flex items-center justify-between">

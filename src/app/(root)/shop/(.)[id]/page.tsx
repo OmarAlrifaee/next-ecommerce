@@ -1,8 +1,8 @@
 import { getCartProducts } from "@/actions/cart";
 import { getOneProduct } from "@/actions/products";
 import ProductDetailsCard from "@/components/ProductDetailsCard";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { ProductType } from "@/types";
-import { cookies } from "next/headers";
 
 type Props = {
   params: { id: string };
@@ -15,10 +15,8 @@ export const generateMetadata = async ({ params }: Props) => {
 };
 const ProductDetails = async ({ params }: Props) => {
   const product = await getOneProduct(params.id);
-  let cartProducts: ProductType[] | null = null;
-  if (cookies().get("token")?.value) {
-    cartProducts = (await getCartProducts()).cartProducts;
-  }
+  const isLoggedIn = isUserLoggedIn();
+  const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
   return (
     <section className="md:p-10 p-5">
       {product ? (
@@ -29,7 +27,7 @@ const ProductDetails = async ({ params }: Props) => {
               return cartProduct.id === product.id;
             })
           }
-          notLoggedIn={!!cookies().get("token")?.value}
+          loggedIn={isLoggedIn}
         />
       ) : (
         ""

@@ -6,9 +6,9 @@ import { addToCart, removeFromCart } from "@/actions/cart";
 type Props = {
   product: ProductType;
   inCart: boolean;
-  notLoggedIn: boolean;
+  loggedIn: boolean;
 };
-const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
+const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
   return (
     <div className="relative rounded-md shadow-md overflow-hidden capitalize min-h-[500px] w-[250px] flex flex-col gap-3 bg-main-soft-bg">
       <div className="relative w-full h-[200px]">
@@ -48,7 +48,7 @@ const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
         </div>
         <div className="flex items-center justify-between absolute bottom-0 left-0 w-full px-5 pb-5">
           <AddNewLink text="Show" href={`/shop/${product.id}`} />
-          {notLoggedIn ? (
+          {loggedIn ? (
             inCart ? (
               <form
                 action={async () => {
@@ -56,7 +56,10 @@ const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
                   await removeFromCart(product.id);
                 }}
               >
-                <Submit text="Remove" style="bg-red-500 text-white transition hover:bg-red-200" />
+                <Submit
+                  text="Remove"
+                  style="bg-red-500 text-white transition hover:bg-red-200"
+                />
               </form>
             ) : (
               <form
@@ -65,7 +68,10 @@ const ProductCard = async ({ product, inCart, notLoggedIn }: Props) => {
                   await addToCart(product.id);
                 }}
               >
-                <Submit text="Add" style="bg-primary text-white transition hover:bg-blue-200" />
+                <Submit
+                  text="Add"
+                  style="bg-primary text-white transition hover:bg-blue-200"
+                />
               </form>
             )
           ) : (

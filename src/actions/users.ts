@@ -9,6 +9,7 @@ import { UserType } from "@/types";
 import itemsPerPage from "@/helper/itemPerPage";
 import { revalidatePath } from "next/cache";
 import { CartModel } from "@/models/cart";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 
 export const login = async (data: FormData) => {
   try {
@@ -84,6 +85,9 @@ export const signUp = async (data: FormData) => {
   redirect("/login");
 };
 export const getCurrentUser = async () => {
+  // check if there is a user loggedin
+  const isLoggedIn = isUserLoggedIn();
+  if (!isLoggedIn) redirect("/login");
   try {
     const token = cookies().get("token")?.value;
     const decoded: any = jwt.verify(token!, process.env.TOKEN_SECRET!);

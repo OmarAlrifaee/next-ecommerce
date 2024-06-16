@@ -3,18 +3,15 @@ import { getAllCategories } from "@/actions/categories";
 import { getAllProducts } from "@/actions/products";
 import CategoryCard from "@/components/CategoryCard";
 import ProductCard from "@/components/ProductCard";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import SwiperComponent from "@/lib/SwiperComponent";
-import { ProductType } from "@/types";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 
 const Home = async () => {
   const { products } = await getAllProducts();
   const categories = await getAllCategories();
-  let cartProducts: ProductType[] | null = null;
-  if (cookies().get("token")?.value) {
-    cartProducts = (await getCartProducts()).cartProducts;
-  }
+  const isLoggedIn = isUserLoggedIn();
+  const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
   return (
     <section className="md:p-10 p-5">
       <div className="mt-10">
@@ -27,11 +24,11 @@ const Home = async () => {
               product={product}
               key={product.id}
               inCart={
-                !!cartProducts?.some((cartProduct) => {
+                !!cartProducts.some((cartProduct) => {
                   return cartProduct.id === product.id;
                 })
               }
-              notLoggedIn={!!cookies().get("token")?.value}
+              loggedIn={isLoggedIn}
             />
           ))}
         </SwiperComponent>
