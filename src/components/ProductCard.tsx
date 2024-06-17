@@ -19,7 +19,10 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
         />
       </div>
       <article className="px-5 flex flex-col gap-3">
-        <h3 className="text-xl font-bold text-white">{product.title}</h3>
+        <h3 className="text-xl font-bold text-white">{`${product.title.slice(
+          0,
+          30
+        )}${product?.title?.length > 30 ? "..." : ""}`}</h3>
         <p className="text-soft-text font-semibold ">
           {`${product.desc.slice(0, 30)}${
             product?.desc?.length > 30 ? "..." : ""

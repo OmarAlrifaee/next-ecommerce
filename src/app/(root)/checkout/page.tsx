@@ -5,10 +5,13 @@ import CartProductCard from "@/components/CartProductCard";
 import StripePayment from "@/components/StripePayment";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 const page = async () => {
   const isLoggedIn = isUserLoggedIn();
   const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
+  // redirect the user if he does'nt have a products in the cart
+  if (!cartProducts.length) redirect("/shop");
   const currentUser = isLoggedIn ? await getCurrentUser() : null;
   const pricesArray = cartProducts.map((product) => product.price);
   const totalPrice: number = pricesArray.reduce((a, b) => a + b, 0)!;
