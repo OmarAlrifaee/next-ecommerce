@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* styling the swiper arrows */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  @apply text-primary hover:text-main-soft-bg font-bold;
+}

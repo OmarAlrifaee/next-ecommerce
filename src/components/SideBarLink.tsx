@@ -13,8 +13,8 @@ const SidebarLink = ({ menuItem: { icon, path, title } }: Props) => {
   return (
     <Link
       href={path}
-      className={`p-[10px] flex items-center gap-[10px] hover:bg-[#2e374a] my-[5px] rounded-md ${
-        pathname === path ? "bg-[#2e374a]" : ""
+      className={`p-[10px] flex items-center gap-[10px] transition hover:bg-[#ffffff49] my-[5px] rounded-md ${
+        pathname === path ? "bg-[#ffffff49]" : ""
       }`}
     >
       {icon}

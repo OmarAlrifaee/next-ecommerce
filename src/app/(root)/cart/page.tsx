@@ -15,9 +15,11 @@ const Cart = async () => {
     <section className="md:p-10 p-5">
       {cartProducts.length ? (
         <>
-          <h2 className="font-bold capitalize text-4xl text-white">
-            Total: <span className="text-green-500">${totalPrice}</span>
-          </h2>
+          <Card>
+            <h2 className="font-bold capitalize text-4xl text-white">
+              Total: <span className="text-green-500">${totalPrice}</span>
+            </h2>
+          </Card>
           <ul className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10 justify-center items-center gap-5">
             {cartProducts?.map((product) => (
               <CartProductCard product={product} key={product.id} />
