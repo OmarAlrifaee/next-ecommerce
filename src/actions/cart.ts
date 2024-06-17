@@ -57,11 +57,17 @@ export const addToCart = async (productId: string) => {
         $push: { productsIds: productId },
       }
     );
+    revalidatePath("/");
+    revalidatePath("/shop");
+    return {
+      success: true,
+    };
   } catch (error) {
-    throw new Error("could'nt add new product to cart");
+    console.log(error);
+    return {
+      success: false,
+    };
   }
-  revalidatePath("/");
-  revalidatePath("/shop");
 };
 export const removeFromCart = async (productId: string) => {
   // check if there is a user loggedin
@@ -80,12 +86,18 @@ export const removeFromCart = async (productId: string) => {
         $pull: { productsIds: productId },
       }
     );
+    revalidatePath("/");
+    revalidatePath("/shop");
+    revalidatePath("/cart");
+    return {
+      success: true,
+    };
   } catch (error) {
-    throw new Error("could'nt remove product from cart");
+    console.log(error);
+    return {
+      success: false,
+    };
   }
-  revalidatePath("/");
-  revalidatePath("/shop");
-  revalidatePath("/cart");
 };
 export const clearCart = async () => {
   // check if there is a user loggedin
@@ -105,8 +117,13 @@ export const clearCart = async () => {
       }
     );
     revalidatePath("/cart");
+    return {
+      success: true,
+    };
   } catch (error) {
-    throw new Error("could'nt remove all product from cart");
+    console.log(error);
+    return {
+      success: false,
+    };
   }
-  revalidatePath("/cart");
 };

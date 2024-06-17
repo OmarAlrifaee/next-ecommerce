@@ -1,8 +1,8 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
 import AddNewLink from "./AddNewLink";
-import Submit from "./Submit";
-import { addToCart, removeFromCart } from "@/actions/cart";
+import AddProductForm from "./forms/AddProductForm";
+import RemoveProductForm from "./forms/RemoveProductForm";
 type Props = {
   product: ProductType;
   inCart: boolean;
@@ -46,31 +46,9 @@ const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
           <div className="flex items-center justify-between">
             {loggedIn ? (
               inCart ? (
-                <form
-                  action={async () => {
-                    "use server";
-                    await removeFromCart(product.id);
-                  }}
-                  className="w-full"
-                >
-                  <Submit
-                    text="Remove"
-                    style="bg-red-500 text-white w-full transition hover:bg-red-200"
-                  />
-                </form>
+                <RemoveProductForm productId={product.id} widthFull />
               ) : (
-                <form
-                  action={async () => {
-                    "use server";
-                    await addToCart(product.id);
-                  }}
-                  className="w-full"
-                >
-                  <Submit
-                    text="Add"
-                    style="bg-primary text-white w-full transition hover:bg-blue-200"
-                  />
-                </form>
+                <AddProductForm productId={product.id} widthFull />
               )
             ) : (
               <AddNewLink

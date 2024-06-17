@@ -1,8 +1,7 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
-import Submit from "./Submit";
-import { removeFromCart } from "@/actions/cart";
 import AddNewLink from "./AddNewLink";
+import RemoveProductForm from "./forms/RemoveProductForm";
 type Props = {
   product: ProductType;
 };
@@ -52,18 +51,7 @@ const CartProductCard = async ({ product }: Props) => {
             href={`/shop/${product.id}`}
             style="text-center"
           />
-          <form
-            action={async () => {
-              "use server";
-              await removeFromCart(product.id);
-            }}
-            className="w-full"
-          >
-            <Submit
-              text="Remove"
-              style="bg-red-500 text-white w-full transition hover:bg-red-200"
-            />
-          </form>
+          <RemoveProductForm productId={product.id} widthFull />
         </div>
       </article>
     </div>

@@ -2,6 +2,7 @@ import { clearCart, getCartProducts } from "@/actions/cart";
 import Card from "@/components/Card";
 import CartProductCard from "@/components/CartProductCard";
 import Submit from "@/components/Submit";
+import ClearCartForm from "@/components/forms/ClearCartForm";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -32,12 +33,7 @@ const Cart = async () => {
             >
               Check Out
             </Link>
-            <form action={clearCart}>
-              <Submit
-                text="Clear Cart"
-                style="bg-red-500 text-white w-full transition hover:bg-red-200"
-              />
-            </form>
+            <ClearCartForm widthFull />
           </div>
         </>
       ) : (

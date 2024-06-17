@@ -1,8 +1,8 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
 import AddNewLink from "./AddNewLink";
-import Submit from "./Submit";
-import { addToCart, removeFromCart } from "@/actions/cart";
+import AddProductForm from "./forms/AddProductForm";
+import RemoveProductForm from "./forms/RemoveProductForm";
 type Props = {
   product: ProductType;
   inCart: boolean;
@@ -53,29 +53,9 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
           <AddNewLink text="Show" href={`/shop/${product.id}`} />
           {loggedIn ? (
             inCart ? (
-              <form
-                action={async () => {
-                  "use server";
-                  await removeFromCart(product.id);
-                }}
-              >
-                <Submit
-                  text="Remove"
-                  style="bg-red-500 text-white transition hover:bg-red-200"
-                />
-              </form>
+              <RemoveProductForm productId={product.id} />
             ) : (
-              <form
-                action={async () => {
-                  "use server";
-                  await addToCart(product.id);
-                }}
-              >
-                <Submit
-                  text="Add"
-                  style="bg-primary text-white transition hover:bg-blue-200"
-                />
-              </form>
+              <AddProductForm productId={product.id} />
             )
           ) : (
             <AddNewLink text="Login" href="/login" />
