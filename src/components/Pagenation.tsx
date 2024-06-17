@@ -11,9 +11,9 @@ const Pagenation = ({ count }: Props) => {
   const showPrev = itemPerPage * (+searchParams.get("page")! - 1) > 0;
   const showNext =
     itemPerPage * (+searchParams.get("page")! - 1) + itemPerPage < count;
-  // test
+  // add pagination buttons debeds on product count i used the math.ceil to make sure if there for example 21 products / 5 itemperpage it will be like 4.somthing and using ceil it will be 5
   const numbers: number[] = [];
-  for (let i = 1; i <= count / itemPerPage; i++) {
+  for (let i = 1; i <= Math.ceil(count / itemPerPage); i++) {
     numbers.push(i);
   }
   // functions
@@ -37,7 +37,7 @@ const Pagenation = ({ count }: Props) => {
     replace(`${pathname}?${params}`);
   };
   return (
-    <div className="flex items-center justify-between p-[10px] mt-5">
+    <div className="flex items-center justify-between p-[10px] mt-5 gap-5">
       <button
         className="cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 px-[10px] py-[5px] rounded-md bg-primary transition hover:bg-blue-200  text-white font-semibold"
         onClick={goPrev}
@@ -45,7 +45,7 @@ const Pagenation = ({ count }: Props) => {
       >
         Prev
       </button>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5 flex-wrap">
         {numbers.map((num) => (
           <button
             key={num}
