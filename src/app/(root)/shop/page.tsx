@@ -25,12 +25,12 @@ const Shop = async ({ searchParams }: Props) => {
   const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
   return (
     <section className="md:p-10 p-5">
+      <div className="flex sm:flex-row flex-col sm:items-center sm:justify-center gap-5 ">
+        <Catergories style="sm:w-fit w-full " />
+        <Search style="sm:w-fit w-full " />
+      </div>
       {products.length ? (
         <>
-          <div className="flex sm:flex-row flex-col sm:items-center sm:justify-center gap-5 ">
-            <Catergories style="sm:w-fit w-full " />
-            <Search style="sm:w-fit w-full " />
-          </div>
           <ul className="grid xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 place-items-center w-full gap-x-2 gap-y-6 mt-10">
             {products.map((product) => (
               <li key={product.id}>
