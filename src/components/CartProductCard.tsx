@@ -8,7 +8,7 @@ type Props = {
 };
 const CartProductCard = async ({ cartProduct }: Props) => {
   return (
-    <div className="relative capitalize w-full flex flex-col gap-3 bg-main-soft-bg rounded-md min-h-[600px]">
+    <div className="relative capitalize w-full flex flex-col gap-3 bg-main-soft-bg rounded-md min-h-[670px]">
       <div className="relative w-full h-[30vh]">
         <Image
           src={cartProduct.product.img || "/noproduct.jpg"}

@@ -53,6 +53,7 @@ const AddProduct = async () => {
             type="number"
             placeholder="Stock"
             name="stock"
+            min={1}
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />{" "}
           <input
@@ -69,7 +70,10 @@ const AddProduct = async () => {
             placeholder="Description"
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold min-h-[200px]"
           ></textarea>
-          <Submit text="Add Product" style="bg-primary text-white w-full transition hover:bg-blue-200" />
+          <Submit
+            text="Add Product"
+            style="bg-primary text-white w-full transition hover:bg-blue-200"
+          />
         </div>
       </form>
     </div>

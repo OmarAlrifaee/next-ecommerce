@@ -18,7 +18,7 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
   );
   const quantity = productInCart?.quantity;
   return (
-    <div className="relative rounded-md shadow-md overflow-hidden capitalize min-h-[500px] w-[250px] flex flex-col gap-3 bg-main-soft-bg">
+    <div className="relative rounded-md shadow-md overflow-hidden capitalize min-h-[570px] w-[250px] flex flex-col gap-3 bg-main-soft-bg">
       <div className="relative w-full h-[200px]">
         <Image
           src={product.img || "/noproduct.jpg"}
