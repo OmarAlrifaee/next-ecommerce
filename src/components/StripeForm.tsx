@@ -25,7 +25,7 @@ const StripeForm = () => {
         redirect: "if_required",
       });
       if (result.error) {
-        console.log(result.error.message);
+        throw Error;
       }
       if (result.paymentIntent) {
         // update the products stock count

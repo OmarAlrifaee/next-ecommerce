@@ -5,9 +5,7 @@ import { getCurrentUser } from "./users";
 import { CartType, ProductType } from "@/types";
 import { CartModel } from "@/models/cart";
 import { ProductModel } from "@/models/products";
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 
 export const getCartProducts = async () => {
   try {
