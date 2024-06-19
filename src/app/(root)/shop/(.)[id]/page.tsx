@@ -24,7 +24,7 @@ const ProductDetails = async ({ params }: Props) => {
           product={product}
           inCart={
             !!cartProducts?.some((cartProduct) => {
-              return cartProduct.id === product.id;
+              return cartProduct.product.id === product.id;
             })
           }
           loggedIn={isLoggedIn}

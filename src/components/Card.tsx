@@ -1,9 +1,16 @@
 type Props = {
   children: React.ReactNode;
+  fixed?: boolean;
 };
-const Card = ({ children }: Props) => {
+const Card = ({ children, fixed }: Props) => {
   return (
-    <div className="bg-main-soft-bg rounded-md p-5 flex items-center justify-center flex-col gap-5">
+    <div
+      className={`bg-main-soft-bg rounded-md mt-10 p-5 flex items-center justify-center flex-col gap-5 ${
+        fixed
+          ? "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+          : ""
+      }`}
+    >
       {children}
     </div>
   );

@@ -12,6 +12,7 @@ export type ProductType = {
   desc: string;
   price: number;
   category: string;
+  stock: number;
   img?: string;
   color?: string;
   size?: string;
@@ -27,7 +28,7 @@ export type CategoryType = {
 export type CartType = {
   id: string;
   createdAt: Date;
-  productsIds: string[];
+  products: { id: string; quantity: number }[];
   userId: string;
 };
 export type OrderType = {

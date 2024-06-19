@@ -46,9 +46,9 @@ export const deleteProduct = async (id: string) => {
     await ProductModel.findByIdAndDelete(id);
     // here i should delete the product from all carts too
     await CartModel.updateMany(
-      { productsIds: id },
+      { "products.id": id },
       {
-        $pull: { productsIds: id },
+        $pull: { products: { id } },
       }
     );
   } catch (error) {

@@ -50,6 +50,12 @@ const AddProduct = async () => {
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />{" "}
           <input
+            type="number"
+            placeholder="Stock"
+            name="stock"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+          />{" "}
+          <input
             type="color"
             placeholder="Color"
             name="color"

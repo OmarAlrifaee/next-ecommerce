@@ -27,6 +27,7 @@ const ProductRow = ({ product }: Props) => {
       }`}</td>
       <td className="p-3">${product.price}</td>
       <td className="p-3">{product.createdAt?.toLocaleDateString()}</td>
+      <td className="p-3">{product.stock}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
           <AddNewLink

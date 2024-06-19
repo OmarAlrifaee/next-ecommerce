@@ -7,8 +7,19 @@ const cartSchema = new mongoose.Schema(
       required: [true, "please provide a user id"],
       unique: true,
     },
-    productsIds: {
-      type: [],
+    products: {
+      type: [
+        {
+          quantity: {
+            type: Number,
+            required: true,
+          },
+          id: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
       required: true,
       default: [],
     },

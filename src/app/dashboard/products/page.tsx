@@ -39,6 +39,7 @@ const Products = async ({ searchParams }: Props) => {
               <td className="p-3">Description</td>
               <td className="p-3">Price</td>
               <td className="p-3">Created At</td>
+              <td className="p-3">In Stock</td>
               <td className="p-3">Action</td>
             </tr>
           </thead>

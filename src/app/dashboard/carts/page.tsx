@@ -24,16 +24,18 @@ const CartPage = async ({ searchParams }: Props) => {
               <td className="p-3">Description</td>
               <td className="p-3">Price</td>
               <td className="p-3">Created At</td>
+              <td className="p-3">Quantity</td>
+              <td className="p-3">In Stock</td>
               <td className="p-3">Action</td>
             </tr>
           </thead>
           <tbody>
             {userProducts?.length && searchParams.user
-              ? userProducts?.map((product) => (
+              ? userProducts?.map((cartProduct) => (
                   <UserCartProductRow
-                    product={product}
+                    cartProduct={cartProduct}
                     username={searchParams.user}
-                    key={product.id}
+                    key={cartProduct.product.id}
                   />
                 ))
               : ""}

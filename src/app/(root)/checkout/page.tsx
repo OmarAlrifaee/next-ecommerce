@@ -14,7 +14,9 @@ const page = async () => {
   // redirect the user if he does'nt have a products in the cart
   if (!cartProducts.length) redirect("/shop");
   const currentUser = isLoggedIn ? await getCurrentUser() : null;
-  const pricesArray = cartProducts.map((product) => product.price);
+  const pricesArray = cartProducts.map(
+    ({ product, quantity }) => product.price * quantity
+  );
   const totalPrice: number = pricesArray.reduce((a, b) => a + b, 0)!;
 
   const paymentIntent = await createPaymentIntent(
@@ -34,8 +36,11 @@ const page = async () => {
           ""
         )}
         <ul className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
-          {cartProducts?.map((product) => (
-            <CartProductCard product={product} key={product.id} />
+          {cartProducts?.map((cartProduct) => (
+            <CartProductCard
+              cartProduct={cartProduct}
+              key={cartProduct.product.id}
+            />
           ))}
         </ul>
       </div>

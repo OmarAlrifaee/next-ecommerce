@@ -28,6 +28,8 @@ const StripeForm = () => {
         console.log(result.error.message);
       }
       if (result.paymentIntent) {
+        // update the products stock count
+        await axios.post("/api/decrement-products-stock");
         // clear the cart data
         await axios.delete("/api/clear-cart");
         // save the order to the db

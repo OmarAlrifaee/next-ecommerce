@@ -39,10 +39,11 @@ export const deleteCategory = async (id: string, title: string) => {
     });
     // delete products from all carts
     deletedCategoryProducts.forEach(async (product) => {
+      // here i should delete the product from all carts too
       await CartModel.updateMany(
-        { productsIds: product.id },
+        { "products.id": product.id },
         {
-          $pull: { productsIds: product.id },
+          $pull: { products: { id: product.id } },
         }
       );
     });

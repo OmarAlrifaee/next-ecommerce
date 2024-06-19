@@ -38,7 +38,7 @@ const Shop = async ({ searchParams }: Props) => {
                   product={product}
                   inCart={
                     !!cartProducts?.some((cartProduct) => {
-                      return cartProduct.id === product.id;
+                      return cartProduct.product.id === product.id;
                     })
                   }
                   loggedIn={isLoggedIn}

@@ -3,12 +3,20 @@ import Image from "next/image";
 import AddNewLink from "./AddNewLink";
 import AddProductForm from "./forms/AddProductForm";
 import RemoveProductForm from "./forms/RemoveProductForm";
+import { getCartProducts } from "@/actions/cart";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 type Props = {
   product: ProductType;
   inCart: boolean;
   loggedIn: boolean;
 };
 const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
+  const isLoggedIn = isUserLoggedIn();
+  const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
+  const productInCart = cartProducts.find(
+    (cartProduct) => cartProduct?.product.id === product.id
+  );
+  const quantity = productInCart?.quantity;
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-80)] bg-transparent">
       <div className="relative capitalize md:w-1/2 w-full flex flex-col gap-3 bg-main-soft-bg pb-5 rounded-md overflow-hidden">
@@ -44,12 +52,32 @@ const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
             </p>
           </div>
           <div className="flex items-center justify-between">
+            {quantity ? (
+              <p className="text-white font-semibold capitalize">
+                Quantity: {quantity}
+              </p>
+            ) : (
+              ""
+            )}
+            <p className="text-white font-semibold capitalize">
+              In Stock: {product.stock}
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-3">
             {loggedIn ? (
-              inCart ? (
-                <RemoveProductForm productId={product.id} widthFull />
-              ) : (
-                <AddProductForm productId={product.id} widthFull />
-              )
+              <>
+                {inCart ? (
+                  <RemoveProductForm productId={product.id} widthFull />
+                ) : (
+                  ""
+                )}
+                <AddProductForm
+                  productId={product.id}
+                  widthFull
+                  stock={product.stock}
+                  quantity={quantity}
+                />
+              </>
             ) : (
               <AddNewLink
                 text="Login"

@@ -17,8 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-main-bg relative`}>
+      <body className={`${inter.className} bg-main-bg`}>
         {children}
+        <div id="popup"></div>
         <Toaster position="bottom-right" />
       </body>
     </html>

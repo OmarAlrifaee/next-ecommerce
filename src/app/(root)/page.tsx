@@ -27,7 +27,7 @@ const Home = async () => {
                 key={product.id}
                 inCart={
                   !!cartProducts.some((cartProduct) => {
-                    return cartProduct.id === product.id;
+                    return cartProduct?.product.id === product.id;
                   })
                 }
                 loggedIn={isLoggedIn}

@@ -1,7 +1,6 @@
-import { clearCart, getCartProducts } from "@/actions/cart";
+import { getCartProducts } from "@/actions/cart";
 import Card from "@/components/Card";
 import CartProductCard from "@/components/CartProductCard";
-import Submit from "@/components/Submit";
 import ClearCartForm from "@/components/forms/ClearCartForm";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
@@ -10,7 +9,9 @@ import Link from "next/link";
 const Cart = async () => {
   const isLoggedIn = isUserLoggedIn();
   const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
-  const pricesArray = cartProducts.map((product) => product.price);
+  const pricesArray = cartProducts?.map(
+    ({ product, quantity }) => product.price * quantity
+  );
   const totalPrice = pricesArray.reduce((a, b) => a + b, 0);
   return (
     <section className="md:p-10 p-5">
@@ -22,8 +23,11 @@ const Cart = async () => {
             </h2>
           </Card>
           <ul className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10 justify-center items-center gap-5">
-            {cartProducts?.map((product) => (
-              <CartProductCard product={product} key={product.id} />
+            {cartProducts?.map((cartProduct) => (
+              <CartProductCard
+                cartProduct={cartProduct}
+                key={cartProduct.product.id}
+              />
             ))}
           </ul>
           <div className="flex flex-col gap-3 mt-10">

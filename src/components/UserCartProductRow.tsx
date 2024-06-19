@@ -3,34 +3,38 @@ import Image from "next/image";
 import { ProductType } from "@/types";
 import { deleteUserProductFromCart } from "@/actions/cartDashboard";
 type Props = {
-  product: ProductType;
+  cartProduct: { product: ProductType; quantity: number };
   username: string;
 };
-const UserCartProductRow = ({ product, username }: Props) => {
+const UserCartProductRow = ({ cartProduct, username }: Props) => {
   return (
     <tr>
       <td className="p-3">
         <div className="flex items-center gap-[10px]">
           <div className="flex-shrink-0 relative rounded-full overflow-hidden w-[40px] h-[40px]">
             <Image
-              src={product.img || "/noproduct.jpg"}
-              alt={product.title}
+              src={cartProduct.product.img || "/noproduct.jpg"}
+              alt={cartProduct.product.title}
               fill
             />
           </div>
-          <span>{product.title}</span>
+          <span>{cartProduct.product.title}</span>
         </div>
       </td>
-      <td className="p-3">{`${product.desc.slice(0, 50)} ${
-        product.desc.length > 50 ? "..." : ""
+      <td className="p-3">{`${cartProduct.product.desc.slice(0, 50)} ${
+        cartProduct.product.desc.length > 50 ? "..." : ""
       }`}</td>
-      <td className="p-3">${product.price}</td>
-      <td className="p-3">{product.createdAt?.toLocaleDateString()}</td>
+      <td className="p-3">${cartProduct.product.price}</td>
+      <td className="p-3">
+        {cartProduct.product.createdAt?.toLocaleDateString()}
+      </td>
+      <td className="p-3">{cartProduct.quantity}</td>
+      <td className="p-3">{cartProduct.product.stock}</td>
       <td className="p-3">
         <form
           action={async () => {
             "use server";
-            await deleteUserProductFromCart(username, product.id);
+            await deleteUserProductFromCart(username, cartProduct.product.id);
           }}
         >
           <Submit

@@ -10,9 +10,6 @@ import { revalidatePath } from "next/cache";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 
 export const getCartProducts = async () => {
-  // check if there is a user loggedin
-  const isLoggedIn = isUserLoggedIn();
-  if (!isLoggedIn) redirect("/login");
   try {
     connectToDB();
     // get the current user
@@ -21,11 +18,14 @@ export const getCartProducts = async () => {
       userId: currentUser?.id,
     });
     // get all the products
-    const promises = userCart?.productsIds.map(async (productId) => {
-      const product = await ProductModel.findById(productId);
-      return product;
+    const promises = userCart?.products.map(async ({ id, quantity }) => {
+      const product = await ProductModel.findById(id);
+      return { product, quantity };
     });
-    const cartProducts = await Promise.all<ProductType>(promises!);
+    const cartProducts = await Promise.all<{
+      product: ProductType;
+      quantity: number;
+    }>(promises!);
     return {
       cartProducts,
       count: cartProducts?.length,
@@ -34,29 +34,41 @@ export const getCartProducts = async () => {
     throw new Error("could'nt get cart products");
   }
 };
-export const addToCart = async (productId: string) => {
-  // check if there is a user loggedin
-  const isLoggedIn = isUserLoggedIn();
-  if (!isLoggedIn) redirect("/login");
+export const addToCart = async (productId: string, quantity: number) => {
   try {
     connectToDB();
     // get the current user
     const currentUser = await getCurrentUser();
     // check if its in cart first
-    const product = await CartModel.findOne({
+    const cart = await CartModel.findOne<CartType>({
       userId: currentUser?.id,
-      productsIds: productId,
-    });
-    if (product) throw new Error("product already exist in cart");
-    // update the user cart
-    await CartModel.findOneAndUpdate(
-      {
-        userId: currentUser?.id,
-      },
-      {
-        $push: { productsIds: productId },
-      }
+      "products.id": productId,
+    }); // Find the product within the cart
+    const productInCart = cart?.products?.find(
+      (product) => product.id === productId
     );
+    if (productInCart) {
+      // if its in cart update it
+      await CartModel.findOneAndUpdate(
+        {
+          userId: currentUser?.id,
+          "products.id": productId,
+        },
+        {
+          $set: { "products.$.quantity": quantity },
+        }
+      );
+    } else {
+      // if its not in cart add it
+      await CartModel.findOneAndUpdate(
+        {
+          userId: currentUser?.id,
+        },
+        {
+          $push: { products: { id: productId, quantity } },
+        }
+      );
+    }
     revalidatePath("/");
     revalidatePath("/shop");
     return {
@@ -70,9 +82,6 @@ export const addToCart = async (productId: string) => {
   }
 };
 export const removeFromCart = async (productId: string) => {
-  // check if there is a user loggedin
-  const isLoggedIn = isUserLoggedIn();
-  if (!isLoggedIn) redirect("/login");
   try {
     connectToDB();
     // get the current user
@@ -83,7 +92,7 @@ export const removeFromCart = async (productId: string) => {
         userId: currentUser?.id,
       },
       {
-        $pull: { productsIds: productId },
+        $pull: { products: { id: productId } },
       }
     );
     revalidatePath("/");
@@ -100,9 +109,6 @@ export const removeFromCart = async (productId: string) => {
   }
 };
 export const clearCart = async () => {
-  // check if there is a user loggedin
-  const isLoggedIn = isUserLoggedIn();
-  if (!isLoggedIn) redirect("/login");
   try {
     connectToDB();
     // get the current user
@@ -113,7 +119,7 @@ export const clearCart = async () => {
         userId: currentUser?.id,
       },
       {
-        productsIds: [],
+        products: [],
       }
     );
     revalidatePath("/cart");
