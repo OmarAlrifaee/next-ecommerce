@@ -36,7 +36,7 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
             >
               -
             </button>
-            <span className="font-bold text-white">{currentQuantity}</span>
+            <span className="font-bold text-white">{quantity}</span>
             <button
               disabled={currentQuantity >= stock}
               onClick={() => setcurrentQuantity((prev) => prev + 1)}
