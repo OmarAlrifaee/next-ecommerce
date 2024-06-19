@@ -3,7 +3,7 @@
 import { addToCart } from "@/actions/cart";
 import Submit from "../Submit";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../Card";
 import { createPortal } from "react-dom";
 import { FaCircleXmark } from "react-icons/fa6";
@@ -16,6 +16,9 @@ type Props = {
 const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
   const [currentQuantity, setcurrentQuantity] = useState(quantity || 1);
   const [show, setShow] = useState(false);
+  useEffect(() => {
+    quantity && setcurrentQuantity(quantity);
+  }, [show, quantity]);
   const addAction = async () => {
     const state = await addToCart(productId, currentQuantity);
     if (state.success) {
@@ -36,7 +39,12 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
             >
               -
             </button>
-            <span className="font-bold text-white">{quantity}</span>
+            <input
+              className="font-bold text-white size-10 rounded-md text-center"
+              type="text"
+              disabled
+              value={currentQuantity}
+            />
             <button
               disabled={currentQuantity >= stock}
               onClick={() => setcurrentQuantity((prev) => prev + 1)}
