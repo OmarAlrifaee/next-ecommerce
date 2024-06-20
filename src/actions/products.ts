@@ -75,6 +75,7 @@ export const updateProduct = async (data: FormData, id: string) => {
     const productData = Object.fromEntries(data);
     // remove any key with an empty value or undifined
     // to prevent assign it to the database as an undifined faild
+    console.log(productData.stock);
     Object.keys(productData).map(
       (key) =>
         (productData[key] === "" || productData[key] === undefined) &&

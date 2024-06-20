@@ -61,7 +61,7 @@ const ProductDetails = async ({ params }: Props) => {
             type="number"
             placeholder={product.stock.toString()}
             name="stock"
-            min={1}
+            min={product.stock}
             className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
           />{" "}
           <select
