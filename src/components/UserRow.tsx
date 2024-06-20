@@ -28,15 +28,13 @@ const UserRow = ({ user, currentUserId }: Props) => {
       <td className="p-3">{user.createdAt?.toLocaleDateString()}</td>
       <td className="p-3">{user.isAdmin ? "Admin" : "Not Admin"}</td>
       <td className="p-3">
-        {currentUserId === user.id ? (
-          <p>You Can not Edit This Please Logout First</p>
-        ) : (
-          <div className="flex items-center gap-[20px]">
-            <AddNewLink
-              text="View"
-              style="bg-primary transition hover:bg-blue-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
-              href={`/dashboard/users/${user.id}`}
-            />
+        <div className="flex items-center gap-[20px]">
+          <AddNewLink
+            text="View"
+            style="bg-primary transition hover:bg-blue-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+            href={`/dashboard/users/${user.id}`}
+          />
+          {currentUserId !== user.id ? (
             <form
               action={async () => {
                 "use server";
@@ -48,8 +46,10 @@ const UserRow = ({ user, currentUserId }: Props) => {
                 text="Delete"
               />
             </form>
-          </div>
-        )}
+          ) : (
+            ""
+          )}
+        </div>
       </td>
     </tr>
   );

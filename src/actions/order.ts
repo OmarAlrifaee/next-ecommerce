@@ -18,8 +18,8 @@ export const getAllOrders = async (search: string = "") => {
 export const deleteOrder = async (userId: string) => {
   try {
     await OrderModel.findOneAndDelete({ userId });
-    revalidatePath("/dashboard/orders");
   } catch (error) {
     throw new Error("could'nt delete a single order");
   }
+  revalidatePath("/dashboard/orders");
 };
