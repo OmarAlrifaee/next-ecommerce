@@ -117,13 +117,25 @@ export const getAllUsers = async (search: string = "", page: string = "1") => {
 export const deleteUser = async (id: string) => {
   try {
     connectToDB();
-    // delete the user cart too
-    await CartModel.deleteOne({ userId: id });
-    await UserModel.findByIdAndDelete(id);
-  } catch (error) {
-    throw new Error("could'nt delete a user");
+  } catch (error: any) {
+    throw new Error(error?.message);
   }
-  revalidatePath("/dashboard/users");
+  // get the current user
+  const currentUser = await getCurrentUser();
+  if (!currentUser) throw Error;
+  // delete the user cart too
+  const deletedCartResult = await CartModel.deleteOne({ userId: id });
+  if (!deletedCartResult.deletedCount) {
+    throw new Error("could'nt delete a user cart");
+  }
+  // delete user
+  await UserModel.findByIdAndDelete(id);
+  // check if its the current user and redirect him to login
+  if (currentUser?.id === id) {
+    await logout();
+  } else {
+    revalidatePath("/dashboard/users");
+  }
 };
 export const addUser = async (data: FormData) => {
   try {

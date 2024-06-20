@@ -7,9 +7,8 @@ import AddNewLink from "./AddNewLink";
 
 type Props = {
   user: UserType;
-  currentUserId?: string;
 };
-const UserRow = ({ user, currentUserId }: Props) => {
+const UserRow = ({ user }: Props) => {
   return (
     <tr>
       <td className="p-3">
@@ -34,21 +33,17 @@ const UserRow = ({ user, currentUserId }: Props) => {
             style="bg-primary transition hover:bg-blue-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
             href={`/dashboard/users/${user.id}`}
           />
-          {currentUserId !== user.id ? (
-            <form
-              action={async () => {
-                "use server";
-                await deleteUser(user.id);
-              }}
-            >
-              <Submit
-                style="bg-red-500 tranistion hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
-                text="Delete"
-              />
-            </form>
-          ) : (
-            ""
-          )}
+          <form
+            action={async () => {
+              "use server";
+              await deleteUser(user.id);
+            }}
+          >
+            <Submit
+              style="bg-red-500 tranistion hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+              text="Delete"
+            />
+          </form>
         </div>
       </td>
     </tr>
