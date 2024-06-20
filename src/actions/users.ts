@@ -163,35 +163,67 @@ export const getOneUser = async (id: string) => {
 export const updateUser = async (data: FormData, id: string) => {
   try {
     connectToDB();
-    const userData = Object.fromEntries(data);
-    // remove any key with an empty value or undifined
-    // to prevent assign it to the database as an undifined faild
-    Object.keys(userData).map(
-      (key) =>
-        (userData[key] === "" || userData[key] === undefined) &&
-        delete userData[key]
-    );
-    const updatedUser = await UserModel.findByIdAndUpdate<UserType>(
-      id,
-      {
-        ...userData,
-        isAdmin: userData.isAdmin === "on" ? true : false,
-      },
-      { new: true }
-    );
-    // get the current user to see if the admin is editing his account
-    const currentUser = await getCurrentUser();
-    if (currentUser?.id === updatedUser?.id) {
-      await logout();
-      return;
-    }
-    // else {
-    //   here i should do this
-    //   redirect("/dashboard/users");
-    //   but for some reason the fucking redirect method from nextjs does'nt work in a try catch block
-    // }
-  } catch (error) {
-    throw new Error("could'nt update a user");
+  } catch (error: any) {
+    throw new Error(error?.message);
   }
-  redirect("/dashboard/users");
+  const userData = Object.fromEntries(data);
+  if (!userData) throw Error;
+  // remove any key with an empty value or undifined
+  // to prevent assign it to the database as an undifined faild
+  Object.keys(userData).map(
+    (key) =>
+      (userData[key] === "" || userData[key] === undefined) &&
+      delete userData[key]
+  );
+  const updatedUser = await UserModel.findByIdAndUpdate<UserType>(
+    id,
+    {
+      ...userData,
+      isAdmin: userData.isAdmin === "on" ? true : false,
+    },
+    { new: true }
+  );
+  if (!updateUser) throw Error;
+  // get the current user to see if the admin is editing his account
+  const currentUser = await getCurrentUser();
+  if (currentUser?.id === updatedUser?.id) {
+    await logout();
+  } else {
+    redirect("/dashboard/users");
+  }
 };
+// export const updateUser = async (data: FormData, id: string) => {
+//   try {
+//     connectToDB();
+//     const userData = Object.fromEntries(data);
+//     // remove any key with an empty value or undifined
+//     // to prevent assign it to the database as an undifined faild
+//     Object.keys(userData).map(
+//       (key) =>
+//         (userData[key] === "" || userData[key] === undefined) &&
+//         delete userData[key]
+//     );
+//     const updatedUser = await UserModel.findByIdAndUpdate<UserType>(
+//       id,
+//       {
+//         ...userData,
+//         isAdmin: userData.isAdmin === "on" ? true : false,
+//       },
+//       { new: true }
+//     );
+//     // get the current user to see if the admin is editing his account
+//     const currentUser = await getCurrentUser();
+//     if (currentUser?.id === updatedUser?.id) {
+//       await logout();
+//       return;
+//     }
+//     // else {
+//     //   here i should do this
+//     //   redirect("/dashboard/users");
+//     //   but for some reason the fucking redirect method from nextjs does'nt work in a try catch block
+//     // }
+//   } catch (error) {
+//     throw new Error("could'nt update a user");
+//   }
+//   redirect("/dashboard/users");
+// };
