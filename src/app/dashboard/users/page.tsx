@@ -1,8 +1,9 @@
-import { getAllUsers } from "@/actions/users";
+import { getAllUsers, getCurrentUser } from "@/actions/users";
 import AddNewLink from "@/components/AddNewLink";
 import Pagenation from "@/components/Pagenation";
 import Search from "@/components/Search";
 import UserRow from "@/components/UserRow";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
 type Props = {
   searchParams: {
@@ -15,6 +16,8 @@ const Users = async ({ searchParams }: Props) => {
     searchParams.search,
     searchParams.page
   );
+  const isLoggedIn = isUserLoggedIn();
+  const currentUser = isLoggedIn ? await getCurrentUser() : null;
   return (
     <section className="bg-main-soft-bg">
       <div className="p-5 mt-3 flex sm:flex-row gap-3 flex-col items-center justify-between">
@@ -38,7 +41,11 @@ const Users = async ({ searchParams }: Props) => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <UserRow user={user} key={user.id} />
+              <UserRow
+                user={user}
+                key={user.id}
+                currentUserId={currentUser?.id}
+              />
             ))}
           </tbody>
         </table>
