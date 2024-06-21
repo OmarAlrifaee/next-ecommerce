@@ -26,7 +26,7 @@ const Orders = async ({ searchParams }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {orders.reverse().map((order) => (
               <OrderRow order={order} key={order.id} />
             ))}
           </tbody>

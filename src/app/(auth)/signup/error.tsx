@@ -11,7 +11,7 @@ const error = ({ error, reset }: Props) => {
     <section className="p-10 min-h-screen bg-main-bg flex items-center justify-center">
       <div className="h-1/2 w-1/2 rounded-md bg-main-soft-bg p-10 flex flex-col gap-10">
         <h3 className="text-white font-bold capitalize text-5xl text-center">
-          User Already Exist
+          {error.message}
         </h3>
         <div className="flex items-center gap-5 justify-center">
           <button

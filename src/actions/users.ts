@@ -19,7 +19,7 @@ export const login = async (data: FormData) => {
     // check if there is a user
     const user = await UserModel.findOne({ email });
     if (!user.email) {
-      throw new Error("user not found");
+      throw Error;
     }
     // check if password is correct
     const isPasswordValid = await bcryptjs.compare(
@@ -27,7 +27,7 @@ export const login = async (data: FormData) => {
       user.password
     );
     if (!isPasswordValid) {
-      throw new Error("password not valid");
+      throw Error;
     }
     // create a jwt
     const tokenData = {
@@ -40,7 +40,7 @@ export const login = async (data: FormData) => {
     });
     cookies().set("token", token, { httpOnly: true });
   } catch (error: any) {
-    throw new Error("could'nt login a user");
+    throw new Error("invalid password or email");
   }
   redirect("/");
 };
@@ -52,7 +52,7 @@ export const logout = async () => {
       expires: new Date(0),
     });
   } catch (error: any) {
-    throw new Error("could'nt logout a user");
+    throw new Error("could'nt logout Please try agine");
   }
   redirect("/login");
 };
@@ -64,7 +64,7 @@ export const signUp = async (data: FormData) => {
     const user = await UserModel.findOne({ email });
     // check if the user is already exist in the db
     if (user) {
-      throw new Error("user is already exist");
+      throw Error;
     }
     // hashing the password
     const salt = await bcryptjs.genSalt(10);
@@ -80,7 +80,7 @@ export const signUp = async (data: FormData) => {
     const userCart = new CartModel({ userId: savedUser?.id });
     await userCart.save();
   } catch (error: any) {
-    throw new Error("could'nt sign in a user");
+    throw new Error("user already exist");
   }
   redirect("/login");
 };
@@ -94,7 +94,7 @@ export const getCurrentUser = async () => {
     const currentUser = await UserModel.findById<UserType>(decoded?.id);
     return currentUser;
   } catch (error) {
-    throw new Error("could'nt get current user");
+    throw new Error("could'nt get current user please try to login agine");
   }
 };
 export const getAllUsers = async (search: string = "", page: string = "1") => {
@@ -111,7 +111,7 @@ export const getAllUsers = async (search: string = "", page: string = "1") => {
       .skip(itemsPerPage * (parseInt(page) - 1)); // for example 2 * 0 so i wont skip any users but if its page 2 ill skip the first tow and show the second tow
     return { users, count };
   } catch (error) {
-    throw new Error("faild to fetch all users");
+    throw new Error("something went wronge please try agine");
   }
 };
 export const deleteUser = async (id: string) => {
@@ -179,7 +179,7 @@ export const updateUser = async (data: FormData, id: string) => {
     throw new Error(error?.message);
   }
   const userData = Object.fromEntries(data);
-  if (!userData) throw Error;
+  if (!userData) throw new Error("please provide a user info's");
   // remove any key with an empty value or undifined
   // to prevent assign it to the database as an undifined faild
   Object.keys(userData).map(
@@ -195,7 +195,8 @@ export const updateUser = async (data: FormData, id: string) => {
     },
     { new: true }
   );
-  if (!updateUser) throw Error;
+  if (!updateUser)
+    throw new Error("could'nt update the user please try agine later");
   // get the current user to see if the admin is editing his account
   const currentUser = await getCurrentUser();
   if (currentUser?.id === updatedUser?.id) {
