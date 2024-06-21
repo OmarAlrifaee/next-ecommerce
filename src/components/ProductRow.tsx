@@ -22,9 +22,6 @@ const ProductRow = ({ product }: Props) => {
           <span>{product.title}</span>
         </div>
       </td>
-      <td className="p-3">{`${product.desc.slice(0, 50)} ${
-        product.desc.length > 50 ? "..." : ""
-      }`}</td>
       <td className="p-3">${product.price}</td>
       <td className="p-3">{product.createdAt?.toLocaleDateString()}</td>
       <td className="p-3">{product.stock}</td>

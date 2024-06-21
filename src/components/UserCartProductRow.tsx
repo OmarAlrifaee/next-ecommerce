@@ -21,9 +21,6 @@ const UserCartProductRow = ({ cartProduct, username }: Props) => {
           <span>{cartProduct.product.title}</span>
         </div>
       </td>
-      <td className="p-3">{`${cartProduct.product.desc.slice(0, 50)} ${
-        cartProduct.product.desc.length > 50 ? "..." : ""
-      }`}</td>
       <td className="p-3">${cartProduct.product.price}</td>
       <td className="p-3">
         {cartProduct.product.createdAt?.toLocaleDateString()}

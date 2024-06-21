@@ -10,10 +10,16 @@ type Props = {
 };
 const Orders = async ({ searchParams }: Props) => {
   const orders = await getAllOrders(searchParams.search);
+  const totalPriceArr = orders?.map((order) => order.total);
+  const totalPrice = totalPriceArr?.reduce((a, b) => a + b, 0);
   return (
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row flex-col gap-3">
         <Search />
+        <h3 className="font-bold capitalize">
+          Total:{" "}
+          <span className="text-green-500 font-semibold">${totalPrice}</span>
+        </h3>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
