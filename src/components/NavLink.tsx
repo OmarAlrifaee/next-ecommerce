@@ -18,7 +18,9 @@ const NavLink = ({
     <Link
       href={path}
       className={`${
-        pathname === path ? activeStyle : ""
+        pathname === (path.slice(0, 5) === "/shop" ? "/shop" : path)
+          ? activeStyle
+          : ""
       } ${style} transition hover:text-green-500`}
     >
       {title}

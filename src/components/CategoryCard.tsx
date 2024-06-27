@@ -17,7 +17,7 @@ const CategoryCard = ({ category }: Props) => {
       <div className="flex items-center justify-between px-5 mt-5">
         <h3 className="font-bold text-white text-xl px-5">{category.title}</h3>
         <AddNewLink
-          href={`/shop?category=${category.title}`}
+          href={`/shop?category=${category.title}&page=1`}
           text="see in shop"
         />
       </div>

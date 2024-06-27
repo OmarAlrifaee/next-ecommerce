@@ -17,7 +17,7 @@ const links = [
     icon: <MdHome className="text-3xl" />,
   },
   {
-    path: "/shop",
+    path: "/shop?page=1",
     icon: <MdShop className="text-3xl" />,
   },
   {

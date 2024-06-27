@@ -9,11 +9,11 @@ const Search = ({ style }: Props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", "1");
-    replace(`${pathname}?${params}`);
-  }, []);
+  // useEffect(() => {
+  //   const params = new URLSearchParams(searchParams);
+  //   params.set("page", "1");
+  //   replace(`${pathname}?${params}`);
+  // }, []);
   const hundleChange = (search: string) => {
     const params = new URLSearchParams(searchParams);
     if (search) {

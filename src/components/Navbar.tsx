@@ -11,7 +11,7 @@ const links = [
     title: "Home",
   },
   {
-    path: "/shop",
+    path: "/shop?page=1",
     title: "Shop",
   },
   {
