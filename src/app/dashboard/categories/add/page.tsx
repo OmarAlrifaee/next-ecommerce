@@ -12,16 +12,19 @@ const AddProduct = async () => {
             placeholder="Title"
             name="title"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
           <input
             type="text"
             placeholder="image url"
             name="img"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
         </div>
-        <Submit text="Add Category" style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200" />
+        <Submit
+          text="Add Category"
+          style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200"
+        />
       </form>
     </div>
   );

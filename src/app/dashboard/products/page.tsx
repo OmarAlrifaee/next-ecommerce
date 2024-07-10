@@ -22,8 +22,8 @@ const Products = async ({ searchParams }: Props) => {
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row gap-3 flex-col">
         <div className="flex items-center gap-5 sm:flex-row flex-col">
-          <Search style="sm:w-fit w-full" />
-          <Catergories style="sm:w-fit w-full" />
+          <Search style="sm:w-fit w-full" dashboard />
+          <Catergories style="sm:w-fit w-full" dashboard />
         </div>
         <AddNewLink
           text="Add Product"
@@ -33,7 +33,7 @@ const Products = async ({ searchParams }: Props) => {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead>
+          <thead className="font-semibold">
             <tr>
               <td className="p-3">Title</td>
               <td className="p-3">Price</td>

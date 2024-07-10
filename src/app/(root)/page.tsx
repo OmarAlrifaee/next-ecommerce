@@ -17,7 +17,7 @@ const Home = async () => {
     <section className="md:p-10 p-5">
       {products.length ? (
         <div className="mt-10">
-          <h3 className="text-4xl italic font-bold text-white capitalize text-center mb-10">
+          <h3 className="text-4xl italic font-bold text-black capitalize text-center mb-10">
             Our Best Products
           </h3>
           <SwiperComponent>
@@ -37,14 +37,14 @@ const Home = async () => {
         </div>
       ) : (
         <Card>
-          <p className="text-white capitalize font-bold">
+          <p className="text-black capitalize font-bold">
             There Is No Products Avaliable
           </p>
         </Card>
       )}
       {categories.length ? (
         <div className="mt-10">
-          <h3 className="text-4xl italic font-bold text-white capitalize text-center mb-10">
+          <h3 className="text-4xl italic font-bold text-black capitalize text-center mb-10">
             All Categories
           </h3>
           <SwiperComponent>
@@ -55,7 +55,7 @@ const Home = async () => {
         </div>
       ) : (
         <Card>
-          <p className="text-white capitalize font-bold">
+          <p className="text-black capitalize font-bold">
             There Is No Categories Avaliable
           </p>
         </Card>

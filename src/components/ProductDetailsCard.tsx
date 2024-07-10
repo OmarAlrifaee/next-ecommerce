@@ -18,7 +18,7 @@ const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
   );
   const quantity = productInCart?.quantity;
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-80)] bg-transparent">
+    <div className="flex items-center justify-center min-h-[calc(100vh-80)] bg-transparent text-black">
       <div className="relative capitalize md:w-1/2 w-full flex flex-col gap-3 bg-main-soft-bg pb-5 rounded-md overflow-hidden">
         <div className="relative w-full h-[30vh]">
           <Image
@@ -28,7 +28,7 @@ const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
           />
         </div>
         <article className="px-5 flex flex-col gap-3">
-          <h3 className="text-xl font-bold text-white">{product.title}</h3>
+          <h3 className="text-xl font-bold">{product.title}</h3>
           <p className="text-soft-text font-semibold ">{product.desc}</p>
           {product?.color && product?.size ? (
             <div className="flex items-center justify-between">
@@ -44,22 +44,22 @@ const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
             ""
           )}
           <div className="flex items-center justify-between">
-            <p className="text-white font-semibold capitalize">
+            <p className=" font-semibold capitalize">
               ${product.price}
             </p>
-            <p className="text-white font-semibold capitalize">
+            <p className=" font-semibold capitalize">
               {product.category}
             </p>
           </div>
           <div className="flex items-center justify-between">
             {quantity ? (
-              <p className="text-white font-semibold capitalize">
+              <p className=" font-semibold capitalize">
                 Quantity: {quantity}
               </p>
             ) : (
               ""
             )}
-            <p className="text-white font-semibold capitalize">
+            <p className="font-semibold capitalize">
               In Stock: {product.stock}
             </p>
           </div>

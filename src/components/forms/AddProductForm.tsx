@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import Card from "../Card";
 import { createPortal } from "react-dom";
-import { FaCircleXmark } from "react-icons/fa6";
 type Props = {
   productId: string;
   widthFull?: boolean;
@@ -40,7 +39,7 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
               -
             </button>
             <input
-              className="font-bold text-white size-10 rounded-md text-center"
+              className="font-bold text-black size-10 rounded-md text-center"
               type="text"
               disabled
               value={currentQuantity}

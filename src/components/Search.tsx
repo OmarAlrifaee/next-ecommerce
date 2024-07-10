@@ -4,8 +4,9 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 type Props = {
   style?: string;
+  dashboard?: boolean;
 };
-const Search = ({ style }: Props) => {
+const Search = ({ style, dashboard }: Props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -32,7 +33,9 @@ const Search = ({ style }: Props) => {
       type="text"
       onChange={(e) => hundleChange(e.target.value)}
       placeholder="Search..."
-      className={`border-none outline-none focus:outline-none rounded-md px-5 py-2 text-black font-bold ${style}`}
+      className={`border-none outline-none focus:outline-none rounded-md px-5 py-2 text-black font-bold ${style} ${
+        dashboard ? "bg-main-bg" : ""
+      }`}
     />
   );
 };

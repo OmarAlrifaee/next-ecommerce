@@ -12,34 +12,37 @@ const AddUser = () => {
             placeholder="Username"
             name="username"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
           />
           <input
             type="email"
             placeholder="Email"
             name="email"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
           />
           <input
             type="password"
             placeholder="Password"
             name="password"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
           />
           <input
             type="text"
             placeholder="Avatar Url"
             name="avatar"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
           />
         </div>
         <div className="flex items-center gap-3 mt-5">
           <input type="checkbox" name="isAdmin" id="isAdmin" />
           <label htmlFor="isAdmin">select to make the user an admin</label>
         </div>
-        <Submit text="Add User" style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200" />
+        <Submit
+          text="Add User"
+          style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200"
+        />
       </form>
     </div>
   );

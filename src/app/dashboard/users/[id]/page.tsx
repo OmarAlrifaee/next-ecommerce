@@ -35,25 +35,28 @@ const UserDetails = async ({ params }: Props) => {
             type="text"
             placeholder={user?.username}
             name="username"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
           />
           <input
             type="email"
             placeholder={user?.email}
             name="email"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
           />
           <input
             type="avatar"
             placeholder="Avatar"
             name="avatar"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold "
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
           />
           <div className="flex items-center gap-3 mt-5">
             <input type="checkbox" name="isAdmin" id="isAdmin" />
             <label htmlFor="isAdmin">select to make the user an admin</label>
           </div>
-          <Submit text="Update User" style="bg-primary text-white w-full transition hover:bg-blue-200" />
+          <Submit
+            text="Update User"
+            style="bg-primary text-white w-full transition hover:bg-blue-200"
+          />
         </form>
       </div>
     </section>

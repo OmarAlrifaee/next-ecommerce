@@ -11,8 +11,8 @@ const BottomBarLink = ({ menuLink }: Props) => {
     <Link
       href={menuLink.path}
       className={`${
-        pathname === menuLink.path ? "text-green-500" : ""
-      } transition hover:text-green-500`}
+        pathname === menuLink.path ? "text-red-500" : ""
+      } transition hover:text-red-500`}
     >
       {menuLink.icon}
     </Link>

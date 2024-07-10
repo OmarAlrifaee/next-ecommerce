@@ -18,7 +18,7 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
   );
   const quantity = productInCart?.quantity;
   return (
-    <div className="relative rounded-md shadow-md overflow-hidden capitalize min-h-[500px] w-[250px] flex flex-col gap-3 bg-main-soft-bg">
+    <div className="relative rounded-md shadow-md overflow-hidden capitalize min-h-[500px] w-[250px] flex flex-col gap-3 bg-main-soft-bg text-black">
       <div className="relative w-full h-[200px]">
         <Image
           src={product.img || "/noproduct.jpg"}
@@ -27,7 +27,7 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
         />
       </div>
       <article className="px-5 flex flex-col gap-3">
-        <h3 className="text-xl font-bold text-white">{`${product.title.slice(
+        <h3 className="text-xl font-bold">{`${product.title.slice(
           0,
           30
         )}${product?.title?.length > 30 ? "..." : ""}`}</h3>
@@ -45,22 +45,22 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
           ""
         )}
         <div className="flex items-center justify-between">
-          <p className="text-white font-semibold capitalize">
+          <p className="font-semibold capitalize">
             ${product.price}
           </p>
-          <p className="text-white font-semibold capitalize">
+          <p className="font-semibold capitalize">
             {product.category}
           </p>
         </div>
         <div className="flex items-center justify-between">
           {quantity ? (
-            <p className="text-white font-semibold capitalize">
+            <p className="font-semibold capitalize">
               Quantity: {quantity}
             </p>
           ) : (
             ""
           )}
-          <p className="text-white font-semibold capitalize">
+          <p className="font-semibold capitalize">
             In Stock: {product.stock}
           </p>
         </div>

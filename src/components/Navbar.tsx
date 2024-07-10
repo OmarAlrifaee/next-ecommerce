@@ -25,8 +25,8 @@ const Navbar = async () => {
     currentUser = await getCurrentUser();
   }
   return (
-    <nav className="h-10 py-10 px-10 md:flex hidden items-center justify-between text-white ">
-      <div>Logo</div>
+    <nav className="h-10 py-10 px-10 md:flex hidden items-center justify-between text-black">
+      <div className="font-bold">Logo</div>
       <ul className="flex items-center gap-3">
         {links.map((link) => (
           <NavLink
@@ -54,7 +54,7 @@ const Navbar = async () => {
       </ul>
       {currentUser ? (
         <div className="flex items-center gap-3">
-          <p>{currentUser?.username}</p>
+          <p className="font-bold">{currentUser?.username}</p>
           <div className="w-[40px] h-[40px] overflow-hidden rounded-full relative">
             <Image src={currentUser?.avatar || "/noavatar.jpg"} alt="" fill />
           </div>

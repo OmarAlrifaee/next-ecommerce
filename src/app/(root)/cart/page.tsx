@@ -18,7 +18,7 @@ const Cart = async () => {
       {cartProducts.length ? (
         <>
           <Card>
-            <h2 className="font-bold capitalize text-4xl text-white">
+            <h2 className="font-bold capitalize text-4xl text-black">
               Total: <span className="text-green-500">${totalPrice}</span>
             </h2>
           </Card>
@@ -42,7 +42,7 @@ const Cart = async () => {
         </>
       ) : (
         <Card>
-          <p className="text-white capitalize font-bold">
+          <p className="text-black capitalize font-bold">
             There Is No Products Avaliable In Your Cart
           </p>
         </Card>

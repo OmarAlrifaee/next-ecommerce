@@ -18,7 +18,7 @@ const CartPage = async ({ searchParams }: Props) => {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead>
+          <thead className="font-semibold">
             <tr>
               <td className="p-3">Title</td>
               <td className="p-3">Price</td>

@@ -6,8 +6,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 type Props = {
   style?: string;
+  dashboard?: boolean;
 };
-const Catergories = ({ style }: Props) => {
+const Catergories = ({ style, dashboard }: Props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -29,7 +30,9 @@ const Catergories = ({ style }: Props) => {
     <select
       onChange={(e) => hundleChange(e.target.value)}
       defaultValue={searchParams.get("category")!}
-      className={`text-black outline-none focus:outline-none p-2 rounded-md ${style}`}
+      className={`text-black outline-none focus:outline-none p-2 rounded-md ${style} ${
+        dashboard ? "bg-main-bg" : ""
+      }`}
     >
       <option value={"all"}>All</option>
       {categories.map((category) => (

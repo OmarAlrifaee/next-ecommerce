@@ -37,7 +37,7 @@ const CategoryRow = ({ category }: Props) => {
             }}
           >
             <Submit
-              style="bg-red-500 transition hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+              style="bg-red-500 text-white transition hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
               text="Delete"
             />
           </form>

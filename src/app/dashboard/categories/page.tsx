@@ -14,7 +14,7 @@ const Categories = async ({ searchParams }: Props) => {
   return (
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row flex-col gap-3">
-        <Search />
+        <Search dashboard />
         <AddNewLink
           text="Add Category"
           href="/dashboard/categories/add"
@@ -23,7 +23,7 @@ const Categories = async ({ searchParams }: Props) => {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead>
+          <thead className="font-semibold">
             <tr>
               <td className="p-3">Title</td>
               <td>Created At</td>

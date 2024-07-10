@@ -18,7 +18,7 @@ const Users = async ({ searchParams }: Props) => {
   return (
     <section className="bg-main-soft-bg">
       <div className="p-5 mt-3 flex sm:flex-row gap-3 flex-col items-center justify-between">
-        <Search style="sm:w-fit w-full" />{" "}
+        <Search style="sm:w-fit w-full" dashboard />{" "}
         <AddNewLink
           href="/dashboard/users/add"
           text="Add User"
@@ -27,7 +27,7 @@ const Users = async ({ searchParams }: Props) => {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead>
+          <thead className="font-semibold">
             <tr>
               <td className="p-3">Name</td>
               <td className="p-3">Email</td>

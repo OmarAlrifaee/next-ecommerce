@@ -37,37 +37,37 @@ const ProductDetails = async ({ params }: Props) => {
             type="text"
             placeholder={product.title}
             name="title"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
           <input
             type="number"
             placeholder={product.price.toString()}
             name="price"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
           <input
             type="text"
             placeholder={product?.size}
             name="size"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
           <input
             type="text"
             placeholder="image url"
             name="img"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
           <input
             type="number"
             placeholder={product.stock.toString()}
             name="stock"
             min={product.stock}
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />{" "}
           <select
             name="category"
             id="category"
-            className=" p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className=" p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           >
             {categories.map((cat) => (
               <option
@@ -85,14 +85,14 @@ const ProductDetails = async ({ params }: Props) => {
             placeholder={product?.color}
             name="color"
             style={{ backgroundColor: product?.color }}
-            className={`p-[15px] focus:outline-none rounded-md text-white font-semibold`}
+            className={`p-[15px] focus:outline-none rounded-md text-black font-semibold`}
           />
           <div className="mt-10 flex flex-col gap-5">
             <textarea
               name="desc"
               id="desc"
               placeholder={product.desc}
-              className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold min-h-[200px]"
+              className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold min-h-[200px]"
             ></textarea>
             <Submit
               text="Update Product"

@@ -35,13 +35,13 @@ const CategoryDetails = async ({ params }: Props) => {
             type="text"
             placeholder={category.title}
             name="title"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
           <input
             type="text"
             placeholder="image url"
             name="img"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-white font-semibold"
+            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
           />
           <Submit
             text="Update Category"

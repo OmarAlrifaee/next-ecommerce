@@ -31,8 +31,8 @@ const Navbar = async () => {
     currentUser = await getCurrentUser();
   }
   return (
-    <nav className="p-10 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-white bg-main-soft-bg">
-      <ul className="flex items-center gap-3">
+    <nav className="p-10 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-black bg-main-soft-bg">
+      <ul className="flex items-center justify-between w-full">
         {links.map((link) => (
           <TopNavBarLink key={link.path} link={link} />
         ))}
