@@ -10,11 +10,11 @@ const Login = () => {
         action={login}
         className="flex flex-col gap-5 shadow-md rounded-md p-5 bg-main-soft-bg"
       >
-        <h3 className="capitalize font-bold text-3xl text-center text-white">
+        <h3 className="capitalize font-bold text-3xl text-center text-black">
           Login
         </h3>
         <div className="flex flex-col gap-3">
-          <label htmlFor="email" className="text-white">
+          <label htmlFor="email" className="text-black">
             Email:
           </label>
           <input
@@ -26,7 +26,7 @@ const Login = () => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="email" className="text-white">
+          <label htmlFor="email" className="text-black">
             Password:
           </label>
           <input

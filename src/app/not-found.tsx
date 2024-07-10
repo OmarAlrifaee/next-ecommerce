@@ -6,7 +6,7 @@ const NotFoundPage = () => {
       <div className="bg-main-soft-bg rounded-md p-5 flex items-center justify-center flex-col gap-5">
         <h2 className="capitalize text-4xl text-red-500 font-bold flex flex-col gap-5 text-center">
           Not Found
-          <span className="font-semibold text-lg italic text-white">
+          <span className="font-semibold text-lg italic text-black">
             This page Is Not Found Make Sure You Are On The Correct Url
           </span>
         </h2>

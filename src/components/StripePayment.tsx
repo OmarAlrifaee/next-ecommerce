@@ -14,10 +14,6 @@ const StripePayment = ({ clientSecret }: Props) => {
         stripe={stripePromise}
         options={{
           clientSecret: clientSecret,
-          appearance: {
-            theme: "night",
-            labels: "floating",
-          },
         }}
       >
         <StripeForm />
