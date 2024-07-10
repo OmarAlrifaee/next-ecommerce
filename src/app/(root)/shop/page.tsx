@@ -50,7 +50,7 @@ const Shop = async ({ searchParams }: Props) => {
         </>
       ) : (
         <Card>
-          <p className="text-white capitalize font-bold">
+          <p className="text-black capitalize font-bold">
             There Is No Products Avaliable
           </p>
         </Card>
