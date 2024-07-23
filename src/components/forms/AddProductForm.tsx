@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import Card from "../Card";
 import { createPortal } from "react-dom";
+import { Button } from "@nextui-org/react";
+import MyToolTip from "../shared/MyToolTip";
 type Props = {
   productId: string;
   widthFull?: boolean;
@@ -30,52 +32,67 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
       <Card fixed>
         <form action={addAction} className={widthFull ? "w-full" : ""}>
           <div className="flex items-center gap-5 justify-center p-5">
-            <button
-              disabled={currentQuantity <= 1}
-              onClick={() => setcurrentQuantity((prev) => prev - 1)}
-              type="button"
-              className="text-3xl bg-red-500 rounded-md transition hover:bg-red-200 disabled:bg-red-200 text-white font-bold size-10 flex items-center justify-center"
-            >
-              -
-            </button>
+            <MyToolTip content="decrement quantity">
+              <Button
+                isDisabled={currentQuantity <= 1}
+                onClick={() => setcurrentQuantity((prev) => prev - 1)}
+                className="text-3xl bg-red-500  text-white-text font-bold"
+                type="button"
+                radius="md"
+                isIconOnly
+              >
+                -
+              </Button>
+            </MyToolTip>
             <input
-              className="font-bold text-black size-10 rounded-md text-center"
+              className="font-bold text-white-text bg-navlink size-10 rounded-md text-center"
               type="text"
               disabled
               value={currentQuantity}
             />
-            <button
-              disabled={currentQuantity >= stock}
-              onClick={() => setcurrentQuantity((prev) => prev + 1)}
-              type="button"
-              className="text-3xl bg-primary rounded-md transition hover:bg-blue-200 disabled:bg-blue-200 text-white font-bold size-10 flex items-center justify-center"
-            >
-              +
-            </button>
+            <MyToolTip content="increment quantity">
+              <Button
+                isDisabled={currentQuantity >= stock}
+                onClick={() => setcurrentQuantity((prev) => prev + 1)}
+                type="button"
+                className="text-3xl bg-primary text-white-text font-bold"
+                radius="md"
+                isIconOnly
+              >
+                +
+              </Button>
+            </MyToolTip>
           </div>
           <Submit
             text="Add"
-            style={`bg-primary text-white transition hover:bg-blue-200 w-full`}
+            style={`text-white-text bg-primary font-bold w-full border-none`}
+            tooltipContent="add to cart"
           />
-          <button
-            onClick={() => setShow(false)}
-            className="bg-red-500 mt-3 text-white transition hover:bg-red-200 w-full border-none rounded-md px-4 py-2 font-semibold"
-          >
-            Close
-          </button>
+          <MyToolTip content="close the popup">
+            <Button
+              onClick={() => setShow(false)}
+              className="bg-red-500 mt-3 text-white-text  w-full  font-semibold"
+              radius="md"
+              variant="solid"
+            >
+              Close
+            </Button>
+          </MyToolTip>
         </form>
       </Card>,
       document.getElementById("popup")!
     )
   ) : (
-    <button
-      className={`bg-primary text-white transition hover:bg-blue-200 ${
-        widthFull ? "w-full" : ""
-      } border-none rounded-md transition px-4 py-2 font-semibold`}
-      onClick={() => setShow(true)}
-    >
-      {quantity ? "Edit" : "Add"}
-    </button>
+    <MyToolTip content={quantity ? "edit the quantity" : "add to cart"}>
+      <Button
+        className={`text-white-text bg-primary font-bold ${
+          widthFull ? "w-full" : ""
+        }`}
+        onClick={() => setShow(true)}
+      >
+        {quantity ? "Edit" : "Add"}
+      </Button>
+    </MyToolTip>
   );
 };
 export default AddProductForm;

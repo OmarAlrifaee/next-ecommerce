@@ -23,7 +23,9 @@ const UsersFilter = ({ style }: Props) => {
     if (userName !== "none") {
       params.set("user", userName);
     } else params.delete("user");
-    replace(`${pathname}?${params}`);
+    replace(`${pathname}?${params}`, {
+      scroll: false,
+    });
   };
   return (
     <select

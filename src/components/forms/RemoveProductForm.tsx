@@ -17,9 +17,10 @@ const RemoveProductForm = ({ productId, widthFull }: Props) => {
     <form action={removeAction} className={widthFull ? "w-full" : ""}>
       <Submit
         text="Remove"
-        style={`bg-red-500 text-white transition hover:bg-red-200 ${
+        style={`bg-red-500 text-white-text border-none ${
           widthFull ? "w-full" : ""
         }`}
+        tooltipContent="remove from cart"
       />
     </form>
   );

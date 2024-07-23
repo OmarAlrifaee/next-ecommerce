@@ -10,10 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "main-bg": "#F4F4F4",
-        "main-soft-bg": "#fff",
-        "soft-text": "#b7bac1",
+        "main-bg": "#18191A",
+        "main-soft-bg": "#242526",
         primary: "rgb(59 130 246)",
+        navlink: "#B0B3B8",
+        "white-text": "#fff",
+        "soft-text": "#b7bac1",
       },
     },
   },

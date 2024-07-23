@@ -2,6 +2,7 @@
 
 import { getAllCategories } from "@/actions/categories";
 import { CategoryType } from "@/types";
+import { Select, SelectItem } from "@nextui-org/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 type Props = {
@@ -24,28 +25,20 @@ const Catergories = ({ style, dashboard }: Props) => {
     if (categoryValue !== "all") {
       params.set("category", categoryValue);
     } else params.delete("category");
-    replace(`${pathname}?${params}`);
+    replace(`${pathname}?${params}`, { scroll: false });
   };
   return (
-    <select
+    <Select
       onChange={(e) => hundleChange(e.target.value)}
-      defaultValue={searchParams.get("category")!}
-      className={`text-black outline-none focus:outline-none p-2 rounded-md ${style} ${
-        dashboard ? "bg-main-bg" : ""
-      }`}
+      className="sm:max-w-[300px] w-full"
+      defaultSelectedKeys={[searchParams.get("category")! || "all"]}
+      radius="md"
     >
-      <option value={"all"}>All</option>
+      <SelectItem key={"all"}>All</SelectItem>
       {categories.map((category) => (
-        <option
-          value={category.title}
-          key={category.title}
-          className="capitalize"
-          selected={searchParams.get("category")! === category.title}
-        >
-          {category.title}
-        </option>
+        <SelectItem key={category.title}>{category.title}</SelectItem>
       ))}
-    </select>
+    </Select>
   );
 };
 export default Catergories;

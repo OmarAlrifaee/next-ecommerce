@@ -62,6 +62,7 @@ const StripeForm = () => {
           text={loading ? "loading..." : "Pay"}
           style="bg-primary transition hover:bg-blue-200 text-white disabled:bg-blue-200"
           disabled={loading}
+          tooltipContent="pay"
         />
       </div>
     </form>

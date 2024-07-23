@@ -15,9 +15,9 @@ const TopNavBarLink = ({ link }: Props) => {
       href={link.path}
       className={`${
         pathname === (link.path.slice(0, 5) === "/shop" ? "/shop" : link.path)
-          ? "text-red-500"
-          : ""
-      } transition hover:text-red-500`}
+          ? "text-primary"
+          : "text-navlink"
+      } transition hover:text-primary`}
     >
       {link.icon}
     </Link>

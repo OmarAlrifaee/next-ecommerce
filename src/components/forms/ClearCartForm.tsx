@@ -16,9 +16,10 @@ const ClearCartForm = ({ widthFull }: Props) => {
     <form action={clearAction} className={widthFull ? "w-full" : ""}>
       <Submit
         text="Clear Cart"
-        style={`bg-red-500 text-white transition hover:bg-red-200 ${
+        style={`bg-red-500 text-white-text border-none ${
           widthFull ? "w-full" : ""
         }`}
+        tooltipContent="clear all products from cart"
       />
     </form>
   );

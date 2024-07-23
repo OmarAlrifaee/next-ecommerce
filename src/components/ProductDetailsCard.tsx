@@ -5,6 +5,9 @@ import AddProductForm from "./forms/AddProductForm";
 import RemoveProductForm from "./forms/RemoveProductForm";
 import { getCartProducts } from "@/actions/cart";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
+import { Card, CardBody, CardHeader, CardFooter } from "@nextui-org/react";
+import MyToolTip from "./shared/MyToolTip";
+
 type Props = {
   product: ProductType;
   inCart: boolean;
@@ -18,77 +21,82 @@ const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
   );
   const quantity = productInCart?.quantity;
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-80)] bg-transparent text-black">
-      <div className="relative capitalize md:w-1/2 w-full flex flex-col gap-3 bg-main-soft-bg pb-5 rounded-md overflow-hidden">
-        <div className="relative w-full h-[30vh]">
+    <Card
+      shadow="md"
+      className="relative capitalize md:w-1/2 w-full flex flex-col gap-3 bg-main-soft-bg pb-5 rounded-md overflow-hidden"
+    >
+      <CardHeader className="p-0">
+        <div className="relative w-full h-[50vh]">
           <Image
             src={product.img || "/noproduct.jpg"}
             alt={`${product.title} image`}
             fill
           />
         </div>
-        <article className="px-5 flex flex-col gap-3">
-          <h3 className="text-xl font-bold">{product.title}</h3>
-          <p className="text-soft-text font-semibold ">{product.desc}</p>
+      </CardHeader>
+      <CardBody className="text-navlink">
+        <article className="flex flex-col gap-3">
+          <h3 className="text-xl font-bold text-white-text">{product.title}</h3>
+          <p className="font-semibold text-white-text">{product.desc}</p>
           {product?.color && product?.size ? (
             <div className="flex items-center justify-between">
               <div
                 className={`size-5 rounded-full`}
                 style={{ backgroundColor: product?.color }}
               />
-              <p className="text-soft-text font-semibold capitalize">
-                {product?.size}
-              </p>
+              <p className=" font-semibold capitalize">{product?.size}</p>
             </div>
           ) : (
             ""
           )}
           <div className="flex items-center justify-between">
-            <p className=" font-semibold capitalize">
-              ${product.price}
-            </p>
-            <p className=" font-semibold capitalize">
-              {product.category}
-            </p>
+            <p className=" font-semibold capitalize">${product.price}</p>
+            <p className=" font-semibold capitalize">{product.category}</p>
           </div>
           <div className="flex items-center justify-between">
             {quantity ? (
               <p className=" font-semibold capitalize">
-                Quantity: {quantity}
+                <span className="text-white-text">Quantity: </span>
+                {quantity}
               </p>
             ) : (
               ""
             )}
             <p className="font-semibold capitalize">
-              In Stock: {product.stock}
+              <span className="text-white-text">In Stock: </span>
+              {product.stock}
             </p>
           </div>
-          <div className="flex flex-col items-center gap-3">
-            {loggedIn ? (
-              <>
-                {inCart ? (
-                  <RemoveProductForm productId={product.id} widthFull />
-                ) : (
-                  ""
-                )}
-                <AddProductForm
-                  productId={product.id}
-                  widthFull
-                  stock={product.stock}
-                  quantity={quantity}
-                />
-              </>
-            ) : (
+        </article>
+      </CardBody>
+      <CardFooter>
+        <div className="flex flex-col gap-3 px-3 w-full">
+          {loggedIn ? (
+            <>
+              {inCart ? (
+                <RemoveProductForm productId={product.id} widthFull />
+              ) : (
+                ""
+              )}
+              <AddProductForm
+                productId={product.id}
+                widthFull
+                stock={product.stock}
+                quantity={quantity}
+              />
+            </>
+          ) : (
+            <MyToolTip content="go to login page">
               <AddNewLink
                 text="Login"
                 href="/login"
-                style="w-full text-center transition hover:bg-blue-200"
+                style="text-white-text bg-primary font-bold border-none"
               />
-            )}
-          </div>
-        </article>
-      </div>
-    </div>
+            </MyToolTip>
+          )}
+        </div>
+      </CardFooter>
+    </Card>
   );
 };
 export default ProductDetailsCard;

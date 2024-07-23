@@ -5,6 +5,8 @@ import AddProductForm from "./forms/AddProductForm";
 import RemoveProductForm from "./forms/RemoveProductForm";
 import { getCartProducts } from "@/actions/cart";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
+import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
+import MyToolTip from "./shared/MyToolTip";
 type Props = {
   product: ProductType;
   inCart: boolean;
@@ -18,58 +20,62 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
   );
   const quantity = productInCart?.quantity;
   return (
-    <div className="relative rounded-md shadow-md overflow-hidden capitalize min-h-[500px] w-[250px] flex flex-col gap-3 bg-main-soft-bg text-black">
-      <div className="relative w-full h-[200px]">
-        <Image
-          src={product.img || "/noproduct.jpg"}
-          alt={`${product.title} image`}
-          fill
-        />
-      </div>
-      <article className="px-5 flex flex-col gap-3">
-        <h3 className="text-xl font-bold">{`${product.title.slice(
-          0,
-          30
-        )}${product?.title?.length > 30 ? "..." : ""}`}</h3>
-        {product?.color && product?.size ? (
-          <div className="flex items-center justify-between">
-            <div
-              className={`size-5 rounded-full`}
-              style={{ backgroundColor: product?.color }}
-            />
-            <p className="text-soft-text font-semibold capitalize">
-              {product?.size}
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
-        <div className="flex items-center justify-between">
-          <p className="font-semibold capitalize">
-            ${product.price}
-          </p>
-          <p className="font-semibold capitalize">
-            {product.category}
-          </p>
+    <Card shadow="md" className="w-[250px] bg-main-soft-bg min-h-[500px]">
+      <CardHeader className="p-0">
+        <div className="relative w-full h-[200px]">
+          <Image
+            src={product.img || "/noproduct.jpg"}
+            alt={`${product.title} image`}
+            fill
+          />
         </div>
-        <div className="flex items-center justify-between">
-          {quantity ? (
-            <p className="font-semibold capitalize">
-              Quantity: {quantity}
-            </p>
+      </CardHeader>
+      <CardBody>
+        <article className="flex flex-col gap-2 text-navlink">
+          <h3 className="text-xl font-bold text-white-text">{`${product.title.slice(
+            0,
+            30
+          )}${product?.title?.length > 30 ? "..." : ""}`}</h3>
+          {product?.color && product?.size ? (
+            <div className="flex items-center justify-between">
+              <div
+                className={`size-5 rounded-full`}
+                style={{ backgroundColor: product?.color }}
+              />
+              <p className="font-semibold capitalize">{product?.size}</p>
+            </div>
           ) : (
             ""
           )}
-          <p className="font-semibold capitalize">
-            In Stock: {product.stock}
-          </p>
-        </div>
+          <div className="flex items-center justify-between">
+            <p className="font-semibold capitalize">${product.price}</p>
+            <p className="font-semibold capitalize">{product.category}</p>
+          </div>
+          <div className="flex items-center justify-between">
+            {quantity ? (
+              <p className="font-semibold capitalize">
+                <span className="text-white-text">Quantity: </span>
+                {quantity}
+              </p>
+            ) : (
+              ""
+            )}
+            <p className="font-semibold capitalize">
+              <span className="text-white-text">In Stock: </span>
+              {product.stock}
+            </p>
+          </div>
+        </article>
+      </CardBody>
+      <CardFooter>
         <div className="flex flex-col gap-3 absolute bottom-0 left-0 w-full px-5 pb-5">
-          <AddNewLink
-            text="Show"
-            href={`/shop/${product.id}`}
-            style="text-center"
-          />
+          <MyToolTip content="show product details">
+            <AddNewLink
+              text="Show"
+              href={`/shop/${product.id}`}
+              style="text-center text-navlink hover:text-primary"
+            />
+          </MyToolTip>
           {loggedIn ? (
             <>
               <div className="flex items-center justify-between">
@@ -83,11 +89,17 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
               </div>
             </>
           ) : (
-            <AddNewLink text="Login" href="/login" style="text-center" />
+            <MyToolTip content="go to login page">
+              <AddNewLink
+                text="Login"
+                href="/login"
+                style="text-white-text bg-primary font-bold border-none"
+              />
+            </MyToolTip>
           )}
         </div>
-      </article>
-    </div>
+      </CardFooter>
+    </Card>
   );
 };
 export default ProductCard;

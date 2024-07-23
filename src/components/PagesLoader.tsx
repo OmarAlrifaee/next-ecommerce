@@ -1,9 +1,9 @@
+import { Spinner, useSpinner } from "@nextui-org/react";
+import { forwardRef } from "react";
 const PagesLoader = () => {
   return (
-    <div className="flex items-center justify-center mt-20">
-      <div
-        className={`border-t-4 border-t-black animate-spin rounded-full size-20`}
-      />
+    <div className="flex items-center justify-center min-h-screen">
+      <Spinner color="white" size="lg" />
     </div>
   );
 };

@@ -1,12 +1,13 @@
 "use client";
 
+import { Input } from "@nextui-org/react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 type Props = {
   style?: string;
   dashboard?: boolean;
 };
-const Search = ({ style, dashboard }: Props) => {
+const Search = ({ style }: Props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -14,7 +15,9 @@ const Search = ({ style, dashboard }: Props) => {
     const params = new URLSearchParams(searchParams);
     if (!params.get("page")) {
       params.set("page", "1");
-      replace(`${pathname}?${params}`);
+      replace(`${pathname}?${params}`, {
+        scroll: false,
+      });
     }
   }, []);
   const hundleChange = (search: string) => {
@@ -26,16 +29,16 @@ const Search = ({ style, dashboard }: Props) => {
       params.delete("search");
     }
     params.delete("category");
-    replace(`${pathname}?${params}`);
+    replace(`${pathname}?${params}`, {
+      scroll: false,
+    });
   };
   return (
-    <input
+    <Input
       type="text"
       onChange={(e) => hundleChange(e.target.value)}
-      placeholder="Search..."
-      className={`border-none outline-none focus:outline-none rounded-md px-5 py-2 text-black font-bold ${style} ${
-        dashboard ? "bg-main-bg" : ""
-      }`}
+      placeholder="Search"
+      className={`sm:max-w-[300px] w-full font-bold ${style}`}
     />
   );
 };

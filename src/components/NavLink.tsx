@@ -11,7 +11,7 @@ const NavLink = ({
   path,
   title,
   style,
-  activeStyle = "text-red-500",
+  activeStyle = "text-primary",
 }: Props) => {
   const pathname = usePathname();
   return (
@@ -20,8 +20,8 @@ const NavLink = ({
       className={`font-bold ${
         pathname === (path.slice(0, 5) === "/shop" ? "/shop" : path)
           ? activeStyle
-          : ""
-      } ${style} transition hover:text-red-500`}
+          : "text-navlink"
+      } ${style} transition  hover:text-primary`}
     >
       {title}
     </Link>

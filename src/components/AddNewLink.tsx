@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
 type Props = {
@@ -7,12 +8,15 @@ type Props = {
 };
 const AddNewLink = ({ href, text, style }: Props) => {
   return (
-    <Link
+    <Button
+      className={`${style}  font-bold`}
+      variant="ghost"
+      radius="md"
+      as={Link}
       href={href}
-      className={`bg-primary transition hover:bg-blue-200 font-semibold rounded-md px-5 py-2 text-white ${style}`}
     >
       {text}
-    </Link>
+    </Button>
   );
 };
 export default AddNewLink;

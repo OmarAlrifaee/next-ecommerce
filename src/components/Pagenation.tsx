@@ -1,5 +1,6 @@
 "use client";
 import itemPerPage from "@/helper/itemPerPage";
+import { Button } from "@nextui-org/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 type Props = {
   count: number;
@@ -21,52 +22,62 @@ const Pagenation = ({ count }: Props) => {
     const params = new URLSearchParams(searchParams);
     if (showNext) {
       params.set("page", (+params.get("page")! + 1).toString());
-      replace(`${pathname}?${params}`);
+      replace(`${pathname}?${params}`, {
+        scroll: false,
+      });
     }
   };
   const goPrev = () => {
     const params = new URLSearchParams(searchParams);
     if (showPrev) {
       params.set("page", (+params.get("page")! - 1).toString());
-      replace(`${pathname}?${params}`);
+      replace(`${pathname}?${params}`, {
+        scroll: false,
+      });
     }
   };
   const hundleClick = (num: number) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", num.toString());
-    replace(`${pathname}?${params}`);
+    replace(`${pathname}?${params}`, {
+      scroll: false,
+    });
   };
   return (
     <div className="flex items-center justify-between p-[10px] mt-5 gap-5">
-      <button
-        className="cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 px-[10px] py-[5px] rounded-md bg-primary transition hover:bg-blue-200  text-white font-semibold"
+      <Button
+        className="disabled:cursor-not-allowed bg-primary text-white-text font-bold"
         onClick={goPrev}
-        disabled={!showPrev}
+        isDisabled={!showPrev}
+        radius="md"
       >
         Prev
-      </button>
+      </Button>
       <div className="flex items-center gap-5 flex-wrap">
         {numbers.map((num) => (
-          <button
+          <Button
             key={num}
             onClick={() => hundleClick(num)}
-            className={`text-white rounded-md p-3 font-bold size-8 flex items-center justify-center ${
+            className={`disabled:cursor-not-allowed bg-primary text-white-text font-bold ${
               parseInt(searchParams.get("page")!) === num
                 ? "bg-primary"
                 : "bg-blue-200"
             }`}
+            isIconOnly
+            radius="md"
           >
             {num}
-          </button>
+          </Button>
         ))}
       </div>
-      <button
-        className="cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 px-[10px] py-[5px] rounded-md bg-primary transition hover:bg-blue-200  text-white font-semibold"
+      <Button
+        className="disabled:cursor-not-allowed bg-primary text-white-text font-bold"
         onClick={goNext}
-        disabled={!showNext}
+        isDisabled={!showNext}
+        radius="md"
       >
         Next
-      </button>
+      </Button>
     </div>
   );
 };

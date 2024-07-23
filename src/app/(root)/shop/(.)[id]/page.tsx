@@ -3,7 +3,6 @@ import { getOneProduct } from "@/actions/products";
 import ProductDetailsCard from "@/components/ProductDetailsCard";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { ProductType } from "@/types";
-
 type Props = {
   params: { id: string };
 };
@@ -18,12 +17,12 @@ const ProductDetails = async ({ params }: Props) => {
   const isLoggedIn = isUserLoggedIn();
   const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
   return (
-    <section className="md:p-10 p-5">
+    <section className="md:p-10 p-5 flex items-center justify-center min-h-[calc(100vh-80)] bg-transparent">
       {product ? (
         <ProductDetailsCard
           product={product}
           inCart={
-            !!cartProducts?.some((cartProduct) => {
+            !!cartProducts.some((cartProduct) => {
               return cartProduct.product.id === product.id;
             })
           }

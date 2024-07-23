@@ -1,5 +1,4 @@
 import { UserType } from "@/types";
-import NavLink from "./NavLink";
 import { cookies } from "next/headers";
 import { getCurrentUser, logout } from "@/actions/users";
 import Image from "next/image";
@@ -11,6 +10,8 @@ import { MdShop } from "react-icons/md";
 import { MdShoppingCart } from "react-icons/md";
 import { HiLogin } from "react-icons/hi";
 import { MdDashboardCustomize } from "react-icons/md";
+import { Avatar } from "@nextui-org/react";
+import MyToolTip from "./shared/MyToolTip";
 const links = [
   {
     path: "/",
@@ -31,7 +32,35 @@ const Navbar = async () => {
     currentUser = await getCurrentUser();
   }
   return (
-    <nav className="p-10 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-black bg-main-soft-bg">
+    <nav className="p-5 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-black bg-main-soft-bg">
+      {currentUser ? (
+        <div className="flex items-center justify-between w-full">
+          <Avatar
+            // as={Image}
+            showFallback
+            src={currentUser?.avatar}
+            name={currentUser?.username}
+            isBordered={!!currentUser?.avatar}
+            color="primary"
+            radius="full"
+          />
+          <form action={logout}>
+            <Submit
+              style="text-navlink hover:text-primary p-0"
+              tooltipContent="logout"
+            >
+              <IoLogOut
+                width={40}
+                height={40}
+                radius={"50%"}
+                className="text-3xl"
+              />
+            </Submit>
+          </form>
+        </div>
+      ) : (
+        ""
+      )}
       <ul className="flex items-center justify-between w-full">
         {links.map((link) => (
           <TopNavBarLink key={link.path} link={link} />
@@ -57,25 +86,6 @@ const Navbar = async () => {
           ""
         )}
       </ul>
-      {currentUser ? (
-        <div className="flex items-center gap-2">
-          <div className="w-[40px] h-[40px] overflow-hidden rounded-full relative">
-            <Image src={currentUser?.avatar || "/noavatar.jpg"} alt="" fill />
-          </div>
-          <form action={logout}>
-            <Submit style="transition hover:text-red-500">
-              <IoLogOut
-                width={40}
-                height={40}
-                radius={"50%"}
-                className="text-3xl"
-              />
-            </Submit>
-          </form>
-        </div>
-      ) : (
-        ""
-      )}
     </nav>
   );
 };

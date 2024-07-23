@@ -1,7 +1,9 @@
 import { getCartProducts } from "@/actions/cart";
+import AddNewLink from "@/components/AddNewLink";
 import Card from "@/components/Card";
 import CartProductCard from "@/components/CartProductCard";
 import ClearCartForm from "@/components/forms/ClearCartForm";
+import MyToolTip from "@/components/shared/MyToolTip";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -18,7 +20,7 @@ const Cart = async () => {
       {cartProducts.length ? (
         <>
           <Card>
-            <h2 className="font-bold capitalize text-4xl text-black">
+            <h2 className="font-bold capitalize text-4xl text-white-text">
               Total: <span className="text-green-500">${totalPrice}</span>
             </h2>
           </Card>
@@ -31,18 +33,19 @@ const Cart = async () => {
             ))}
           </ul>
           <div className="flex flex-col gap-3 mt-10">
-            <Link
-              className="bg-green-500 text-center text-white w-full transition hover:bg-green-200 border-none rounded-md  px-4 py-2 font-semibold"
-              href="/checkout"
-            >
-              Check Out
-            </Link>
+            <MyToolTip content="go to buy all your cart products">
+              <AddNewLink
+                href="/checkout"
+                style="bg-green-500 text-white-text w-full border-none"
+                text="Check Out"
+              />
+            </MyToolTip>
             <ClearCartForm widthFull />
           </div>
         </>
       ) : (
         <Card>
-          <p className="text-black capitalize font-bold">
+          <p className="text-white-text capitalize font-bold">
             There Is No Products Avaliable In Your Cart
           </p>
         </Card>
