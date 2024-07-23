@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-
+import UiProvider from "@/lib/UiProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-main-bg`}>
-        {children}
-        <div id="popup"></div>
-        <Toaster position="bottom-right" />
+        <UiProvider>
+          {children}
+          <div id="popup"></div>
+          <Toaster position="bottom-right" />
+        </UiProvider>
       </body>
     </html>
   );
