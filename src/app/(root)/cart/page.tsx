@@ -6,7 +6,6 @@ import ClearCartForm from "@/components/forms/ClearCartForm";
 import MyToolTip from "@/components/shared/MyToolTip";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Metadata } from "next";
-import Link from "next/link";
 
 const Cart = async () => {
   const isLoggedIn = isUserLoggedIn();
@@ -19,11 +18,9 @@ const Cart = async () => {
     <section className="md:p-10 p-5">
       {cartProducts.length ? (
         <>
-          <Card>
-            <h2 className="font-bold capitalize text-4xl text-white-text">
-              Total: <span className="text-green-500">${totalPrice}</span>
-            </h2>
-          </Card>
+          <h2 className="font-bold capitalize text-4xl text-white-text">
+            Total: <span className="text-green-500">${totalPrice}</span>
+          </h2>
           <ul className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10 justify-center items-center gap-5">
             {cartProducts?.map((cartProduct) => (
               <CartProductCard

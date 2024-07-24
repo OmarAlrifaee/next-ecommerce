@@ -1,7 +1,6 @@
 import { getCartProducts } from "@/actions/cart";
 import { createPaymentIntent } from "@/actions/payment";
 import { getCurrentUser } from "@/actions/users";
-import Card from "@/components/Card";
 import CartProductCard from "@/components/CartProductCard";
 import StripePayment from "@/components/StripePayment";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
@@ -27,11 +26,9 @@ const page = async () => {
     <section className="p-10 min-h-screen bg-main-bg flex xl:flex-row flex-col-reverse xl:gap-10 gap-5">
       <div className="flex-1">
         {cartProducts?.length ? (
-          <Card>
-            <h2 className="font-bold capitalize text-4xl text-white">
-              Total: <span className="text-green-500">${totalPrice}</span>
-            </h2>
-          </Card>
+          <h2 className="font-bold capitalize text-4xl text-white">
+            Total: <span className="text-green-500">${totalPrice}</span>
+          </h2>
         ) : (
           ""
         )}
