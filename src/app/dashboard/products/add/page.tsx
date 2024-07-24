@@ -2,77 +2,78 @@ import { getAllCategories } from "@/actions/categories";
 import { addProduct } from "@/actions/products";
 import Submit from "@/components/Submit";
 import { Metadata } from "next";
-
+import { Input, Select, SelectItem, Textarea } from "@nextui-org/react";
+import MyCustomSelect from "@/components/shared/MyCustomSelect";
 const AddProduct = async () => {
   const categories = await getAllCategories();
   return (
-    <div className="bg-main-soft-bg p-[10px] rounded-md mt-[20px]">
+    <div className="bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
       <form action={addProduct}>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-x-5 gap-y-10">
-          <input
+          <Input
             type="text"
-            placeholder="Title"
+            label="Title"
             name="title"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <select
-            name="category"
-            id="category"
-            className=" p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
-          >
-            {categories.map((cat) => (
-              <option
-                key={cat.id}
-                value={cat.title}
-                className="bg-main-soft-bg"
-              >
-                {cat.title}
-              </option>
-            ))}
-          </select>
-          <input
+          <MyCustomSelect categories={categories} />
+          <Input
             type="number"
-            placeholder="Price"
+            label="Price"
             name="price"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <input
+          <Input
             type="text"
-            placeholder="Size"
+            label="Size"
             name="size"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <input
+          <Input
             type="text"
-            placeholder="image url"
+            label="image url"
             name="img"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
-          />{" "}
-          <input
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
+          />
+          <Input
             type="number"
-            placeholder="Stock"
+            label="Stock"
             name="stock"
             min={1}
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
-          />{" "}
-          <input
-            type="color"
-            placeholder="Color"
-            name="color"
-            className="p-[15px] focus:outline-none  rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-        </div>{" "}
+          <Input
+            type="color"
+            name="color"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
+          />
+        </div>
         <div className="mt-10 flex flex-col gap-5">
-          <textarea
+          <Textarea
             name="desc"
             id="desc"
-            placeholder="Description"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold min-h-[200px]"
-          ></textarea>
+            label="Description"
+            className=" text-white-text font-semibold min-h-[200px] resize-y"
+            radius="md"
+            size="lg"
+          ></Textarea>
           <Submit
             text="Add Product"
-            style="bg-primary text-white w-full transition hover:bg-blue-200"
+            style="bg-primary text-white w-full border-none"
+            tooltipContent="Add new product"
           />
         </div>
       </form>

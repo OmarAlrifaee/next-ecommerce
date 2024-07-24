@@ -15,15 +15,15 @@ const Orders = async ({ searchParams }: Props) => {
   return (
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row flex-col gap-3">
-        <Search dashboard/>
-        <h3 className="font-bold capitalize">
+        <Search />
+        <h3 className="font-bold capitalize text-white-text">
           Total:{" "}
           <span className="text-green-500 font-semibold">${totalPrice}</span>
         </h3>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold">
+          <thead className="font-semibold text-white-text">
             <tr>
               <td className="p-3">UserName</td>
               <td>Total</td>
@@ -31,7 +31,7 @@ const Orders = async ({ searchParams }: Props) => {
               <td>Actions</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-navlink">
             {orders.reverse().map((order) => (
               <OrderRow order={order} key={order.id} />
             ))}

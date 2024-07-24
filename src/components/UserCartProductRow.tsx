@@ -1,7 +1,7 @@
 import Submit from "./Submit";
-import Image from "next/image";
 import { ProductType } from "@/types";
 import { deleteUserProductFromCart } from "@/actions/cartDashboard";
+import { Avatar } from "@nextui-org/react";
 type Props = {
   cartProduct: { product: ProductType; quantity: number };
   username: string;
@@ -11,13 +11,13 @@ const UserCartProductRow = ({ cartProduct, username }: Props) => {
     <tr>
       <td className="p-3">
         <div className="flex items-center gap-[10px]">
-          <div className="flex-shrink-0 relative rounded-full overflow-hidden w-[40px] h-[40px]">
-            <Image
-              src={cartProduct.product.img || "/noproduct.jpg"}
-              alt={cartProduct.product.title}
-              fill
-            />
-          </div>
+          <Avatar
+            src={cartProduct?.product?.img}
+            fallback={cartProduct.product.title}
+            showFallback
+            isBordered
+            color="primary"
+          />
           <span>{cartProduct.product.title}</span>
         </div>
       </td>
@@ -35,8 +35,9 @@ const UserCartProductRow = ({ cartProduct, username }: Props) => {
           }}
         >
           <Submit
-            style="bg-red-500 text-white transition hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+            style="bg-red-500 text-white-text border-none"
             text="Delete"
+            tooltipContent="delete this product from user cart"
           />
         </form>
       </td>

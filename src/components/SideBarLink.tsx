@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import MyToolTip from "./shared/MyToolTip";
 type Props = {
   menuItem: {
     icon: React.ReactNode;
@@ -11,15 +12,17 @@ type Props = {
 const SidebarLink = ({ menuItem: { icon, path, title } }: Props) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={path}
-      className={`p-[10px] flex items-center font-semibold gap-[10px] transition hover:bg-[#f1f1f1] my-[5px] rounded-md ${
-        pathname === path ? "bg-[#f1f1f1] text-green-500" : ""
-      }`}
-    >
-      {icon}
-      {title}
-    </Link>
+    <MyToolTip content={`go to ${title} page`}>
+      <Link
+        href={path}
+        className={`p-[10px] flex items-center font-semibold gap-[10px] transition hover:bg-primary hover:text-white-text my-[5px] rounded-md ${
+          pathname === path ? "bg-primary text-white-text" : ""
+        }`}
+      >
+        {icon}
+        {title}
+      </Link>
+    </MyToolTip>
   );
 };
 export default SidebarLink;

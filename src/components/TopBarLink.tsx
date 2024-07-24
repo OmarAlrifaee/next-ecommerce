@@ -2,20 +2,23 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import MyToolTip from "./shared/MyToolTip";
 type Props = {
-  menuLink: { path: string; icon: JSX.Element };
+  menuLink: { path: string; icon: JSX.Element; title: string };
 };
 const BottomBarLink = ({ menuLink }: Props) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={menuLink.path}
-      className={`${
-        pathname === menuLink.path ? "text-red-500" : ""
-      } transition hover:text-red-500`}
-    >
-      {menuLink.icon}
-    </Link>
+    <MyToolTip content={`go to ${menuLink.title}`}>
+      <Link
+        href={menuLink.path}
+        className={`${
+          pathname === menuLink.path ? "text-primary" : ""
+        } transition hover:text-primary`}
+      >
+        {menuLink.icon}
+      </Link>
+    </MyToolTip>
   );
 };
 export default BottomBarLink;

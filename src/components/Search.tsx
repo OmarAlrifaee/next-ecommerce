@@ -5,7 +5,6 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 type Props = {
   style?: string;
-  dashboard?: boolean;
 };
 const Search = ({ style }: Props) => {
   const pathname = usePathname();

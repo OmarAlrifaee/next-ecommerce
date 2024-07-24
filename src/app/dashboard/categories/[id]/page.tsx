@@ -1,6 +1,7 @@
 import { getOneCategory, updateCategory } from "@/actions/categories";
 import Submit from "@/components/Submit";
 import { CategoryType } from "@/types";
+import { Input } from "@nextui-org/react";
 import Image from "next/image";
 type Props = {
   params: {
@@ -17,13 +18,13 @@ const CategoryDetails = async ({ params }: Props) => {
   const category = (await getOneCategory(params.id)) as CategoryType;
   return (
     <section className="flex md:gap-10 gap-5 md:flex-nowrap flex-wrap">
-      <div className="bg-main-soft-bg p-[10px] rounded-md mt-[20px] h-fit md:w-fit w-full">
-        <div className="md:w-[300px] h-[300px] w-full relative rounded-md overflow-hidden">
+      <div className="md:w-[400px] bg-main-soft-bg p-[10px] rounded-md mt-[20px] h-fit w-full">
+        <div className="h-[300px] w-full relative rounded-md overflow-hidden">
           <Image src={category?.img || "/noproduct.jpg"} alt="" fill />
         </div>
-        <p className="mt-3 font-semibold">{category.title}</p>
+        <p className="mt-3 font-semibold text-white-text">{category.title}</p>
       </div>
-      <div className="flex-grow bg-main-soft-bg p-[10px] rounded-md mt-[20px]">
+      <div className="flex-grow bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
         <form
           action={async (data) => {
             "use server";
@@ -31,21 +32,26 @@ const CategoryDetails = async ({ params }: Props) => {
           }}
           className="flex flex-col gap-5"
         >
-          <input
+          <Input
             type="text"
-            placeholder={category.title}
+            label={category.title}
             name="title"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <input
+          <Input
             type="text"
-            placeholder="image url"
+            label={category?.img}
             name="img"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
           <Submit
             text="Update Category"
-            style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200"
+            style="bg-primary text-white w-full mt-5 border-none"
+            tooltipContent="Update category"
           />
         </form>
       </div>

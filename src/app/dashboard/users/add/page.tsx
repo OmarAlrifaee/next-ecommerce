@@ -1,47 +1,59 @@
 import { addUser } from "@/actions/users";
 import Submit from "@/components/Submit";
 import { Metadata } from "next";
-
+import { Input, Switch } from "@nextui-org/react";
+import MyCustomSwitch from "@/components/shared/MyCustomSwitch";
 const AddUser = () => {
   return (
-    <div className="bg-main-soft-bg p-[10px] rounded-md mt-[20px]">
+    <div className="bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
       <form action={addUser}>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-x-5 gap-y-10">
-          <input
+          <Input
             type="text"
-            placeholder="Username"
+            label="UserName"
             name="username"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <input
+          <Input
             type="email"
-            placeholder="Email"
+            label="Email"
             name="email"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <input
+          <Input
             type="password"
-            placeholder="Password"
+            label="Password"
             name="password"
             required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <input
+          <Input
             type="text"
-            placeholder="Avatar Url"
+            label="Avatar Url"
             name="avatar"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold "
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
         </div>
         <div className="flex items-center gap-3 mt-5">
-          <input type="checkbox" name="isAdmin" id="isAdmin" />
-          <label htmlFor="isAdmin">select to make the user an admin</label>
+          <MyCustomSwitch isAdmin={false} />
+          <label htmlFor="isAdmin" className="text-white-text capitalize">
+            select to make the user an admin
+          </label>
         </div>
         <Submit
           text="Add User"
-          style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200"
+          style="bg-primary text-white w-full mt-5 border-none"
+          tooltipContent="Add User"
         />
       </form>
     </div>

@@ -53,7 +53,7 @@ const StripeForm = () => {
           <AddNewLink
             href="/cart"
             text="Cancel"
-            style="bg-red-500 tranistion hover:bg-red-200"
+            style="bg-red-500 text-white-text"
           />
         ) : (
           ""

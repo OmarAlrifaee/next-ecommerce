@@ -1,7 +1,6 @@
 import { getUserProductsFromCart } from "@/actions/cartDashboard";
 import UserCartProductRow from "@/components/UserCartProductRow";
 import UsersFilter from "@/components/UsersFilter";
-import { ProductType } from "@/types";
 type Props = {
   searchParams: {
     user: string;
@@ -18,7 +17,7 @@ const CartPage = async ({ searchParams }: Props) => {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold">
+          <thead className="font-semibold text-white-text">
             <tr>
               <td className="p-3">Title</td>
               <td className="p-3">Price</td>
@@ -28,7 +27,7 @@ const CartPage = async ({ searchParams }: Props) => {
               <td className="p-3">Action</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-navlink">
             {userProducts?.length && searchParams.user
               ? userProducts?.map((cartProduct) => (
                   <UserCartProductRow

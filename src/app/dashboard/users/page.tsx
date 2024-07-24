@@ -2,6 +2,7 @@ import { getAllUsers } from "@/actions/users";
 import AddNewLink from "@/components/AddNewLink";
 import Pagenation from "@/components/Pagenation";
 import Search from "@/components/Search";
+import MyToolTip from "@/components/shared/MyToolTip";
 import UserRow from "@/components/UserRow";
 import { Metadata } from "next";
 type Props = {
@@ -18,16 +19,18 @@ const Users = async ({ searchParams }: Props) => {
   return (
     <section className="bg-main-soft-bg">
       <div className="p-5 mt-3 flex sm:flex-row gap-3 flex-col items-center justify-between">
-        <Search style="sm:w-fit w-full" dashboard />{" "}
-        <AddNewLink
-          href="/dashboard/users/add"
-          text="Add User"
-          style="sm:w-fit w-full sm:text-start text-center"
-        />
+        <Search style="sm:w-fit w-full" />
+        <MyToolTip content="Add New User">
+          <AddNewLink
+            href="/dashboard/users/add"
+            text="Add User"
+            style="sm:w-fit w-full sm:text-start text-center bg-primary text-white-text border-none"
+          />
+        </MyToolTip>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold">
+          <thead className="font-semibold text-white-text">
             <tr>
               <td className="p-3">Name</td>
               <td className="p-3">Email</td>
@@ -36,7 +39,7 @@ const Users = async ({ searchParams }: Props) => {
               <td className="p-3">Action</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-navlink">
             {users.map((user) => (
               <UserRow user={user} key={user.id} />
             ))}

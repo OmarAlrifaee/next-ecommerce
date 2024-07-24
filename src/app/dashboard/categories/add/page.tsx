@@ -1,29 +1,34 @@
 import { addCategory } from "@/actions/categories";
 import Submit from "@/components/Submit";
+import { Input } from "@nextui-org/react";
 import { Metadata } from "next";
 
 const AddProduct = async () => {
   return (
-    <div className="bg-main-soft-bg p-[10px] rounded-md mt-[20px]">
+    <div className="bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
       <form action={addCategory}>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-x-5 gap-y-10">
-          <input
+          <Input
             type="text"
-            placeholder="Title"
+            label="Category Name"
             name="title"
-            required
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
-          <input
+          <Input
             type="text"
-            placeholder="image url"
+            label="image Url"
             name="img"
-            className="p-[15px] focus:outline-none rounded-md bg-main-bg text-black font-semibold"
+            className="text-white-text font-semibold"
+            radius="md"
+            size="lg"
           />
         </div>
         <Submit
           text="Add Category"
-          style="bg-primary text-white w-full mt-5 transition hover:bg-blue-200"
+          style="bg-primary text-white-text w-full mt-5 border-none"
+          tooltipContent="Add category"
         />
       </form>
     </div>

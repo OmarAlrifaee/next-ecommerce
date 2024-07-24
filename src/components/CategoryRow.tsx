@@ -4,6 +4,8 @@ import { CategoryType } from "@/types";
 import { deleteCategory } from "@/actions/categories";
 import Submit from "./Submit";
 import AddNewLink from "./AddNewLink";
+import { Avatar } from "@nextui-org/react";
+import MyToolTip from "./shared/MyToolTip";
 type Props = {
   category: CategoryType;
 };
@@ -12,24 +14,26 @@ const CategoryRow = ({ category }: Props) => {
     <tr>
       <td className="p-3">
         <div className="flex items-center gap-[10px]">
-          <div className="flex-shrink-0 relative rounded-full overflow-hidden w-[40px] h-[40px]">
-            <Image
-              src={category.img || "/noproduct.jpg"}
-              alt={category.title}
-              fill
-            />
-          </div>
+          <Avatar
+            src={category?.img}
+            fallback={category?.title}
+            showFallback
+            isBordered
+            color="primary"
+          />
           <span>{category.title}</span>
         </div>
       </td>
       <td className="p-3">{category.createdAt?.toLocaleDateString()}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
-          <AddNewLink
-            text="View"
-            style="bg-primary transition hover:bg-blue-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
-            href={`/dashboard/categories/${category.id}`}
-          />
+          <MyToolTip content="view this category details">
+            <AddNewLink
+              text="View"
+              style="bg-primary border-none text-white-text"
+              href={`/dashboard/categories/${category.id}`}
+            />
+          </MyToolTip>
           <form
             action={async () => {
               "use server";
@@ -37,8 +41,9 @@ const CategoryRow = ({ category }: Props) => {
             }}
           >
             <Submit
-              style="bg-red-500 text-white transition hover:bg-red-200 py-[5px] px-[10px] rounded-md border-none cursor-pointer"
+              style="bg-red-500 text-white-text border-none"
               text="Delete"
+              tooltipContent="delete this category"
             />
           </form>
         </div>

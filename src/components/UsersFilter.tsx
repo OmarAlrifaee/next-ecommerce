@@ -2,6 +2,7 @@
 
 import { getAllUsers } from "@/actions/users";
 import { UserType } from "@/types";
+import { Select, SelectItem } from "@nextui-org/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 type Props = {
@@ -28,23 +29,16 @@ const UsersFilter = ({ style }: Props) => {
     });
   };
   return (
-    <select
+    <Select
       onChange={(e) => hundleChange(e.target.value)}
-      defaultValue={"all"}
-      className={`text-black outline-none focus:outline-none p-2 rounded-md ${style} bg-main-bg`}
+      selectedKeys={[searchParams.get("user")! || "none"]}
+      className="sm:max-w-[300px] w-full"
     >
-      <option value="none">none</option>
+      <SelectItem key={"none"}>none</SelectItem>
       {users?.map((user) => (
-        <option
-          value={user.username}
-          key={user.id}
-          selected={searchParams.get("user")! === user.username}
-          className="capitalize"
-        >
-          {user.username}
-        </option>
+        <SelectItem key={user.username}>{user.username}</SelectItem>
       ))}
-    </select>
+    </Select>
   );
 };
 export default UsersFilter;

@@ -60,6 +60,7 @@ export const addProduct = async (data: FormData) => {
   try {
     connectToDB();
     const productData = Object.fromEntries(data);
+    console.log(productData);
     const oldProduct = await ProductModel.findOne({ title: productData.title });
     if (oldProduct) throw new Error("product already exist");
     const newProduct = new ProductModel(productData);

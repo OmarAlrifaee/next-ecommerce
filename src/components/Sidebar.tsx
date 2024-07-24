@@ -5,6 +5,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { MdOutlineCategory } from "react-icons/md";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { UserType } from "@/types";
+import { Avatar } from "@nextui-org/react";
 type Props = {
   currentUser: UserType;
 };
@@ -45,23 +46,25 @@ const Sidebar = async ({ currentUser }: Props) => {
     ],
   };
   return (
-    <section className="flex-1 bg-main-soft-bg p-5 xl:block hidden">
+    <section className="flex-1 bg-main-soft-bg p-5 xl:block hidden text-navlink">
       <div className="flex items-center gap-[20px] mt-[20px]">
-        <div className="overflow-hidden w-[40px] h-[40px] rounded-full relative">
-          <Image
-            src={currentUser.avatar || "/noavatar.jpg"}
-            alt={currentUser.username + "image"}
-            fill
-          />
-        </div>
+        <Avatar
+          showFallback
+          src={currentUser?.avatar}
+          name={currentUser?.username}
+          isBordered={!!currentUser?.avatar}
+          color="primary"
+        />
         <div className="flex flex-col">
-          <span className="font-[500]">{currentUser.username}</span>
-          <span className="text-[12px] text-soft-text">Admin</span>
+          <span className="font-[500] text-white-text">
+            {currentUser.username}
+          </span>
+          <span className="text-[12px]">Admin</span>
         </div>
       </div>
       <ul className="mt-5">
         <li>
-          <span className="text-soft-text font-bold text-[13px] my-[10px]">
+          <span className=" font-bold text-[13px] my-[10px] text-white-text">
             {menuItems.title}
           </span>
           <div className="mt-3">

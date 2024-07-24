@@ -2,11 +2,9 @@ import Card from "./Card";
 
 const Footer = () => {
   return (
-    <Card>
-      <p className="text-navlink font-serif text-xl">
-        @Copy Right 2024 For Omar Alrifai
-      </p>
-    </Card>
+    <p className="text-navlink font-serif text-xl mx-auto w-full text-center py-10">
+      @Copy Right 2024 For Omar Alrifai
+    </p>
   );
 };
 export default Footer;

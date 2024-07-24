@@ -4,6 +4,7 @@ import Catergories from "@/components/Catergories";
 import Pagenation from "@/components/Pagenation";
 import ProductRow from "@/components/ProductRow";
 import Search from "@/components/Search";
+import MyToolTip from "@/components/shared/MyToolTip";
 import { Metadata } from "next";
 type Props = {
   searchParams: {
@@ -22,18 +23,20 @@ const Products = async ({ searchParams }: Props) => {
     <section className="bg-main-soft-bg mt-5">
       <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row gap-3 flex-col">
         <div className="flex items-center gap-5 sm:flex-row flex-col">
-          <Search style="sm:w-fit w-full" dashboard />
+          <Search style="sm:w-fit w-full" />
           <Catergories style="sm:w-fit w-full" dashboard />
         </div>
-        <AddNewLink
-          text="Add Product"
-          href="/dashboard/products/add"
-          style="sm:w-fit w-full sm:text-start text-center"
-        />
+        <MyToolTip content="Add New product">
+          <AddNewLink
+            text="Add Product"
+            href="/dashboard/products/add"
+            style="sm:w-fit w-full sm:text-start text-center bg-primary text-white-text border-none"
+          />
+        </MyToolTip>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold">
+          <thead className="font-semibold text-white-text">
             <tr>
               <td className="p-3">Title</td>
               <td className="p-3">Price</td>
@@ -42,7 +45,7 @@ const Products = async ({ searchParams }: Props) => {
               <td className="p-3">Action</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-navlink">
             {products.map((product) => (
               <ProductRow product={product} key={product.id} />
             ))}

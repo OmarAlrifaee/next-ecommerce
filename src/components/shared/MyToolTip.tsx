@@ -1,4 +1,6 @@
+"use client";
 import { Tooltip } from "@nextui-org/react";
+import { useState } from "react";
 const MyToolTip = ({
   content,
   children,
@@ -6,12 +8,15 @@ const MyToolTip = ({
   content: string;
   children: React.ReactNode;
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Tooltip
       content={content}
       className="capitalize font-semibold"
       color="default"
       placement="bottom"
+      isOpen={isOpen}
+      onOpenChange={(open) => setIsOpen(open)}
       delay={0}
       closeDelay={0}
       motionProps={{
