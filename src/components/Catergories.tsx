@@ -4,7 +4,7 @@ import { getAllCategories } from "@/actions/categories";
 import { CategoryType } from "@/types";
 import { Select, SelectItem } from "@nextui-org/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 type Props = {
   style?: string;
   dashboard?: boolean;
@@ -27,6 +27,20 @@ const Catergories = ({ style, dashboard }: Props) => {
     } else params.delete("category");
     replace(`${pathname}?${params}`, { scroll: false });
   };
+  // <----------------------------------------->
+  const randomId = useMemo(
+    () => `${Math.random() * Math.random()}jhacadsvkl`,
+    []
+  );
+  const allCategory = useMemo(
+    () => ({ id: randomId, title: "all", img: "", createdAt: new Date() }),
+    [randomId]
+  );
+  const categoriesWithAll = useMemo<CategoryType[]>(
+    () => [allCategory, ...categories],
+    [categories, allCategory]
+  );
+  // <----------------------------------------->
   return (
     <Select
       onChange={(e) => hundleChange(e.target.value)}
@@ -34,8 +48,7 @@ const Catergories = ({ style, dashboard }: Props) => {
       defaultSelectedKeys={[searchParams.get("category")! || "all"]}
       radius="md"
     >
-      <SelectItem key={"all"}>All</SelectItem>
-      {categories.map((category) => (
+      {categoriesWithAll.map((category) => (
         <SelectItem key={category.title}>{category.title}</SelectItem>
       ))}
     </Select>
