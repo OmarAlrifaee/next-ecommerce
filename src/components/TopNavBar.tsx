@@ -1,7 +1,6 @@
 import { UserType } from "@/types";
 import { cookies } from "next/headers";
 import { getCurrentUser, logout } from "@/actions/users";
-import Image from "next/image";
 import Submit from "./Submit";
 import { IoLogOut } from "react-icons/io5";
 import TopNavBarLink from "./TopNavBarLink";
@@ -10,18 +9,21 @@ import { MdShop } from "react-icons/md";
 import { MdShoppingCart } from "react-icons/md";
 import { HiLogin } from "react-icons/hi";
 import { MdDashboardCustomize } from "react-icons/md";
-import { Avatar } from "@nextui-org/react";
+import { Avatar, Button, Link } from "@nextui-org/react";
 import MyToolTip from "./shared/MyToolTip";
 const links = [
   {
+    title: "Home",
     path: "/",
     icon: <MdHome className="text-3xl" />,
   },
   {
+    title: "Shop",
     path: "/shop?page=1",
     icon: <MdShop className="text-3xl" />,
   },
   {
+    title: "Cart",
     path: "/cart",
     icon: <MdShoppingCart className="text-3xl" />,
   },
@@ -33,8 +35,24 @@ const Navbar = async () => {
   }
   return (
     <nav className="p-5 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-black bg-main-soft-bg">
+      <ul className="flex items-center justify-between w-full">
+        {links.map((link) => (
+          <TopNavBarLink key={link.path} link={link} />
+        ))}
+        {currentUser?.isAdmin ? (
+          <TopNavBarLink
+            link={{
+              path: "/dashboard/users",
+              icon: <MdDashboardCustomize className="text-3xl" />,
+              title: "Dashboard",
+            }}
+          />
+        ) : (
+          ""
+        )}
+      </ul>
       {currentUser ? (
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center sm:justify-end sm:gap-5 justify-between w-full">
           <Avatar
             // as={Image}
             showFallback
@@ -59,33 +77,12 @@ const Navbar = async () => {
           </form>
         </div>
       ) : (
-        ""
+        <MyToolTip content="login">
+          <Button as={Link} href="/login" variant="ghost">
+            <HiLogin className="text-3xl text-navlink" />
+          </Button>
+        </MyToolTip>
       )}
-      <ul className="flex items-center justify-between w-full">
-        {links.map((link) => (
-          <TopNavBarLink key={link.path} link={link} />
-        ))}
-        {!currentUser ? (
-          <TopNavBarLink
-            link={{
-              path: "/login",
-              icon: <HiLogin className="text-3xl" />,
-            }}
-          />
-        ) : (
-          ""
-        )}
-        {currentUser?.isAdmin ? (
-          <TopNavBarLink
-            link={{
-              path: "/dashboard/users",
-              icon: <MdDashboardCustomize className="text-3xl" />,
-            }}
-          />
-        ) : (
-          ""
-        )}
-      </ul>
     </nav>
   );
 };

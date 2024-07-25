@@ -17,6 +17,7 @@ const UserCartProductRow = ({ cartProduct, username }: Props) => {
             showFallback
             isBordered
             color="primary"
+            className="flex-shrink-0"
           />
           <span>{cartProduct.product.title}</span>
         </div>

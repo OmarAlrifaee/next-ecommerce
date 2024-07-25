@@ -20,6 +20,7 @@ const ProductRow = ({ product }: Props) => {
             showFallback
             isBordered
             color="primary"
+            className="flex-shrink-0"
           />
           <span>{product.title}</span>
         </div>

@@ -13,7 +13,7 @@ const BottomBarLink = ({ menuLink }: Props) => {
       <Link
         href={menuLink.path}
         className={`${
-          pathname === menuLink.path ? "text-primary" : ""
+          pathname === menuLink.path ? "text-primary" : "text-navlink"
         } transition hover:text-primary`}
       >
         {menuLink.icon}

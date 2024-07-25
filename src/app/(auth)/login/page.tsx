@@ -9,7 +9,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center">
       <form
         action={login}
-        className="flex flex-col gap-5 shadow-md rounded-md p-5 bg-main-soft-bg w-[20%]"
+        className="flex flex-col gap-5 shadow-md rounded-md p-5 bg-main-soft-bg sm:w-[30%] w-[75%]"
       >
         <h3 className="capitalize font-bold text-3xl text-center text-white-text mb-5">
           Login

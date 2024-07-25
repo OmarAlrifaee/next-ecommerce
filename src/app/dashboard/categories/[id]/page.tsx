@@ -42,7 +42,7 @@ const CategoryDetails = async ({ params }: Props) => {
           />
           <Input
             type="text"
-            label={category?.img}
+            label="Image Url"
             name="img"
             className="text-white-text font-semibold"
             radius="md"

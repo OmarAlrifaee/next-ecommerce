@@ -21,6 +21,7 @@ const UserRow = ({ user }: Props) => {
             showFallback
             isBordered
             color="primary"
+            className="flex-shrink-0"
           />
           <span>{user.username}</span>
         </div>

@@ -37,7 +37,7 @@ const ProductDetails = async ({ params }: Props) => {
         >
           <Input
             type="text"
-            label={product.title}
+            label={`${product?.title?.slice(0, 60)}...`}
             name="title"
             className="text-white-text font-semibold"
             radius="md"
@@ -61,7 +61,7 @@ const ProductDetails = async ({ params }: Props) => {
           />
           <Input
             type="text"
-            label="image url"
+            label="Image Url"
             name="img"
             className="text-white-text font-semibold"
             radius="md"

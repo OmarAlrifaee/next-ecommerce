@@ -4,7 +4,10 @@ import { cookies } from "next/headers";
 import { getCurrentUser, logout } from "@/actions/users";
 import Submit from "./Submit";
 import { IoLogOut } from "react-icons/io5";
-import { Avatar } from "@nextui-org/react";
+import { Avatar, Button } from "@nextui-org/react";
+import { HiLogin } from "react-icons/hi";
+import Link from "next/link";
+import MyToolTip from "./shared/MyToolTip";
 const links = [
   {
     path: "/",
@@ -36,11 +39,7 @@ const Navbar = async () => {
             key={link.path}
           />
         ))}
-        {!currentUser ? (
-          <NavLink path="/login" title="Login" style="" activeStyle="" />
-        ) : (
-          ""
-        )}
+
         {currentUser?.isAdmin ? (
           <NavLink
             path="/dashboard/users"
@@ -61,6 +60,7 @@ const Navbar = async () => {
             name={currentUser?.username}
             isBordered={!!currentUser?.avatar}
             color="primary"
+            className="flex-shrink-0"
           />
           <form action={logout}>
             <Submit
@@ -77,7 +77,11 @@ const Navbar = async () => {
           </form>
         </div>
       ) : (
-        ""
+        <MyToolTip content="login">
+          <Button as={Link} href="/login" variant="ghost">
+            <HiLogin className="text-3xl text-navlink" />
+          </Button>
+        </MyToolTip>
       )}
     </nav>
   );

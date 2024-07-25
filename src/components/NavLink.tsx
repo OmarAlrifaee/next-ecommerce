@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import MyToolTip from "./shared/MyToolTip";
 type Props = {
   title: string;
   path: string;
-  style: string;
+  style?: string;
   activeStyle?: string;
 };
 const NavLink = ({
@@ -15,16 +16,18 @@ const NavLink = ({
 }: Props) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={path}
-      className={`font-bold ${
-        pathname === (path.slice(0, 5) === "/shop" ? "/shop" : path)
-          ? activeStyle
-          : "text-navlink"
-      } ${style} transition  hover:text-primary`}
-    >
-      {title}
-    </Link>
+    <MyToolTip content={title}>
+      <Link
+        href={path}
+        className={`font-bold ${
+          pathname === (path.slice(0, 5) === "/shop" ? "/shop" : path)
+            ? activeStyle
+            : "text-navlink"
+        } ${style} transition  hover:text-primary`}
+      >
+        {title}
+      </Link>
+    </MyToolTip>
   );
 };
 export default NavLink;
