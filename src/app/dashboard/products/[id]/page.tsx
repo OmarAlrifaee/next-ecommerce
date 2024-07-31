@@ -20,14 +20,11 @@ const ProductDetails = async ({ params }: Props) => {
   const product = (await getOneProduct(params.id)) as ProductType;
   const categories = await getAllCategories();
   return (
-    <section className="flex md:gap-10 gap-5 md:flex-nowrap flex-wrap">
-      <div className="md:w-[400px] bg-main-soft-bg p-[10px] rounded-md mt-[20px] h-fit  w-full">
-        <div className="h-[300px] w-full relative rounded-md overflow-hidden">
-          <Image src={product?.img || "/noproduct.jpg"} alt="" fill />
-        </div>
-        <p className="mt-3 font-semibold text-white-text">{product.title}</p>
+    <section className="flex md:gap-10 gap-5 p-[20px] bg-main-bg md:flex-nowrap rounded-md border-1 flex-wrap">
+      <div className="h-[500px] md:w-[400px] w-full relative rounded-md overflow-hidden">
+        <Image src={product?.img || "/noproduct.jpg"} alt="" fill />
       </div>
-      <div className="flex-grow bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
+      <div className="flex-grow p-[20px] rounded-md mt-[20px]">
         <form
           action={async (data) => {
             "use server";
@@ -42,6 +39,7 @@ const ProductDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="number"
@@ -50,6 +48,7 @@ const ProductDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="text"
@@ -58,6 +57,7 @@ const ProductDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="text"
@@ -66,6 +66,7 @@ const ProductDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="number"
@@ -75,6 +76,7 @@ const ProductDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />{" "}
           <MyCustomSelect
             categories={categories}
@@ -88,6 +90,7 @@ const ProductDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <div className="mt-10 flex flex-col gap-5">
             <Textarea
@@ -98,10 +101,11 @@ const ProductDetails = async ({ params }: Props) => {
               className=" text-white-text font-semibold min-h-[200px] resize-y"
               radius="md"
               size="lg"
+              variant="underlined"
             ></Textarea>
             <Submit
               text="Update Product"
-              style="bg-primary text-white w-full border-none"
+              style="bg-black-text font-bold text-white-text w-full border-none"
               tooltipContent="Update Product"
             />
           </div>

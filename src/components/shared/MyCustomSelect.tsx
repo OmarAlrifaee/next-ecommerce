@@ -6,8 +6,13 @@ import { useState } from "react";
 type Props = {
   categories: CategoryType[];
   currentProductCategory?: string;
+  isRequired?: boolean;
 };
-const MyCustomSelect = ({ categories, currentProductCategory }: Props) => {
+const MyCustomSelect = ({
+  categories,
+  currentProductCategory,
+  isRequired,
+}: Props) => {
   const [value, setValue] = useState(currentProductCategory || "");
   return (
     <>
@@ -17,6 +22,8 @@ const MyCustomSelect = ({ categories, currentProductCategory }: Props) => {
         selectedKeys={[value]}
         label="Category"
         className="font-bold"
+        variant="underlined"
+        isRequired={isRequired || false}
       >
         {categories.map((cat) => (
           <SelectItem key={cat.title}>{cat.title}</SelectItem>

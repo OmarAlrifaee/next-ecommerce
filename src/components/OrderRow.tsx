@@ -22,9 +22,9 @@ const OrderRow = ({ order }: Props) => {
           }}
         >
           <Submit
-            style="bg-red-500 text-white-text border-none"
+            style="bg-button-2 text-white-text font-bold rounded-md border-none"
             text="Delete"
-            tooltipContent="delete this order"
+            tooltipContent={`delete ${order.username} order`}
           />
         </form>
       </td>

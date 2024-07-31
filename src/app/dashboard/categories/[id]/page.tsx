@@ -17,14 +17,11 @@ export const generateMetadata = async ({ params }: Props) => {
 const CategoryDetails = async ({ params }: Props) => {
   const category = (await getOneCategory(params.id)) as CategoryType;
   return (
-    <section className="flex md:gap-10 gap-5 md:flex-nowrap flex-wrap">
-      <div className="md:w-[400px] bg-main-soft-bg p-[10px] rounded-md mt-[20px] h-fit w-full">
-        <div className="h-[300px] w-full relative rounded-md overflow-hidden">
-          <Image src={category?.img || "/noproduct.jpg"} alt="" fill />
-        </div>
-        <p className="mt-3 font-semibold text-white-text">{category.title}</p>
+    <section className="flex md:gap-10 gap-5 p-[20px] bg-main-bg md:flex-nowrap rounded-md border-1 flex-wrap">
+      <div className="h-[250px] md:w-[400px] w-full relative rounded-md overflow-hidden">
+        <Image src={category?.img || "/noavatar.jpg"} alt="" fill />
       </div>
-      <div className="flex-grow bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
+      <div className="flex-grow p-[20px] rounded-md mt-[20px]">
         <form
           action={async (data) => {
             "use server";
@@ -39,6 +36,7 @@ const CategoryDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="text"
@@ -47,10 +45,11 @@ const CategoryDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Submit
             text="Update Category"
-            style="bg-primary text-white w-full mt-5 border-none"
+            style="bg-black-text font-bold rounded-md text-white-text w-full mt-5 border-none"
             tooltipContent="Update category"
           />
         </form>

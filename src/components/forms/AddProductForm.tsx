@@ -36,7 +36,7 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
               <Button
                 isDisabled={currentQuantity <= 1}
                 onClick={() => setcurrentQuantity((prev) => prev - 1)}
-                className="text-3xl bg-red-500  text-white-text font-bold"
+                className="text-3xl bg-button-2 hover:bg-button-2-hover  text-white-text font-bold flex items-center justify-center"
                 type="button"
                 radius="md"
                 isIconOnly
@@ -45,7 +45,7 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
               </Button>
             </MyToolTip>
             <input
-              className="font-bold text-white-text bg-navlink size-10 rounded-md text-center"
+              className="font-bold text-white-text bg-black-text size-10 rounded-md text-center"
               type="text"
               disabled
               value={currentQuantity}
@@ -55,7 +55,7 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
                 isDisabled={currentQuantity >= stock}
                 onClick={() => setcurrentQuantity((prev) => prev + 1)}
                 type="button"
-                className="text-3xl bg-primary text-white-text font-bold"
+                className="text-3xl bg-button-3 text-white-text font-bold flex items-center justify-center"
                 radius="md"
                 isIconOnly
               >
@@ -65,15 +65,14 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
           </div>
           <Submit
             text="Add"
-            style={`text-white-text bg-primary font-bold w-full border-none`}
+            style={`text-white-text bg-button-3 font-bold w-full border-none`}
             tooltipContent="add to cart"
           />
           <MyToolTip content="close the popup">
             <Button
               onClick={() => setShow(false)}
-              className="bg-red-500 mt-3 text-white-text  w-full  font-semibold"
+              className="bg-button-2 hover:to-button-2-hover mt-3 text-white-text w-full font-bold"
               radius="md"
-              variant="solid"
             >
               Close
             </Button>
@@ -85,7 +84,7 @@ const AddProductForm = ({ productId, widthFull, quantity, stock }: Props) => {
   ) : (
     <MyToolTip content={quantity ? "edit the quantity" : "add to cart"}>
       <Button
-        className={`text-white-text bg-primary font-bold ${
+        className={`text-white-text bg-button-3 font-bold rounded-md ${
           widthFull ? "w-full" : ""
         }`}
         onClick={() => setShow(true)}

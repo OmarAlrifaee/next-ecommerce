@@ -15,8 +15,8 @@ const SidebarLink = ({ menuItem: { icon, path, title } }: Props) => {
     <MyToolTip content={`go to ${title} page`}>
       <Link
         href={path}
-        className={`p-[10px] flex items-center font-semibold gap-[10px] transition hover:bg-primary hover:text-white-text my-[5px] rounded-md ${
-          pathname === path ? "bg-primary text-white-text" : ""
+        className={`p-[10px] flex items-center font-semibold gap-[10px] transition hover:bg-black-text hover:text-white-text my-[5px] rounded-md ${
+          pathname === path ? "bg-black-text text-white-text" : "text-gray-text"
         }`}
       >
         {icon}

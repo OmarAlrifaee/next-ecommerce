@@ -25,10 +25,10 @@ const SwiperComponent: React.FC<SwiperComponentProps> = ({ children }) => {
         },
         1000: {
           spaceBetween: 2,
-          slidesPerView: 3,
+          slidesPerView: 2,
         },
         1280: {
-          spaceBetween: 2,
+          spaceBetween: 1,
           slidesPerView: 4,
         },
       }}
@@ -42,5 +42,4 @@ const SwiperComponent: React.FC<SwiperComponentProps> = ({ children }) => {
     </Swiper>
   );
 };
-
 export default SwiperComponent;

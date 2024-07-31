@@ -7,6 +7,8 @@ import { getCartProducts } from "@/actions/cart";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import MyToolTip from "./shared/MyToolTip";
+import { IoEyeSharp } from "react-icons/io5";
+import Link from "next/link";
 type Props = {
   product: ProductType;
   inCart: boolean;
@@ -20,84 +22,63 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
   );
   const quantity = productInCart?.quantity;
   return (
-    <Card shadow="md" className="w-[250px] bg-main-soft-bg min-h-[500px]">
-      <CardHeader className="p-0">
-        <div className="relative w-full h-[200px]">
+    <Card shadow="sm" className="md:w-[300px] w-full min-h-[300px] bg-main-bg">
+      <CardHeader>
+        <div className="relative group w-full h-[200px] bg-main-soft-bg">
           <Image
             src={product.img || "/noproduct.jpg"}
             alt={`${product.title} image`}
             fill
+            className="group-hover:hidden"
           />
+          <MyToolTip content={`show ${product.title} details`}>
+            <Link
+              href={`/shop/${product.id}`}
+              className="absolute group-hover:flex items-center justify-center w-full h-full left-0 top-0 z-10 hidden"
+            >
+              <div className="p-2 bg-white-text rounded-full shadow-sm">
+                <IoEyeSharp className="text-4xl" />
+              </div>
+            </Link>
+          </MyToolTip>
         </div>
       </CardHeader>
       <CardBody>
-        <article className="flex flex-col gap-2 text-navlink">
-          <h3 className="text-xl font-bold text-white-text">{`${product.title.slice(
-            0,
-            30
-          )}${product?.title?.length > 30 ? "..." : ""}`}</h3>
-          {product?.color && product?.size ? (
-            <div className="flex items-center justify-between">
-              <div
-                className={`size-5 rounded-full`}
-                style={{ backgroundColor: product?.color }}
-              />
-              <p className="font-semibold capitalize">{product?.size}</p>
-            </div>
-          ) : (
-            ""
-          )}
-          <div className="flex items-center justify-between">
-            <p className="font-semibold capitalize">${product.price}</p>
-            <p className="font-semibold capitalize">{product.category}</p>
-          </div>
-          <div className="flex items-center justify-between">
-            {quantity ? (
-              <p className="font-semibold capitalize">
-                <span className="text-white-text">Quantity: </span>
-                {quantity}
-              </p>
-            ) : (
-              ""
-            )}
-            <p className="font-semibold capitalize">
-              <span className="text-white-text">In Stock: </span>
-              {product.stock}
-            </p>
-          </div>
-        </article>
+        <h3 className="text-lg font-semibold text-black-text capitalize ">{`${product.title.slice(
+          0,
+          20
+        )}${product?.title?.length > 20 ? "..." : ""}`}</h3>
+        <div className="flex items-center justify-between mt-3">
+          <p className="font-semibold capitalize text-button-2 text-medium">
+            ${product.price}
+          </p>
+          <p className="font-semibold capitalize text-medium">
+            {product.category}
+          </p>
+        </div>
       </CardBody>
-      <CardFooter>
-        <div className="flex flex-col gap-3 absolute bottom-0 left-0 w-full px-5 pb-5">
-          <MyToolTip content="show product details">
+      <CardFooter className="block">
+        {loggedIn ? (
+          <>
+            <div className="flex items-center justify-between">
+              {inCart ? <RemoveProductForm productId={product.id} /> : ""}
+              <AddProductForm
+                productId={product.id}
+                quantity={quantity}
+                stock={product.stock}
+                widthFull={!inCart}
+              />
+            </div>
+          </>
+        ) : (
+          <MyToolTip content="go to login page">
             <AddNewLink
-              text="Show"
-              href={`/shop/${product.id}`}
-              style="text-center text-navlink hover:text-primary"
+              text="Login"
+              href="/login"
+              style="text-white-text bg-button-3 font-bold border-none w-full"
             />
           </MyToolTip>
-          {loggedIn ? (
-            <>
-              <div className="flex items-center justify-between">
-                {inCart ? <RemoveProductForm productId={product.id} /> : ""}
-                <AddProductForm
-                  productId={product.id}
-                  quantity={quantity}
-                  stock={product.stock}
-                  widthFull={!inCart}
-                />
-              </div>
-            </>
-          ) : (
-            <MyToolTip content="go to login page">
-              <AddNewLink
-                text="Login"
-                href="/login"
-                style="text-white-text bg-primary font-bold border-none"
-              />
-            </MyToolTip>
-          )}
-        </div>
+        )}
       </CardFooter>
     </Card>
   );

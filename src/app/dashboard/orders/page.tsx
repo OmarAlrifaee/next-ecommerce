@@ -13,17 +13,17 @@ const Orders = async ({ searchParams }: Props) => {
   const totalPriceArr = orders?.map((order) => order.total);
   const totalPrice = totalPriceArr?.reduce((a, b) => a + b, 0);
   return (
-    <section className="bg-main-soft-bg mt-5">
-      <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row flex-col gap-3">
+    <section className="bg-main-bg rounded-md border-1">
+      <div className="p-5 mt-3 flex md:items-center md:justify-between md:flex-row flex-col-reverse gap-3">
         <Search />
-        <h3 className="font-bold capitalize text-white-text">
+        <h3 className="font-bold capitalize text-black-text">
           Total:{" "}
-          <span className="text-green-500 font-semibold">${totalPrice}</span>
+          <span className="text-button-1 font-semibold">${totalPrice}</span>
         </h3>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold text-white-text">
+          <thead className="font-semibold text-black-text">
             <tr>
               <td className="p-3">UserName</td>
               <td>Total</td>
@@ -31,7 +31,7 @@ const Orders = async ({ searchParams }: Props) => {
               <td>Actions</td>
             </tr>
           </thead>
-          <tbody className="text-navlink">
+          <tbody>
             {orders.reverse().map((order) => (
               <OrderRow order={order} key={order.id} />
             ))}

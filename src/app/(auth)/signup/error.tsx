@@ -10,18 +10,18 @@ type Props = {
 const error = ({ error, reset }: Props) => {
   return (
     <section className="p-10 min-h-screen bg-main-bg flex items-center justify-center">
-      <div className="h-1/2 md:w-1/2 rounded-md bg-main-soft-bg p-10 flex flex-col gap-10">
-        <h3 className="text-white-text font-bold capitalize text-5xl text-center">
+      <div className="h-1/2 md:w-1/2 rounded-sm bg-main-soft-bg p-10 flex flex-col gap-10">
+        <h3 className="text-black-text font-bold capitalize text-5xl text-center">
           {error.message}
         </h3>
         <div className="flex items-center gap-5 justify-center">
-          <Button onClick={reset} className="font-bold text-white bg-red-500">
+          <Button onClick={reset} className="font-bold text-white bg-button-2">
             Try Agine
           </Button>
           <AddNewLink
             href="/signup"
             text="Go To signup"
-            style="bg-primary text-white-text border-none"
+            style="bg-black-text text-white-text border-none font-bold"
           />
         </div>
       </div>

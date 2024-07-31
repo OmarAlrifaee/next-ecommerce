@@ -17,20 +17,20 @@ const Users = async ({ searchParams }: Props) => {
     searchParams.page
   );
   return (
-    <section className="bg-main-soft-bg">
-      <div className="p-5 mt-3 flex sm:flex-row gap-3 flex-col items-center justify-between">
-        <Search style="sm:w-fit w-full" />
+    <section className="bg-main-bg border-1 rounded-md">
+      <div className="p-5 mt-3 flex md:flex-row gap-3 flex-col items-center justify-between">
+        <Search />
         <MyToolTip content="Add New User">
           <AddNewLink
             href="/dashboard/users/add"
             text="Add User"
-            style="sm:w-fit w-full sm:text-start text-center bg-primary text-white-text border-none"
+            style="md:w-fit w-full md:text-start text-center bg-black-text font-bold text-white-text border-none"
           />
         </MyToolTip>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold text-white-text">
+          <thead className="font-semibold text-black-text">
             <tr>
               <td className="p-3">Name</td>
               <td className="p-3">Email</td>
@@ -39,7 +39,7 @@ const Users = async ({ searchParams }: Props) => {
               <td className="p-3">Action</td>
             </tr>
           </thead>
-          <tbody className="text-navlink">
+          <tbody>
             {users.map((user) => (
               <UserRow user={user} key={user.id} />
             ))}

@@ -18,14 +18,11 @@ export const generateMetadata = async ({ params }: Props) => {
 const UserDetails = async ({ params }: Props) => {
   const user = (await getOneUser(params.id)) as UserType;
   return (
-    <section className="flex md:gap-10 gap-5 md:flex-nowrap flex-wrap">
-      <div className="md:w-[400px] bg-main-soft-bg p-[10px] rounded-md mt-[20px] h-fit w-full">
-        <div className=" h-[300px] w-full relative rounded-md overflow-hidden">
-          <Image src={user?.avatar || "/noavatar.jpg"} alt="" fill />
-        </div>
-        <p className="mt-3 font-semibold text-white-text">{user?.username}</p>
+    <section className="flex md:gap-10 gap-5 p-[20px] bg-main-bg md:flex-nowrap rounded-md border-1 flex-wrap">
+      <div className="h-[450px] md:w-[400px] w-full relative rounded-md overflow-hidden">
+        <Image src={user?.avatar || "/noavatar.jpg"} alt="" fill />
       </div>
-      <div className="flex-grow bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
+      <div className="flex-grow bg-main-bg p-[20px] rounded-md mt-[20px]">
         <form
           action={async (data) => {
             "use server";
@@ -40,6 +37,7 @@ const UserDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="email"
@@ -48,6 +46,7 @@ const UserDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="avatar"
@@ -56,16 +55,20 @@ const UserDetails = async ({ params }: Props) => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <div className="flex items-center gap-3 mt-5">
             <MyCustomSwitch isAdmin={user?.isAdmin} />
-            <label htmlFor="isAdmin" className="text-white-text capitalize">
+            <label
+              htmlFor="isAdmin"
+              className="text-black-text font-semibold capitalize"
+            >
               select to make the user an admin
             </label>
           </div>
           <Submit
             text="Update User"
-            style="bg-primary text-white w-full mt-5 border-none"
+            style="bg-black-text font-bold text-white w-full mt-5 border-none"
             tooltipContent="Update User"
           />
         </form>

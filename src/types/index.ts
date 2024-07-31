@@ -12,10 +12,10 @@ export type ProductType = {
   desc: string;
   price: number;
   category: string;
-  stock: number;
   img?: string;
   color?: string;
   size?: string;
+  stock: number;
   createdAt: Date;
   id: string;
 };

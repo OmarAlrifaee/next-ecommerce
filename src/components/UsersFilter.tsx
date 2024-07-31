@@ -54,7 +54,7 @@ const UsersFilter = ({ style }: Props) => {
     <Select
       onChange={(e) => hundleChange(e.target.value)}
       selectedKeys={[searchParams.get("user")! || "none"]}
-      className="sm:max-w-[300px] w-full"
+      className="md:w-[300px] w-full"
     >
       {usersWithNone?.map((user) => (
         <SelectItem key={user.username}>{user.username}</SelectItem>

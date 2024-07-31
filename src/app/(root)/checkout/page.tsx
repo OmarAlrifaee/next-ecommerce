@@ -23,11 +23,11 @@ const page = async () => {
     `Payment For User ${currentUser?.username}`
   );
   return paymentIntent.client_secret && currentUser ? (
-    <section className="p-10 min-h-screen bg-main-bg flex xl:flex-row flex-col-reverse xl:gap-10 gap-5">
+    <section className="md:p-10 p-5 min-h-screen bg-main-bg flex xl:flex-row flex-col-reverse xl:gap-10 gap-5">
       <div className="flex-1">
         {cartProducts?.length ? (
-          <h2 className="font-bold capitalize text-4xl text-white">
-            Total: <span className="text-green-500">${totalPrice}</span>
+          <h2 className="font-bold capitalize text-4xl text-black-text md:text-start text-center">
+            Total: <span className="text-button-1">${totalPrice}</span>
           </h2>
         ) : (
           ""

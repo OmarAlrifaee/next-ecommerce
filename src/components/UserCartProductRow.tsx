@@ -16,7 +16,7 @@ const UserCartProductRow = ({ cartProduct, username }: Props) => {
             fallback={cartProduct.product.title}
             showFallback
             isBordered
-            color="primary"
+            color="secondary"
             className="flex-shrink-0"
           />
           <span>{cartProduct.product.title}</span>
@@ -36,9 +36,9 @@ const UserCartProductRow = ({ cartProduct, username }: Props) => {
           }}
         >
           <Submit
-            style="bg-red-500 text-white-text border-none"
+            style="bg-button-2 text-white-text font-bold rounded-md border-none"
             text="Delete"
-            tooltipContent="delete this product from user cart"
+            tooltipContent={`delete this ${cartProduct.product.title} product from ${username} cart`}
           />
         </form>
       </td>

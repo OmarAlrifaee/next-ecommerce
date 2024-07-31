@@ -1,8 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #000000 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 40px;
+  border: 5px dotted #ffffff;
+}
 /* styling the swiper arrows */
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  @apply text-primary hover:text-main-soft-bg font-bold;
+  @apply text-black-text font-bold;
 }

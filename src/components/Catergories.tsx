@@ -7,9 +7,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 type Props = {
   style?: string;
-  dashboard?: boolean;
 };
-const Catergories = ({ style, dashboard }: Props) => {
+const Catergories = ({ style }: Props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -44,12 +43,14 @@ const Catergories = ({ style, dashboard }: Props) => {
   return (
     <Select
       onChange={(e) => hundleChange(e.target.value)}
-      className="sm:max-w-[300px] w-full"
+      className={`md:w-[300px] w-full flex-shrink-0 ${style}`}
       defaultSelectedKeys={[searchParams.get("category")! || "all"]}
       radius="md"
     >
       {categoriesWithAll.map((category) => (
-        <SelectItem key={category.title}>{category.title}</SelectItem>
+        <SelectItem key={category.title} className="capitalize">
+          {category.title}
+        </SelectItem>
       ))}
     </Select>
   );

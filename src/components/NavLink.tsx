@@ -12,18 +12,18 @@ const NavLink = ({
   path,
   title,
   style,
-  activeStyle = "text-primary",
+  activeStyle = "text-black-text border-b-2 border-b-black-text",
 }: Props) => {
   const pathname = usePathname();
   return (
     <MyToolTip content={title}>
       <Link
         href={path}
-        className={`font-bold ${
+        className={`text-lg pb-1 font-semibold ${
           pathname === (path.slice(0, 5) === "/shop" ? "/shop" : path)
             ? activeStyle
-            : "text-navlink"
-        } ${style} transition  hover:text-primary`}
+            : "text-gray-text"
+        } ${style} transition hover:text-black-text  hover:border-b-2 hover:border-b-black-text`}
       >
         {title}
       </Link>

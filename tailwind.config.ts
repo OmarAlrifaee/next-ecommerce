@@ -10,12 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "main-bg": "#18191A",
-        "main-soft-bg": "#242526",
-        primary: "rgb(59 130 246)",
-        navlink: "#B0B3B8",
-        "white-text": "#fff",
-        "soft-text": "#b7bac1",
+        "main-bg": "#FFFFFF",
+        "main-soft-bg": "#F5F5F5",
+        "button-1": "#00FF66",
+        "button-2": "#DB4444",
+        "button-2-hover": "#E07575",
+        "button-3": "#000000",
+        "white-text": "#FAFAFA",
+        "gray-text": "#7D8184",
+        "black-text": "#000000",
+        "blue-1": "#A0BCE0",
       },
     },
   },

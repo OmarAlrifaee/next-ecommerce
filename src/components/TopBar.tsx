@@ -40,7 +40,7 @@ const TopBar = () => {
     ],
   };
   return (
-    <ul className="py-5 flex items-center justify-between px-5 gap-5 xl:hidden w-full bg-main-soft-bg">
+    <ul className="p-10 flex items-center justify-between px-5 gap-5 xl:hidden w-full bg-main-bg border-b-1">
       {menuItems.list.map((menuLink) => (
         <li key={menuLink.path}>
           <TopBarLink menuLink={menuLink} />

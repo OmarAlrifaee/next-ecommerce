@@ -20,17 +20,17 @@ const Products = async ({ searchParams }: Props) => {
     searchParams.search
   );
   return (
-    <section className="bg-main-soft-bg mt-5">
-      <div className="p-5 mt-3 flex sm:items-center sm:justify-between sm:flex-row gap-3 flex-col">
-        <div className="flex items-center gap-5 sm:flex-row flex-col">
-          <Search style="sm:w-fit w-full" />
-          <Catergories style="sm:w-fit w-full" dashboard />
+    <section className="bg-main-bg rounded-md border-1 mt-5">
+      <div className="p-5 mt-3 flex md:items-center md:justify-between md:flex-row gap-3 flex-col">
+        <div className="flex items-center gap-5 md:flex-row flex-col">
+          <Search />
+          <Catergories />
         </div>
         <MyToolTip content="Add New product">
           <AddNewLink
             text="Add Product"
             href="/dashboard/products/add"
-            style="sm:w-fit w-full sm:text-start text-center bg-primary text-white-text border-none"
+            style="md:w-fit w-full md:text-start text-center bg-black-text rounded-md font-bold text-white-text border-none"
           />
         </MyToolTip>
       </div>
@@ -45,7 +45,7 @@ const Products = async ({ searchParams }: Props) => {
               <td className="p-3">Action</td>
             </tr>
           </thead>
-          <tbody className="text-navlink">
+          <tbody>
             {products.map((product) => (
               <ProductRow product={product} key={product.id} />
             ))}

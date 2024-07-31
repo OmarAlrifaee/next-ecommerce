@@ -37,7 +37,7 @@ const Search = ({ style }: Props) => {
       type="text"
       onChange={(e) => hundleChange(e.target.value)}
       placeholder="Search"
-      className={`sm:max-w-[300px] w-full font-bold ${style}`}
+      className={`md:w-[300px] w-full flex-shrink-0 font-bold ${style}`}
     />
   );
 };

@@ -19,7 +19,7 @@ const CategoryRow = ({ category }: Props) => {
             fallback={category?.title}
             showFallback
             isBordered
-            color="primary"
+            color="secondary"
             className="flex-shrink-0"
           />
           <span>{category.title}</span>
@@ -28,10 +28,10 @@ const CategoryRow = ({ category }: Props) => {
       <td className="p-3">{category.createdAt?.toLocaleDateString()}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
-          <MyToolTip content="view this category details">
+          <MyToolTip content={`View ${category.title} Category Details`}>
             <AddNewLink
               text="View"
-              style="bg-primary border-none text-white-text"
+              style="bg-black-text font-bold rounded-md border-none text-white-text"
               href={`/dashboard/categories/${category.id}`}
             />
           </MyToolTip>
@@ -42,9 +42,9 @@ const CategoryRow = ({ category }: Props) => {
             }}
           >
             <Submit
-              style="bg-red-500 text-white-text border-none"
+              style="bg-button-2 rounded-md font-bold text-white-text border-none"
               text="Delete"
-              tooltipContent="delete this category"
+              tooltipContent={`Delete ${category.title} Category`}
             />
           </form>
         </div>

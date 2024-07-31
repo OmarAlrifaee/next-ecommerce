@@ -10,6 +10,7 @@ type Props = {
   children?: React.ReactNode;
   disabled?: boolean;
   tooltipContent?: string;
+  icon?: boolean;
 };
 const Submit = ({
   text,
@@ -17,6 +18,7 @@ const Submit = ({
   children,
   disabled,
   tooltipContent = "submit",
+  icon,
 }: Props) => {
   const { pending } = useFormStatus();
   return (
@@ -24,8 +26,8 @@ const Submit = ({
       <Button
         type="submit"
         isDisabled={pending || disabled}
-        className={`${style} font-bold`}
-        variant="ghost"
+        className={`${style}`}
+        isIconOnly={icon}
       >
         {pending ? <Loader /> : text || children}
       </Button>

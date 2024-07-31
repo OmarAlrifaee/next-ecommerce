@@ -13,11 +13,12 @@ const Home = async () => {
   const categories = await getAllCategories();
   const isLoggedIn = isUserLoggedIn();
   const cartProducts = isLoggedIn ? (await getCartProducts()).cartProducts : [];
+
   return (
     <section className="md:p-10 p-5">
       {products.length ? (
         <div className="mt-10">
-          <h3 className="text-4xl italic font-bold text-white-text capitalize text-center mb-10">
+          <h3 className="text-3xl italic font-bold text-black-text capitalize md:text-start text-center mb-10">
             Our Best Products
           </h3>
           <SwiperComponent>
@@ -37,14 +38,14 @@ const Home = async () => {
         </div>
       ) : (
         <Card>
-          <p className="text-white-text capitalize font-bold">
+          <p className="text-black-text capitalize font-bold">
             There Is No Products Avaliable
           </p>
         </Card>
       )}
       {categories.length ? (
         <div className="mt-10">
-          <h3 className="text-4xl italic font-bold text-white-text capitalize text-center mb-10">
+          <h3 className="text-3xl italic font-bold text-black-text capitalize md:text-start text-center mb-10">
             All Categories
           </h3>
           <SwiperComponent>
@@ -55,7 +56,7 @@ const Home = async () => {
         </div>
       ) : (
         <Card>
-          <p className="text-white-text capitalize font-bold">
+          <p className="text-black-text capitalize font-bold">
             There Is No Categories Avaliable
           </p>
         </Card>

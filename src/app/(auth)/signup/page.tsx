@@ -6,14 +6,14 @@ import { Input } from "@nextui-org/react";
 
 const SignUp = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <form
-        action={signUp}
-        className="flex flex-col gap-5 shadow-md rounded-md p-5 bg-main-soft-bg sm:w-[30%] w-[75%]"
-      >
-        <h3 className="capitalize font-bold text-3xl text-center text-white-text mb-5">
-          Sign Up
-        </h3>
+    <div className="flex-1 bg-main-bg capitalize md:px-20">
+      <h3 className="font-semibold text-3xl text-black-text mt-5">
+        create an account
+      </h3>
+      <p className="text-lg text-black-text mt-3 font-semibold">
+        enter your details below
+      </p>
+      <form action={signUp} className="flex flex-col gap-4 mt-5">
         <Input
           type="text"
           id="username"
@@ -22,6 +22,7 @@ const SignUp = () => {
           required
           size="sm"
           radius="md"
+          variant="underlined"
         />
         <Input
           type="email"
@@ -31,6 +32,7 @@ const SignUp = () => {
           required
           size="sm"
           radius="md"
+          variant="underlined"
         />
         <Input
           type="password"
@@ -40,15 +42,19 @@ const SignUp = () => {
           required
           size="sm"
           radius="md"
+          variant="underlined"
         />
         <Submit
-          text="Sign Up"
-          style="bg-blue-500 text-white-text border-none"
+          text="Create Account"
+          style="bg-button-2 hover:bg-button-2-hover text-white-text border-none mt-3 rounded-md font-bold"
           tooltipContent="sign up"
-        />{" "}
-        <Link href={"/login"} className="underline text-primary font-semibold">
-          Login
-        </Link>
+        />
+        <p className="mt-5">
+          do you have an account?{" "}
+          <Link href={"/login"} className="underline text-black-text font-bold">
+            Log In
+          </Link>
+        </p>
       </form>
     </div>
   );

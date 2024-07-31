@@ -10,7 +10,7 @@ const MyCustomSwitch = ({ isAdmin }: Props) => {
   return (
     <>
       <input type="hidden" name="isAdmin" value={value ? "on" : ""} />
-      <Switch onValueChange={setValue} isSelected={value} />
+      <Switch onValueChange={setValue} isSelected={value} color="secondary"/>
     </>
   );
 };

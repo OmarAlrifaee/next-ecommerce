@@ -5,9 +5,8 @@ import AddProductForm from "./forms/AddProductForm";
 import RemoveProductForm from "./forms/RemoveProductForm";
 import { getCartProducts } from "@/actions/cart";
 import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
-import { Card, CardBody, CardHeader, CardFooter } from "@nextui-org/react";
 import MyToolTip from "./shared/MyToolTip";
-
+import ProductDetailsDescription from "./ProductDetailsDescription";
 type Props = {
   product: ProductType;
   inCart: boolean;
@@ -21,82 +20,74 @@ const ProductDetailsCard = async ({ product, inCart, loggedIn }: Props) => {
   );
   const quantity = productInCart?.quantity;
   return (
-    <Card
-      shadow="md"
-      className="relative capitalize md:w-1/2 w-full flex flex-col gap-3 bg-main-soft-bg pb-5 rounded-md overflow-hidden"
-    >
-      <CardHeader className="p-0">
-        <div className="relative w-full h-[50vh]">
-          <Image
-            src={product.img || "/noproduct.jpg"}
-            alt={`${product.title} image`}
-            fill
-          />
-        </div>
-      </CardHeader>
-      <CardBody className="text-navlink">
-        <article className="flex flex-col gap-3">
-          <h3 className="text-xl font-bold text-white-text">{product.title}</h3>
-          <p className="font-semibold text-white-text">{product.desc}</p>
-          {product?.color && product?.size ? (
-            <div className="flex items-center justify-between">
-              <div
-                className={`size-5 rounded-full`}
-                style={{ backgroundColor: product?.color }}
-              />
-              <p className=" font-semibold capitalize">{product?.size}</p>
-            </div>
-          ) : (
-            ""
-          )}
-          <div className="flex items-center justify-between">
-            <p className=" font-semibold capitalize">${product.price}</p>
-            <p className=" font-semibold capitalize">{product.category}</p>
-          </div>
-          <div className="flex items-center justify-between">
-            {quantity ? (
-              <p className=" font-semibold capitalize">
-                <span className="text-white-text">Quantity: </span>
-                {quantity}
-              </p>
-            ) : (
-              ""
-            )}
-            <p className="font-semibold capitalize">
-              <span className="text-white-text">In Stock: </span>
-              {product.stock}
+    <div className="md:flex md:items-center md:justify-between gap-10 mt-20">
+      <div className="relative md:h-[450px] h-[350px] flex-1">
+        <Image
+          src={product.img || "/noproduct.jpg"}
+          alt={`${product.title} photo`}
+          fill
+        />
+      </div>
+      <article className="flex-1 md:mt-0 mt-5">
+        <h3 className="text-3xl text-black-text font-bold capitalize">
+          {product?.title}
+        </h3>
+        <p className="text-2xl text-black-text font-semibold capitalize mt-3">
+          ${product.price}
+        </p>
+        {product.size && product.color ? (
+          <div className="mt-3 flex items-center justify-between">
+            <div
+              className="size-10 rounded-full"
+              style={{ backgroundColor: product.color || "black" }}
+            />
+
+            <p className="text-black-text text-medium capitalize font-semibold">
+              {product.size}
             </p>
           </div>
-        </article>
-      </CardBody>
-      <CardFooter>
-        <div className="flex flex-col gap-3 px-3 w-full">
-          {loggedIn ? (
-            <>
-              {inCart ? (
-                <RemoveProductForm productId={product.id} widthFull />
-              ) : (
-                ""
-              )}
+        ) : (
+          ""
+        )}
+        <ProductDetailsDescription desc={product.desc} />
+        {productInCart?.product ? (
+          <div className="flex items-center justify-between mt-3">
+            <p className="text-black-text text-lg capitalize font-semibold">
+              Quantity:{" "}
+              <span className="text-button-2 text-medium">{quantity}</span>
+            </p>
+            <p className="text-black-text text-lg capitalize font-semibold">
+              Stock:{" "}
+              <span className="text-button-1 text-medium">{product.stock}</span>
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
+        {loggedIn ? (
+          <>
+            <div className="flex items-center justify-between mt-5">
+              {inCart ? <RemoveProductForm productId={product.id} /> : ""}
               <AddProductForm
                 productId={product.id}
-                widthFull
-                stock={product.stock}
                 quantity={quantity}
+                stock={product.stock}
+                widthFull={!inCart}
               />
-            </>
-          ) : (
-            <MyToolTip content="go to login page">
-              <AddNewLink
-                text="Login"
-                href="/login"
-                style="text-white-text bg-primary font-bold border-none"
-              />
-            </MyToolTip>
-          )}
-        </div>
-      </CardFooter>
-    </Card>
+            </div>
+          </>
+        ) : (
+          <MyToolTip content="go to login page">
+            <AddNewLink
+              text="Login"
+              href="/login"
+              style="text-white-text bg-button-3 font-bold border-none mt-5 w-full"
+            />
+          </MyToolTip>
+        )}
+        <div className="h-[1px] w-full bg-gray-text mt-5" />
+      </article>
+    </div>
   );
 };
 export default ProductDetailsCard;

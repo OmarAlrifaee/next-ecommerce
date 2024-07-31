@@ -46,17 +46,17 @@ const Sidebar = async ({ currentUser }: Props) => {
     ],
   };
   return (
-    <section className="flex-1 bg-main-soft-bg p-5 xl:block hidden text-navlink">
+    <section className="flex-1 bg-main-bg border-r-1 p-5 xl:block hidden">
       <div className="flex items-center gap-[20px] mt-[20px]">
         <Avatar
           showFallback
           src={currentUser?.avatar}
           name={currentUser?.username}
           isBordered={!!currentUser?.avatar}
-          color="primary"
+          color="secondary"
         />
         <div className="flex flex-col">
-          <span className="font-[500] text-white-text">
+          <span className="font-[500] text-black-text capitalize">
             {currentUser.username}
           </span>
           <span className="text-[12px]">Admin</span>
@@ -64,7 +64,7 @@ const Sidebar = async ({ currentUser }: Props) => {
       </div>
       <ul className="mt-5">
         <li>
-          <span className=" font-bold text-[13px] my-[10px] text-white-text">
+          <span className=" font-bold text-[13px] my-[10px] text-gray-text">
             {menuItems.title}
           </span>
           <div className="mt-3">

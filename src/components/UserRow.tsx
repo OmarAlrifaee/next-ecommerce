@@ -20,7 +20,7 @@ const UserRow = ({ user }: Props) => {
             fallback={user.username}
             showFallback
             isBordered
-            color="primary"
+            color="secondary"
             className="flex-shrink-0"
           />
           <span>{user.username}</span>
@@ -31,10 +31,10 @@ const UserRow = ({ user }: Props) => {
       <td className="p-3">{user.isAdmin ? "Admin" : "Not Admin"}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
-          <MyToolTip content="view user details">
+          <MyToolTip content={`View ${user.username} Details`}>
             <AddNewLink
               text="View"
-              style="bg-primary  border-none text-white-text"
+              style="bg-black-text font-bold border-none text-white-text"
               href={`/dashboard/users/${user.id}`}
             />
           </MyToolTip>
@@ -45,9 +45,9 @@ const UserRow = ({ user }: Props) => {
             }}
           >
             <Submit
-              style="bg-red-500 text-white-text border-none "
+              style="bg-button-2 font-bold text-white-text border-none"
               text="Delete"
-              tooltipContent="Delete this user"
+              tooltipContent={`Delete ${user.username} Account`}
             />
           </form>
         </div>

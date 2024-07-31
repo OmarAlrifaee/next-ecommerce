@@ -1,11 +1,11 @@
 import { addUser } from "@/actions/users";
 import Submit from "@/components/Submit";
 import { Metadata } from "next";
-import { Input, Switch } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import MyCustomSwitch from "@/components/shared/MyCustomSwitch";
 const AddUser = () => {
   return (
-    <div className="bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
+    <div className="bg-main-bg p-[20px] mt-[20px] border-1 rounded-md">
       <form action={addUser}>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-x-5 gap-y-10">
           <Input
@@ -16,6 +16,8 @@ const AddUser = () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
+            isRequired
           />
           <Input
             type="email"
@@ -25,6 +27,8 @@ const AddUser = () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
+            isRequired
           />
           <Input
             type="password"
@@ -34,6 +38,8 @@ const AddUser = () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
+            isRequired
           />
           <Input
             type="text"
@@ -42,17 +48,21 @@ const AddUser = () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
         </div>
         <div className="flex items-center gap-3 mt-5">
           <MyCustomSwitch isAdmin={false} />
-          <label htmlFor="isAdmin" className="text-white-text capitalize">
+          <label
+            htmlFor="isAdmin"
+            className="text-black-text capitalize font-semibold"
+          >
             select to make the user an admin
           </label>
         </div>
         <Submit
           text="Add User"
-          style="bg-primary text-white w-full mt-5 border-none"
+          style="bg-black-text font-bold text-white-text w-full mt-5 border-none"
           tooltipContent="Add User"
         />
       </form>

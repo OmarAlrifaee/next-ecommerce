@@ -6,14 +6,14 @@ import Link from "next/link";
 
 const Login = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <form
-        action={login}
-        className="flex flex-col gap-5 shadow-md rounded-md p-5 bg-main-soft-bg sm:w-[30%] w-[75%]"
-      >
-        <h3 className="capitalize font-bold text-3xl text-center text-white-text mb-5">
-          Login
-        </h3>
+    <div className="flex-1 bg-main-bg capitalize md:px-20">
+      <h3 className="font-semibold text-3xl text-black-text mt-5">
+        Log in to Exclusive
+      </h3>
+      <p className="text-lg text-black-text mt-3 font-semibold">
+        Enter your details below
+      </p>
+      <form action={login} className="flex flex-col gap-4 mt-5">
         <Input
           type="email"
           id="email"
@@ -22,6 +22,7 @@ const Login = () => {
           required
           size="sm"
           radius="md"
+          variant="underlined"
         />
         <Input
           type="password"
@@ -31,15 +32,22 @@ const Login = () => {
           required
           size="sm"
           radius="md"
+          variant="underlined"
         />
         <Submit
           text="Login"
-          style="bg-primary text-white-text bg-primary border-none"
-          tooltipContent="login"
+          style="bg-button-2 hover:bg-button-2-hover text-white-text border-none mt-3 rounded-md font-bold"
+          tooltipContent="Log In"
         />
-        <Link href={"/signup"} className="underline text-primary font-semibold">
-          Sign Up
-        </Link>
+        <p className="mt-5">
+          do not have an account?{" "}
+          <Link
+            href={"/signup"}
+            className="underline text-black-text font-semibold"
+          >
+            Create One
+          </Link>
+        </p>
       </form>
     </div>
   );

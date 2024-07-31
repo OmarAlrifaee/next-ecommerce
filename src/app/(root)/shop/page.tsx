@@ -27,30 +27,29 @@ const Shop = async ({ searchParams }: Props) => {
     <section className="md:p-10 p-5">
       <div className="flex sm:flex-row flex-col sm:items-center sm:justify-center gap-5 ">
         <Catergories style="sm:w-fit w-full " />
-        <Search style="sm:w-fit w-full " />
+        <Search />
       </div>
       {products.length ? (
         <>
-          <ul className="grid xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 place-items-center w-full gap-x-2 gap-y-6 mt-10">
+          <ul className="grid xl:grid-cols-4 lg:grid-cols-3 w-full md:grid-cols-2 grid-cols-1 place-items-center gap-x-2 gap-y-6 mt-10">
             {products.map((product) => (
-              <li key={product.id}>
-                <ProductCard
-                  product={product}
-                  inCart={
-                    !!cartProducts?.some((cartProduct) => {
-                      return cartProduct.product.id === product.id;
-                    })
-                  }
-                  loggedIn={isLoggedIn}
-                />
-              </li>
+              <ProductCard
+                key={product.id}
+                product={product}
+                inCart={
+                  !!cartProducts?.some((cartProduct) => {
+                    return cartProduct.product.id === product.id;
+                  })
+                }
+                loggedIn={isLoggedIn}
+              />
             ))}
           </ul>
           <Pagenation count={productsCount} />
         </>
       ) : (
         <Card>
-          <p className="text-white-text capitalize font-bold">
+          <p className="text-black-text capitalize font-bold">
             There Is No Products Avaliable
           </p>
         </Card>

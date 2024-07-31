@@ -18,10 +18,10 @@ const Cart = async () => {
     <section className="md:p-10 p-5">
       {cartProducts.length ? (
         <>
-          <h2 className="font-bold capitalize text-4xl text-white-text">
-            Total: <span className="text-green-500">${totalPrice}</span>
-          </h2>
-          <ul className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10 justify-center items-center gap-5">
+          <h3 className="font-bold capitalize text-4xl text-black-text md:text-start text-center">
+            Total: <span className="text-button-1">${totalPrice}</span>
+          </h3>
+          <ul className="grid xl:grid-cols-4 lg:grid-cols-3 w-full md:grid-cols-2 grid-cols-1 place-items-center gap-x-2 gap-y-6 mt-10">
             {cartProducts?.map((cartProduct) => (
               <CartProductCard
                 cartProduct={cartProduct}
@@ -33,7 +33,7 @@ const Cart = async () => {
             <MyToolTip content="go to buy all your cart products">
               <AddNewLink
                 href="/checkout"
-                style="bg-green-500 text-white-text w-full border-none"
+                style="bg-button-1 text-white-text w-full border-none font-bold"
                 text="Check Out"
               />
             </MyToolTip>
@@ -42,7 +42,7 @@ const Cart = async () => {
         </>
       ) : (
         <Card>
-          <p className="text-white-text capitalize font-bold">
+          <p className="text-black-text capitalize font-bold">
             There Is No Products Avaliable In Your Cart
           </p>
         </Card>

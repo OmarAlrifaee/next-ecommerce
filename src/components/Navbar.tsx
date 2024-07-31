@@ -1,13 +1,13 @@
 import { UserType } from "@/types";
 import NavLink from "./NavLink";
-import { cookies } from "next/headers";
 import { getCurrentUser, logout } from "@/actions/users";
 import Submit from "./Submit";
 import { IoLogOut } from "react-icons/io5";
 import { Avatar, Button } from "@nextui-org/react";
-import { HiLogin } from "react-icons/hi";
 import Link from "next/link";
 import MyToolTip from "./shared/MyToolTip";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
+import { HiOutlineLogin } from "react-icons/hi";
 const links = [
   {
     path: "/",
@@ -23,14 +23,14 @@ const links = [
   },
 ];
 const Navbar = async () => {
-  let currentUser: UserType | null = null; // to prevent a prerendering error
-  if (cookies().get("token")?.value) {
-    currentUser = await getCurrentUser();
-  }
+  const isLoggedIn = isUserLoggedIn();
+  const currentUser: UserType | null = isLoggedIn
+    ? await getCurrentUser()
+    : null; // to prevent a prerendering error
   return (
-    <nav className="h-10 py-10 px-10 md:flex hidden items-center justify-between text-black">
-      <div className="font-bold text-navlink">Logo</div>
-      <ul className="flex items-center gap-3">
+    <nav className="h-10 p-10 md:flex hidden items-center justify-between text-black border-b-1">
+      <div className="font-bold text-black-text text-3xl">Exclusive</div>
+      <ul className="flex items-center gap-6">
         {links.map((link) => (
           <NavLink
             path={link.path}
@@ -53,19 +53,22 @@ const Navbar = async () => {
       </ul>
       {currentUser ? (
         <div className="flex items-center gap-5">
-          <p className="font-bold text-navlink">{currentUser?.username}</p>
+          <p className="text-black-text text-lg capitalize font-semibold">
+            {currentUser?.username}
+          </p>
           <Avatar
             showFallback
             src={currentUser?.avatar}
             name={currentUser?.username}
             isBordered={!!currentUser?.avatar}
-            color="primary"
+            color="secondary"
             className="flex-shrink-0"
           />
           <form action={logout}>
             <Submit
-              style="transition text-navlink hover:text-primary"
+              style="border border-gray-text bg-white-text rounded-full"
               tooltipContent="logout"
+              icon
             >
               <IoLogOut
                 width={40}
@@ -78,8 +81,13 @@ const Navbar = async () => {
         </div>
       ) : (
         <MyToolTip content="login">
-          <Button as={Link} href="/login" variant="ghost">
-            <HiLogin className="text-3xl text-navlink" />
+          <Button
+            as={Link}
+            href="/login"
+            className="border border-gray-text bg-white-text rounded-full"
+            isIconOnly
+          >
+            <HiOutlineLogin className="text-3xl text-black-text" />
           </Button>
         </MyToolTip>
       )}

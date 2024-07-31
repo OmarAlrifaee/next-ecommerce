@@ -7,7 +7,7 @@ import MyCustomSelect from "@/components/shared/MyCustomSelect";
 const AddProduct = async () => {
   const categories = await getAllCategories();
   return (
-    <div className="bg-main-soft-bg p-[20px] rounded-md mt-[20px]">
+    <div className="bg-main-bg p-[20px] border-1 rounded-md mt-[20px]">
       <form action={addProduct}>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-x-5 gap-y-10">
           <Input
@@ -18,8 +18,10 @@ const AddProduct = async () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
+            isRequired
           />
-          <MyCustomSelect categories={categories} />
+          <MyCustomSelect categories={categories} isRequired />
           <Input
             type="number"
             label="Price"
@@ -27,6 +29,8 @@ const AddProduct = async () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
+            isRequired
           />
           <Input
             type="text"
@@ -35,6 +39,7 @@ const AddProduct = async () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="text"
@@ -43,6 +48,7 @@ const AddProduct = async () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
           <Input
             type="number"
@@ -52,6 +58,8 @@ const AddProduct = async () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
+            isRequired
           />
           <Input
             type="color"
@@ -59,6 +67,7 @@ const AddProduct = async () => {
             className="text-white-text font-semibold"
             radius="md"
             size="lg"
+            variant="underlined"
           />
         </div>
         <div className="mt-10 flex flex-col gap-5">
@@ -69,10 +78,12 @@ const AddProduct = async () => {
             className=" text-white-text font-semibold min-h-[200px] resize-y"
             radius="md"
             size="lg"
+            variant="underlined"
+            isRequired
           ></Textarea>
           <Submit
             text="Add Product"
-            style="bg-primary text-white w-full border-none"
+            style="bg-black-text text-white-text font-bold w-full border-none"
             tooltipContent="Add new product"
           />
         </div>

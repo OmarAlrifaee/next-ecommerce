@@ -11,13 +11,13 @@ const CartPage = async ({ searchParams }: Props) => {
     ? await getUserProductsFromCart(searchParams.user)
     : [];
   return (
-    <section className="bg-main-soft-bg">
+    <section className="bg-main-bg rounded-md border-1">
       <div className="p-5 mt-3 flex items-center justify-between">
-        <UsersFilter style="sm:w-fit w-full" />
+        <UsersFilter />
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold text-white-text">
+          <thead className="font-semibold text-black-text">
             <tr>
               <td className="p-3">Title</td>
               <td className="p-3">Price</td>
@@ -27,7 +27,7 @@ const CartPage = async ({ searchParams }: Props) => {
               <td className="p-3">Action</td>
             </tr>
           </thead>
-          <tbody className="text-navlink">
+          <tbody>
             {userProducts?.length && searchParams.user
               ? userProducts?.map((cartProduct) => (
                   <UserCartProductRow

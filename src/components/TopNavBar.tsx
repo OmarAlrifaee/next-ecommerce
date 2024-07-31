@@ -11,6 +11,7 @@ import { HiLogin } from "react-icons/hi";
 import { MdDashboardCustomize } from "react-icons/md";
 import { Avatar, Button, Link } from "@nextui-org/react";
 import MyToolTip from "./shared/MyToolTip";
+import { isUserLoggedIn } from "@/helper/isUserLoggedIn";
 const links = [
   {
     title: "Home",
@@ -29,12 +30,12 @@ const links = [
   },
 ];
 const Navbar = async () => {
-  let currentUser: UserType | null = null; // to prevent a prerendering error
-  if (cookies().get("token")?.value) {
-    currentUser = await getCurrentUser();
-  }
+  const isLoggedIn = isUserLoggedIn();
+  const currentUser: UserType | null = isLoggedIn
+    ? await getCurrentUser()
+    : null; // to prevent a prerendering error
   return (
-    <nav className="p-5 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-black bg-main-soft-bg">
+    <nav className="p-10 flex items-center sm:justify-between justify-center sm:flex-nowrap flex-wrap gap-10 md:hidden text-black-text bg-main-bg border-b-1">
       <ul className="flex items-center justify-between w-full">
         {links.map((link) => (
           <TopNavBarLink key={link.path} link={link} />
@@ -54,18 +55,18 @@ const Navbar = async () => {
       {currentUser ? (
         <div className="flex items-center sm:justify-end sm:gap-5 justify-between w-full">
           <Avatar
-            // as={Image}
             showFallback
             src={currentUser?.avatar}
             name={currentUser?.username}
             isBordered={!!currentUser?.avatar}
-            color="primary"
+            color="secondary"
             radius="full"
           />
           <form action={logout}>
             <Submit
-              style="text-navlink hover:text-primary p-0"
+              style="border border-gray-text bg-white-text rounded-full"
               tooltipContent="logout"
+              icon
             >
               <IoLogOut
                 width={40}
@@ -78,8 +79,13 @@ const Navbar = async () => {
         </div>
       ) : (
         <MyToolTip content="login">
-          <Button as={Link} href="/login" variant="ghost">
-            <HiLogin className="text-3xl text-navlink" />
+          <Button
+            as={Link}
+            href="/login"
+            className="border border-gray-text bg-white-text rounded-full"
+            isIconOnly
+          >
+            <HiLogin className="text-3xl text-black-text" />
           </Button>
         </MyToolTip>
       )}

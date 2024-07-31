@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Image from "next/image";
 import { ProductType } from "@/types";
 import { deleteProduct } from "@/actions/products";
 import Submit from "./Submit";
@@ -19,7 +17,7 @@ const ProductRow = ({ product }: Props) => {
             fallback={product?.title}
             showFallback
             isBordered
-            color="primary"
+            color="secondary"
             className="flex-shrink-0"
           />
           <span>{product.title}</span>
@@ -30,10 +28,10 @@ const ProductRow = ({ product }: Props) => {
       <td className="p-3">{product.stock}</td>
       <td className="p-3">
         <div className="flex items-center gap-[20px]">
-          <MyToolTip content="view this product details">
+          <MyToolTip content={`View ${product.title} Details`}>
             <AddNewLink
               text="View"
-              style="bg-primary border-none text-white-text"
+              style="bg-black-text rounded-md font-bold border-none text-white-text"
               href={`/dashboard/products/${product.id}`}
             />
           </MyToolTip>
@@ -44,8 +42,8 @@ const ProductRow = ({ product }: Props) => {
             }}
           >
             <Submit
-              tooltipContent="delete this product"
-              style="bg-red-500 text-white-text border-none "
+              tooltipContent={`delete ${product.title}`}
+              style="bg-button-2 font-bold rounded-md text-white-text border-none "
               text="Delete"
             />
           </form>
