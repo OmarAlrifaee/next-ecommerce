@@ -6,9 +6,9 @@ const Card = ({ children, fixed }: Props) => {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div
-        className={`bg-main-soft-bg rounded-sm mt-10 p-5 flex items-center justify-center flex-col gap-5 text-black-text ${
+        className={`bg-main-bg border-1 rounded-md shadow-sm mt-10 p-5 flex items-center justify-center overflow-hidden flex-col gap-5 text-black-text ${
           fixed
-            ? "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 shadow-sm"
+            ? "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
             : ""
         }`}
       >
