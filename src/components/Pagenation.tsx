@@ -46,7 +46,7 @@ const Pagenation = ({ count }: Props) => {
   return (
     <div className="flex items-center justify-between p-[10px] mt-5 gap-5">
       <Button
-        className="disabled:cursor-not-allowed bg-button-2  text-white-text font-bold"
+        className="disabled:cursor-not-allowed bg-black-text  text-white-text font-bold"
         onClick={goPrev}
         isDisabled={!showPrev}
         radius="md"
@@ -58,10 +58,10 @@ const Pagenation = ({ count }: Props) => {
           <Button
             key={num}
             onClick={() => hundleClick(num)}
-            className={`disabled:cursor-not-allowed bg-button-2  text-white-text font-bold ${
+            className={`disabled:cursor-not-allowed bg-black-text  text-white-text font-bold ${
               parseInt(searchParams.get("page")!) === num
-                ? "bg-button-2 "
-                : "bg-[#EDA1A1]"
+                ? "bg-black-text "
+                : "bg-[#7F7F7F]"
             }`}
             isIconOnly
             radius="md"
@@ -71,7 +71,7 @@ const Pagenation = ({ count }: Props) => {
         ))}
       </div>
       <Button
-        className="disabled:cursor-not-allowed bg-button-2  text-white-text font-bold"
+        className="disabled:cursor-not-allowed bg-black-text  text-white-text font-bold"
         onClick={goNext}
         isDisabled={!showNext}
         radius="md"

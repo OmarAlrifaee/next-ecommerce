@@ -36,7 +36,7 @@ const Products = async ({ searchParams }: Props) => {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full mt-5">
-          <thead className="font-semibold text-white-text">
+          <thead className="font-semibold text-black-text">
             <tr>
               <td className="p-3">Title</td>
               <td className="p-3">Price</td>
