@@ -3,9 +3,10 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 type SwiperComponentProps = {
   children: React.ReactNode;
@@ -33,7 +34,8 @@ const SwiperComponent: React.FC<SwiperComponentProps> = ({ children }) => {
         },
       }}
       navigation
-      modules={[Navigation]}
+      pagination={{ clickable: true }}
+      modules={[Navigation, Pagination]}
       loop
     >
       {React.Children.map(children, (child, index) => (

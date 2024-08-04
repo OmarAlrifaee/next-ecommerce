@@ -23,10 +23,44 @@
   border: 5px dotted #ffffff;
 }
 /* styling the swiper arrows */
+.swiper {
+  position: relative !important;
+}
 .swiper-wrapper {
-  @apply py-10 px-0
+  @apply py-20 px-0;
+}
+.swiper-pagination-bullet-active {
+  background: #000 !important;
+}
+.swiper-button-next {
+  background-image: url("../../public/arrow-right.svg") !important;
+  background-size: cover !important;
+  position: absolute !important;
+  left: 50px !important;
+  top: 25px !important;
+  width: 50px !important;
+  height: 50px !important;
+  overflow: hidden !important;
+  transition: 0.3s;
+}
+.swiper-button-next:hover {
+  background-image: url("../../public/arrow-right-outline.svg") !important;
+}
+.swiper-button-prev {
+  background-image: url("../../public/arrow-left.svg") !important;
+  background-size: cover !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 25px !important;
+  width: 50px !important;
+  height: 50px !important;
+  overflow: hidden !important;
+  transition: 0.3s;
+}
+.swiper-button-prev:hover {
+  background-image: url("../../public/arrow-left-outline.svg") !important;
 }
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  @apply text-black-text font-bold;
+  display: none;
 }
