@@ -24,12 +24,12 @@ const ProductCard = async ({ product, inCart, loggedIn }: Props) => {
   return (
     <Card shadow="sm" className="md:w-[300px] w-full min-h-[300px] bg-main-bg">
       <CardHeader>
-        <div className="relative group w-full h-[200px] bg-main-soft-bg">
+        <div className="relative group w-full h-[200px] bg-main-soft-bg overflow-hidden">
           <Image
             src={product.img || "/noproduct.jpg"}
             alt={`${product.title} image`}
             fill
-            className="group-hover:hidden"
+            className="transition group-hover:blur-sm"
           />
           <MyToolTip content={`show ${product.title} details`}>
             <Link

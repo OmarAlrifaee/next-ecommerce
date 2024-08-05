@@ -11,7 +11,7 @@ const CategoryCard = ({ category }: Props) => {
   return (
     <Card
       shadow="sm"
-      className="overflow-hidden capitalize md:w-[300px] w-full bg-main-bg min-h-[200px]"
+      className="overflow-hidden capitalize md:w-[300px] w-full bg-main-bg min-h-[200px] "
     >
       <CardHeader>
         <div className="relative w-full h-[200px] group bg-main-soft-bg">
@@ -19,7 +19,7 @@ const CategoryCard = ({ category }: Props) => {
             src={category.img || "/noproduct.jpg"}
             alt={`${category.title} image`}
             fill
-            className="group-hover:hidden"
+            className="transition group-hover:blur-sm"
           />
           <MyToolTip content={`see ${category.title} products in shop`}>
             <Link
