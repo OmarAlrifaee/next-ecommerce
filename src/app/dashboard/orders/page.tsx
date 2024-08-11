@@ -1,5 +1,5 @@
 import { getAllOrders } from "@/actions/order";
-import OrderRow from "@/components/OrderRow";
+import OrdersTable from "@/components/pages/OrdersTable";
 import Search from "@/components/Search";
 import { Metadata } from "next";
 
@@ -21,23 +21,7 @@ const Orders = async ({ searchParams }: Props) => {
           <span className="text-button-1 font-semibold">${totalPrice}</span>
         </h3>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full mt-5">
-          <thead className="font-semibold text-black-text">
-            <tr>
-              <td className="p-3">UserName</td>
-              <td>Total</td>
-              <td>Created At</td>
-              <td>Actions</td>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.reverse().map((order) => (
-              <OrderRow order={order} key={order.id} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <OrdersTable searchParams={searchParams} />
     </section>
   );
 };
