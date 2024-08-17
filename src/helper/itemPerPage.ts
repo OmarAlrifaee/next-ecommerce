@@ -1,2 +1,2 @@
-const itemsPerPage = 8;
+const itemsPerPage = 2;
 export default itemsPerPage;

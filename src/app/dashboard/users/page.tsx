@@ -24,7 +24,7 @@ const Users = async ({ searchParams }: Props) => {
           />
         </MyToolTip>
       </div>
-      <Suspense fallback={<PagesLoader />}>
+      <Suspense fallback={<PagesLoader />} key={searchParams?.page}>
         <UsersTable searchParams={searchParams} />
       </Suspense>
     </section>

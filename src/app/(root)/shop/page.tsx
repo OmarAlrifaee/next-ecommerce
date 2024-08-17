@@ -19,7 +19,7 @@ const Shop = async ({ searchParams }: Props) => {
         <Catergories style="sm:w-fit w-full " />
         <Search />
       </div>
-      <Suspense fallback={<PagesLoader />}>
+      <Suspense fallback={<PagesLoader />} key={searchParams?.page}>
         <ShopProducts searchParams={searchParams} />
       </Suspense>
     </section>

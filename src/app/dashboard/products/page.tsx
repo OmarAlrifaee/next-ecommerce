@@ -1,4 +1,3 @@
-import { getAllProducts } from "@/actions/products";
 import AddNewLink from "@/components/AddNewLink";
 import Catergories from "@/components/Catergories";
 import ProductsTable from "@/components/pages/ProductsTable";
@@ -30,7 +29,7 @@ const Products = async ({ searchParams }: Props) => {
           />
         </MyToolTip>
       </div>
-      <Suspense fallback={<PagesLoader />}>
+      <Suspense fallback={<PagesLoader />} key={searchParams?.page}>
         <ProductsTable searchParams={searchParams} />
       </Suspense>
     </section>
