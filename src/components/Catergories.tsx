@@ -27,18 +27,18 @@ const Catergories = ({ style }: Props) => {
     replace(`${pathname}?${params}`, { scroll: false });
   };
   // <----------------------------------------->
-  const randomId = useMemo(
-    () => `${Math.random() * Math.random()}jhacadsvkl`,
-    []
-  );
-  const allCategory = useMemo(
-    () => ({ id: randomId, title: "all", img: "", createdAt: new Date() }),
-    [randomId]
-  );
-  const categoriesWithAll = useMemo<CategoryType[]>(
-    () => [allCategory, ...categories],
-    [categories, allCategory]
-  );
+  // const randomId = useMemo(
+  //   () => `${Math.random() * Math.random()}jhacadsvkl`,
+  //   []
+  // );
+  // const allCategory = useMemo(
+  //   () => ({ id: randomId, title: "all", img: "", createdAt: new Date() }),
+  //   [randomId]
+  // );
+  // const categoriesWithAll = useMemo<CategoryType[]>(
+  //   () => [allCategory, ...categories],
+  //   [categories, allCategory]
+  // );
   // <----------------------------------------->
   return (
     <Select
@@ -47,11 +47,17 @@ const Catergories = ({ style }: Props) => {
       defaultSelectedKeys={[searchParams.get("category")! || "all"]}
       radius="md"
     >
-      {categoriesWithAll.map((category) => (
-        <SelectItem key={category.title} className="capitalize">
-          {category.title}
-        </SelectItem>
-      ))}
+      {[
+        <SelectItem key={"all"} className="capitalize">
+          all
+        </SelectItem>,
+        // @ts-ignore
+        categories.map((category) => (
+          <SelectItem key={category.title} className="capitalize">
+            {category.title}
+          </SelectItem>
+        )),
+      ]}
     </Select>
   );
 };
